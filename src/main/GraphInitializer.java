@@ -14,10 +14,10 @@ import java.io.IOException;
  */
 public class GraphInitializer {
 
-    public static final String DB_PATH = "/home/vahidoo/Desktop/neo4j-community-2.1.5/data/graph.db";
-    private static final String TANZIL_METADATA_PATH = "raw-data/quran-data.xml";
-    private static final String TANZIL_UTHMANI_PATH = "raw-data/quran-uthmani.xml";
-    private static final String LEEDS_CORPUS_PATH = "raw-data/quranic-corpus-morphology-0.4.txt";
+    public static final String DB_PATH = "neo4j/data/graph.db";
+    private static final String TANZIL_METADATA_PATH = "resources/quran-data.xml";
+    private static final String TANZIL_UTHMANI_PATH = "resources/quran-uthmani.xml";
+    private static final String LEEDS_CORPUS_PATH = "resources/quranic-corpus-morphology-0.4.txt";
 
 
     private GraphDatabaseService graphDB;
