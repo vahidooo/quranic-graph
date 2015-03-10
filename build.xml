@@ -3,10 +3,6 @@
 
 
     <property file="build.properties"/>
-    <!-- Uncomment the following property if no tests compilation is needed -->
-    <!--
-    <property name="skip.tests" value="true"/>
-     -->
 
     <!-- Compiler options -->
 
@@ -121,8 +117,6 @@
 
 
     <!-- Module quranic-graph -->
-
-
     <dirname property="module.quranic-graph.basedir" file="${ant.file}"/>
 
 
@@ -135,52 +129,8 @@
     <property name="quranic-graph.output.dir" value="${module.quranic-graph.basedir}/out/production/quranic-graph"/>
     <property name="quranic-graph.testoutput.dir" value="${module.quranic-graph.basedir}/out/test/quranic-graph"/>
 
-    <!--<path id="quranic-graph.module.bootclasspath">-->
-    <!--&lt;!&ndash; Paths to be included in compilation bootclasspath &ndash;&gt;-->
-    <!--</path>-->
-
-    <!--<path id="quranic-graph.module.production.classpath">-->
-    <!--<path refid="${module.jdk.classpath.quranic-graph}"/>-->
-    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
-    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
-    <!--</path>-->
-
-    <!--<path id="quranic-graph.runtime.production.module.classpath">-->
-    <!--<pathelement location="${quranic-graph.output.dir}"/>-->
-    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
-    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
-    <!--</path>-->
-
-    <!--<path id="quranic-graph.module.classpath">-->
-    <!--<path refid="${module.jdk.classpath.quranic-graph}"/>-->
-    <!--<pathelement location="${quranic-graph.output.dir}"/>-->
-    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
-    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
-    <!--</path>-->
-
-    <!--<path id="quranic-graph.runtime.module.classpath">-->
-    <!--<pathelement location="${quranic-graph.testoutput.dir}"/>-->
-    <!--<pathelement location="${quranic-graph.output.dir}"/>-->
-    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
-    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
-    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
-    <!--</path>-->
-
-
-    <!--<patternset id="excluded.from.module.quranic-graph">-->
-    <!--<patternset refid="ignored.files"/>-->
-    <!--</patternset>-->
-
-    <!--<patternset id="excluded.from.compilation.quranic-graph">-->
-    <!--<patternset refid="excluded.from.module.quranic-graph"/>-->
-    <!--</patternset>-->
+    <property name="artifacts.temp.dir" value="${basedir}/out/__artifacts_temp"/>
+    <property name="plugin.temp.jar" value="${artifacts.temp.dir}/quranic-graph-plugin.jar"/>
 
     <path id="quranic-graph.module.sourcepath">
         <dirset dir="${module.quranic-graph.basedir}">
@@ -188,51 +138,6 @@
             <include name="resources"/>
         </dirset>
     </path>
-
-
-    <target name="compile.module.quranic-graph" depends="compile.module.quranic-graph.production,compile.module.quranic-graph.tests" description="Compile module quranic-graph"/>
-
-    <target name="compile.module.quranic-graph.production" description="Compile module quranic-graph; production classes">
-        <mkdir dir="${quranic-graph.output.dir}"/>
-
-        <copy todir="${quranic-graph.output.dir}">
-            <fileset dir="${module.quranic-graph.basedir}/src">
-                <patternset refid="compiler.resources"/>
-                <type type="file"/>
-            </fileset>
-            <fileset dir="${module.quranic-graph.basedir}/resources">
-                <patternset refid="compiler.resources"/>
-                <type type="file"/>
-            </fileset>
-        </copy>
-    </target>
-
-    <target name="compile.module.quranic-graph.tests" depends="compile.module.quranic-graph.production" description="compile module quranic-graph; test classes" unless="skip.tests"/>
-
-    <target name="build.modules" depends="clean, compile.module.quranic-graph" description="build all modules"/>
-
-    <target name="init.artifacts">
-        <property name="artifact.output.ext-1" value="${basedir}/out/artifacts/ext_1"/>
-
-    </target>
-
-    <property name="artifacts.temp.dir" value="${basedir}/out/__artifacts_temp"/>
-    <property name="plugin.temp.jar" value="${artifacts.temp.dir}/quranic-graph-plugin.jar"/>
-
-    <!--<target name="build.all.artifacts" depends="artifact.ext-1" description="Build all artifacts">-->
-        <!--<mkdir dir="${artifact.output.ext-1}"/>-->
-        <!--<copy todir="${artifact.output.ext-1}">-->
-            <!--<fileset dir="${artifact.temp.output.ext-1}"/>-->
-        <!--</copy>-->
-
-        <!--&lt;!&ndash; Delete temporary files &ndash;&gt;-->
-        <!--<delete dir="${artifacts.temp.dir}"/>-->
-    <!--</target>-->
-
-
-
-
-
 
 
     <path id="quranic-graph.compile.classpath">
