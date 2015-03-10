@@ -187,6 +187,7 @@
             <classpath>
                  <path refid="quranic-graph.runtime.classpath"/>
             </classpath>
+ 	    <jvmarg value="-Xmx2000m"/>
         </java>
     </target>
 
@@ -202,13 +203,13 @@
         </jar>
     </target>
 
-    <target name="neo4j.extension.reload" depends="plugin.build" description="Build all artifacts">
+    <target name="neo4j.plugin.reload" depends="plugin.build" description="Build all artifacts">
         <copy todir="${neo4j.dir}/plugins">
             <file file="${plugin.temp.jar}"/>
         </copy>
     </target>
 
 
-    <target name="all" depends="neo4j.extension.reload" description="build all"/>
+    <target name="all" depends="neo4j.plugin.reload" description="build all"/>
 
 </project>
