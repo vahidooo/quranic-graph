@@ -1,0 +1,16 @@
+## CYPHER
+START n=node:VerseIdx(address = "{chapter}:{verse}") RETURN n
+START n=node:ChapterIdx(index = "{chapter}") RETURN n
+START n=node:TokenIdx( "simpleArabic:احمد") RETURN n
+
+
+## REST API
+:GET /quran/verse/go/{chapter}/{verse}
+:GET /quran/verse/go/{chapter:verse,chapter:verse,chapter:verse,...}
+
+:GET /quran/root/tokens/{root}
+:GET /quran/root/lemmas/{root}
+
+:GET /quran/root/verses/{r1-r2-r3-...}
+:GET /quran/root/verses/{r1-r2-r3-...}/{min}
+:GET /quran/root/verses/{r1-r2-r3-...}/{min}/{max}
