@@ -86,7 +86,7 @@
     <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
     <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
 
-    <property name="neo4j.dir" value="neo4j"/>
+    <property name="neo4j.dir" value="${basedir}/neo4j"/>
 
 
     <!-- Project Libraries -->
@@ -102,13 +102,13 @@
     </path>
 
     <path id="library.neo4j-2.1-lib.classpath">
-        <fileset dir="${basedir}/neo4j/lib">
+        <fileset dir="${neo4j.dir}/lib">
             <patternset refid="library.patterns"/>
         </fileset>
     </path>
 
     <path id="library.neo4j-2.1-system.classpath">
-        <fileset dir="${basedir}/neo4j/system">
+        <fileset dir="${neo4j.dir}/system/lib">
             <patternset refid="library.patterns"/>
         </fileset>
     </path>
@@ -135,52 +135,52 @@
     <property name="quranic-graph.output.dir" value="${module.quranic-graph.basedir}/out/production/quranic-graph"/>
     <property name="quranic-graph.testoutput.dir" value="${module.quranic-graph.basedir}/out/test/quranic-graph"/>
 
-    <path id="quranic-graph.module.bootclasspath">
-        <!-- Paths to be included in compilation bootclasspath -->
-    </path>
+    <!--<path id="quranic-graph.module.bootclasspath">-->
+    <!--&lt;!&ndash; Paths to be included in compilation bootclasspath &ndash;&gt;-->
+    <!--</path>-->
 
-    <path id="quranic-graph.module.production.classpath">
-        <path refid="${module.jdk.classpath.quranic-graph}"/>
-        <path refid="library.jqurantree-1.0.0.classpath"/>
-        <path refid="library.javax.ws.rs-api-2.0.classpath"/>
-        <path refid="library.neo4j-2.1-system.classpath"/>
-        <path refid="library.neo4j-2.1-lib.classpath"/>
-    </path>
+    <!--<path id="quranic-graph.module.production.classpath">-->
+    <!--<path refid="${module.jdk.classpath.quranic-graph}"/>-->
+    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
+    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
+    <!--</path>-->
 
-    <path id="quranic-graph.runtime.production.module.classpath">
-        <pathelement location="${quranic-graph.output.dir}"/>
-        <path refid="library.jqurantree-1.0.0.classpath"/>
-        <path refid="library.javax.ws.rs-api-2.0.classpath"/>
-        <path refid="library.neo4j-2.1-system.classpath"/>
-        <path refid="library.neo4j-2.1-lib.classpath"/>
-    </path>
+    <!--<path id="quranic-graph.runtime.production.module.classpath">-->
+    <!--<pathelement location="${quranic-graph.output.dir}"/>-->
+    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
+    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
+    <!--</path>-->
 
-    <path id="quranic-graph.module.classpath">
-        <path refid="${module.jdk.classpath.quranic-graph}"/>
-        <pathelement location="${quranic-graph.output.dir}"/>
-        <path refid="library.jqurantree-1.0.0.classpath"/>
-        <path refid="library.javax.ws.rs-api-2.0.classpath"/>
-        <path refid="library.neo4j-2.1-system.classpath"/>
-        <path refid="library.neo4j-2.1-lib.classpath"/>
-    </path>
+    <!--<path id="quranic-graph.module.classpath">-->
+    <!--<path refid="${module.jdk.classpath.quranic-graph}"/>-->
+    <!--<pathelement location="${quranic-graph.output.dir}"/>-->
+    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
+    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
+    <!--</path>-->
 
-    <path id="quranic-graph.runtime.module.classpath">
-        <pathelement location="${quranic-graph.testoutput.dir}"/>
-        <pathelement location="${quranic-graph.output.dir}"/>
-        <path refid="library.jqurantree-1.0.0.classpath"/>
-        <path refid="library.javax.ws.rs-api-2.0.classpath"/>
-        <path refid="library.neo4j-2.1-system.classpath"/>
-        <path refid="library.neo4j-2.1-lib.classpath"/>
-    </path>
+    <!--<path id="quranic-graph.runtime.module.classpath">-->
+    <!--<pathelement location="${quranic-graph.testoutput.dir}"/>-->
+    <!--<pathelement location="${quranic-graph.output.dir}"/>-->
+    <!--<path refid="library.jqurantree-1.0.0.classpath"/>-->
+    <!--<path refid="library.javax.ws.rs-api-2.0.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-system.classpath"/>-->
+    <!--<path refid="library.neo4j-2.1-lib.classpath"/>-->
+    <!--</path>-->
 
 
-    <patternset id="excluded.from.module.quranic-graph">
-        <patternset refid="ignored.files"/>
-    </patternset>
+    <!--<patternset id="excluded.from.module.quranic-graph">-->
+    <!--<patternset refid="ignored.files"/>-->
+    <!--</patternset>-->
 
-    <patternset id="excluded.from.compilation.quranic-graph">
-        <patternset refid="excluded.from.module.quranic-graph"/>
-    </patternset>
+    <!--<patternset id="excluded.from.compilation.quranic-graph">-->
+    <!--<patternset refid="excluded.from.module.quranic-graph"/>-->
+    <!--</patternset>-->
 
     <path id="quranic-graph.module.sourcepath">
         <dirset dir="${module.quranic-graph.basedir}">
@@ -209,70 +209,60 @@
 
     <target name="compile.module.quranic-graph.tests" depends="compile.module.quranic-graph.production" description="compile module quranic-graph; test classes" unless="skip.tests"/>
 
-    <target name="clean.module.quranic-graph" description="cleanup module">
-        <delete dir="${quranic-graph.output.dir}"/>
-        <delete dir="${quranic-graph.testoutput.dir}"/>
-    </target>
-
-    <target name="init" description="Build initialization">
-        <!-- Perform any build initialization in this target -->
-    </target>
-
-    <target name="clean" depends="clean.module.quranic-graph" description="cleanup all"/>
-
-    <target name="build.modules" depends="init, clean, compile.module.quranic-graph" description="build all modules"/>
+    <target name="build.modules" depends="clean, compile.module.quranic-graph" description="build all modules"/>
 
     <target name="init.artifacts">
-        <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
         <property name="artifact.output.ext-1" value="${basedir}/out/artifacts/ext_1"/>
-        <mkdir dir="${artifacts.temp.dir}"/>
-        <property name="temp.jar.path.ext-1.jar" value="${artifacts.temp.dir}/ext-1.jar"/>
+
     </target>
 
-    <target name="artifact.ext-1" depends="init.artifacts, compile.module.quranic-graph" description="Build &#39;ext-1&#39; artifact">
-        <property name="artifact.temp.output.ext-1" value="${artifacts.temp.dir}/ext_1"/>
-        <mkdir dir="${artifact.temp.output.ext-1}"/>
-        <jar destfile="${temp.jar.path.ext-1.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
-            <zipfileset dir="${quranic-graph.output.dir}"/>
-        </jar>
-        <copy file="${temp.jar.path.ext-1.jar}" tofile="${artifact.temp.output.ext-1}/ext-1.jar"/>
-    </target>
+    <property name="artifacts.temp.dir" value="${basedir}/out/__artifacts_temp"/>
+    <property name="plugin.temp.jar" value="${artifacts.temp.dir}/quranic-graph-plugin.jar"/>
 
-    <target name="build.all.artifacts" depends="artifact.ext-1" description="Build all artifacts">
-        <mkdir dir="${artifact.output.ext-1}"/>
-        <copy todir="${artifact.output.ext-1}">
-            <fileset dir="${artifact.temp.output.ext-1}"/>
-        </copy>
+    <!--<target name="build.all.artifacts" depends="artifact.ext-1" description="Build all artifacts">-->
+        <!--<mkdir dir="${artifact.output.ext-1}"/>-->
+        <!--<copy todir="${artifact.output.ext-1}">-->
+            <!--<fileset dir="${artifact.temp.output.ext-1}"/>-->
+        <!--</copy>-->
 
-        <!-- Delete temporary files -->
-        <delete dir="${artifacts.temp.dir}"/>
-    </target>
-
-    <target name="neo4j.extension.reload" depends="artifact.ext-1" description="Build all artifacts">
-        <copy todir="${neo4j.dir}/plugins">
-            <fileset dir="${artifact.output.ext-1}"/>
-        </copy>
-
-        <!-- Delete temporary files -->
+        <!--&lt;!&ndash; Delete temporary files &ndash;&gt;-->
         <!--<delete dir="${artifacts.temp.dir}"/>-->
+    <!--</target>-->
+
+
+
+
+
+
+
+    <path id="quranic-graph.compile.classpath">
+        <pathelement location="${quranic-graph.output.dir}"/>
+        <path refid="${module.jdk.classpath.quranic-graph}"/>
+        <path refid="library.jqurantree-1.0.0.classpath"/>
+        <path refid="library.javax.ws.rs-api-2.0.classpath"/>
+        <path refid="library.neo4j-2.1-system.classpath"/>
+        <path refid="library.neo4j-2.1-lib.classpath"/>
+    </path>
+
+    <path id="quranic-graph.runtime.classpath">
+        <pathelement location="${quranic-graph.testoutput.dir}"/>
+        <pathelement location="${quranic-graph.output.dir}"/>
+        <path refid="library.jqurantree-1.0.0.classpath"/>
+        <path refid="library.javax.ws.rs-api-2.0.classpath"/>
+        <path refid="library.neo4j-2.1-system.classpath"/>
+        <path refid="library.neo4j-2.1-lib.classpath"/>
+    </path>
+
+
+    <target name="project.init">
+        <mkdir dir="${quranic-graph.output.dir}"/>
+        <mkdir dir="${quranic-graph.testoutput.dir}"/>
+
+        <mkdir dir="${artifacts.temp.dir}"/>
+
     </target>
 
-    <target name="all" depends="build.modules,build.all.artifacts,neo4j.extension.reload" description="build all"/>
-
-    <target name="graph.init" depends="compile" description="init graph">
-        <java classname="main.GraphInitializer">
-            <classpath>
-                <pathelement location="${quranic-graph.testoutput.dir}"/>
-                <pathelement location="${quranic-graph.output.dir}"/>
-                <path refid="library.jqurantree-1.0.0.classpath"/>
-                <path refid="library.javax.ws.rs-api-2.0.classpath"/>
-                <path refid="library.neo4j-2.1-system.classpath"/>
-                <path refid="library.neo4j-2.1-lib.classpath"/>
-            </classpath>
-        </java>
-    </target>
-
-    <target name="compile" description="init graph">
+    <target name="compile" depends="project.init" description="compile all sources">
         <javac srcdir="src"
                destdir="${quranic-graph.output.dir}"
                includeantruntime="false">
@@ -280,15 +270,40 @@
             <include name="**/*.java"/>
 
             <classpath>
-                <pathelement location="${quranic-graph.output.dir}"/>
-                <path refid="${module.jdk.classpath.quranic-graph}"/>
-                <path refid="library.jqurantree-1.0.0.classpath"/>
-                <path refid="library.javax.ws.rs-api-2.0.classpath"/>
-                <path refid="library.neo4j-2.1-system.classpath"/>
-                <path refid="library.neo4j-2.1-lib.classpath"/>
+                <path refid="quranic-graph.compile.classpath"/>
             </classpath>
 
         </javac>
     </target>
+
+
+    <target name="graph.init" depends="compile" description="initialize graph">
+        <java classname="main.GraphInitializer">
+            <classpath>
+                 <path refid="quranic-graph.runtime.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+
+    <target name="clean" description="cleanup module">
+        <delete dir="${quranic-graph.output.dir}"/>
+        <delete dir="${quranic-graph.testoutput.dir}"/>
+    </target>
+
+    <target name="plugin.build" depends="compile" description="Build plugin artifact">
+        <jar destfile="${plugin.temp.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+            <zipfileset dir="${quranic-graph.output.dir}"/>
+        </jar>
+    </target>
+
+    <target name="neo4j.extension.reload" depends="plugin.build" description="Build all artifacts">
+        <copy todir="${neo4j.dir}/plugins">
+            <file file="${plugin.temp.jar}"/>
+        </copy>
+    </target>
+
+
+    <target name="all" depends="neo4j.extension.reload" description="build all"/>
 
 </project>
