@@ -58,7 +58,7 @@ public class TanzilImporter implements Importer {
         try (Transaction tx = graphDB.beginTx()) {
 
             for (int i = 0; i < suras.getLength(); i++) {
-                System.out.println(i);
+                System.out.println("update chapter #" + (i+1));
                 Node sura = suras.item(i);
 
                 int chapterIndex = Integer.parseInt(sura.getAttributes().getNamedItem(NodeProperties.General.index).getNodeValue());
@@ -97,7 +97,7 @@ public class TanzilImporter implements Importer {
         try (Transaction tx = graphDB.beginTx()) {
 
             for (int i = 0; i < suras.getLength(); i++) {
-                System.out.println(i);
+                System.out.println("add chapter #" + (i+1));
                 Node sura = suras.item(i);
 
                 org.neo4j.graphdb.Node chapterNode = graphDB.createNode(NodeLabels.CHAPTER);

@@ -54,7 +54,7 @@ public class LeedsCorpusImporter implements Importer {
         try (Transaction tx = graphDB.beginTx()) {
             int counter = 0;
             while (scanner.hasNextLine()) {
-                System.out.println(++counter);
+                System.out.println( "add token #" + (++counter) );
                 String line = scanner.nextLine();
 
                 String[] options = line.split("\t");
