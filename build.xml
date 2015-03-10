@@ -186,7 +186,7 @@
   <path id="quran-graph.module.sourcepath">
     <dirset dir="${module.quran-graph.basedir}">
       <include name="src"/>
-      <include name="raw-data"/>
+      <include name="resources"/>
     </dirset>
   </path>
   
@@ -201,7 +201,7 @@
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
-      <fileset dir="${module.quran-graph.basedir}/raw-data">
+      <fileset dir="${module.quran-graph.basedir}/resources">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
@@ -255,10 +255,10 @@
     </copy>
 
     <!-- Delete temporary files -->
-    <delete dir="${artifacts.temp.dir}"/>
+    <!--<delete dir="${artifacts.temp.dir}"/>-->
   </target>
 
-  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+  <target name="all" depends="build.modules,build.all.artifacts,neo4j.extension.reload" description="build all"/>
 
 
 
