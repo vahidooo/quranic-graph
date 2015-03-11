@@ -22,5 +22,7 @@ ant neo4j.plugin.reload
 
 
 اگر پلاگین رو توسعه دادید باید دوکار انجام بدید:
+
 ant neo4j.plugin.reload
+
 ./neo4j/bin/neo4j restart
