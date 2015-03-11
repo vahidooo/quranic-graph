@@ -183,7 +183,7 @@
 
 
     <target name="graph.init" depends="compile" description="initialize graph">
-        <java classname="main.GraphInitializer">
+        <java classname="main.GraphInitializer" fork="true">
             <classpath>
                  <path refid="quranic-graph.runtime.classpath"/>
             </classpath>
