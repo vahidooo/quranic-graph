@@ -35,7 +35,7 @@ public class VerseResource {
         Response response;
         try (Transaction tx = database.beginTx()) {
 
-            String address = NodeUtils.getVerseAddress(chapterNo, verseNo);
+            String address = NodeUtils.getNodeAddress(chapterNo, verseNo);
             Node node = database.index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.General.address, address).getSingle();
 
 

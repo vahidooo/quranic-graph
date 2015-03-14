@@ -1,6 +1,7 @@
 package main;
 
 import graph.quran.corpus.leeds.LeedsCorpusImporter;
+import graph.quran.corpus.leeds.LeedsCorpusNextUpdater;
 import graph.quran.tanzil.TanzilImporter;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
@@ -17,7 +18,7 @@ public class GraphInitializer {
     public static final String DB_PATH = "neo4j/data/graph.db";
     private static final String TANZIL_METADATA_PATH = "resources/quran-data.xml";
     private static final String TANZIL_UTHMANI_PATH = "resources/quran-uthmani.xml";
-    private static final String LEEDS_CORPUS_PATH = "resources/quranic-corpus-morphology-0.4.txt";
+    public static final String LEEDS_CORPUS_PATH = "resources/quranic-corpus-morphology-0.4.txt";
 
 
     private GraphDatabaseService graphDB;
@@ -37,7 +38,11 @@ public class GraphInitializer {
         LeedsCorpusImporter leedsCorpusImporter = new LeedsCorpusImporter(LEEDS_CORPUS_PATH);
 
         tanzilImporter.doImport(initializer.graphDB);
-        leedsCorpusImporter.doImport(initializer.graphDB , 10000 );
+        leedsCorpusImporter.doImport(initializer.graphDB , 10000);
+
+        LeedsCorpusNextUpdater leedsCorpusNextUpdater = new LeedsCorpusNextUpdater();
+        leedsCorpusNextUpdater.doImport(initializer.graphDB);
+
 
         initializer.close();
     }

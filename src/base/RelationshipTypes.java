@@ -10,6 +10,8 @@ public enum RelationshipTypes implements RelationshipType {
     CONTAINS_VERSE,     //CHAPTER -->  VERSE
     CONTAINS_WORD,      //VERSE --> WORD
     CONTAINS_TOKEN,     //WORD --> TOKEN
-    HAS_TAG, HAS_ROOT, HAS_LEMMA, HAS_POS,            //TOKEN --> TAG
+    HAS_TAG, HAS_ROOT, HAS_LEMMA, HAS_POS,
+    NEXT_WORD,NEXT_VERSE;
+
 }
 

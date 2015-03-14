@@ -4,6 +4,11 @@ import base.GraphIndices;
 import base.NodeLabels;
 import base.NodeProperties;
 import base.RelationshipTypes;
+import model.api.root.Root;
+import model.api.root.RootManager;
+import model.api.token.Token;
+import model.api.word.Word;
+import model.impl.base.ManagerFactory;
 import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
@@ -28,10 +33,11 @@ public class RootResource {
 
     private static final Logger logger = Logger.getLogger(RootResource.class.getName());
     private final GraphDatabaseService database;
-
+    private RootManager rootManager;
 
     public RootResource(@Context GraphDatabaseService database) {
         this.database = database;
+        this.rootManager = ManagerFactory.getFor(database).getRootIndex();
     }
 
     @GET
@@ -207,7 +213,7 @@ public class RootResource {
                     Node verse = entry.getKey();
                     Integer score = entry.getValue();
 
-                    if ( score <=max && score>=min ){
+                    if (score <= max && score >= min) {
                         verses.add(verse);
                     }
 
@@ -225,6 +231,69 @@ public class RootResource {
         }
 
         return response;
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/verses/seq/{roots}")
+    public Response sequence(@PathParam("roots") final String roots) {
+
+        List<Node> verses = new ArrayList<>();
+        Response response;
+        try {
+            try (Transaction tx = database.beginTx()) {
+
+                String[] parts = roots.split("-");
+                Root first = rootManager.getRootByArabic(parts[0]);
+
+                for (Token token : first.getTokens()) {
+
+                    boolean flag = true;
+                    Token currentToken = token;
+
+                    for (int i = 0; i < parts.length; i++) {
+                        if ( !flag )
+                            break;
+
+                        Root expectedRoot = rootManager.getRootByArabic(parts[i]);
+
+                        if ( (!currentToken.hasRoot()) || (!currentToken.getRoot().equals(expectedRoot)) ){
+                            flag = false;
+                        }
+
+                        while ( currentToken.getWord().getSuccessor() != null && !currentToken.getWord().getSuccessor().getStem().hasRoot() ){
+                            currentToken = currentToken.getWord().getSuccessor().getStem();
+                        }
+
+                        Word successorWord = currentToken.getWord().getSuccessor();
+                        if ( successorWord == null){
+                            flag = false;
+                        }
+
+                    }
+
+                    if (flag) {
+                        verses.add(token.getVerse().getNode());
+                    }
+
+
+                }
+
+                response = Response.status(Response.Status.OK)
+                        .entity((new VerseRepresentation().represent(verses)).
+                                getBytes(Charset.forName("UTF-8"))).build();
+
+                tx.success();
+            }
+        } catch (Throwable th) {
+            th.printStackTrace();
+            response = Response.status(Response.Status.OK).entity(
+                    (th.getMessage()).getBytes(Charset.forName("UTF-8"))).build();
+        }
+
+        return response;
+
     }
 
 

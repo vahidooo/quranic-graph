@@ -74,7 +74,7 @@ public class TanzilImporter implements Importer {
                     verseNode.setProperty(NodeProperties.General.index, verseIndex);
                     verseNode.setProperty(NodeProperties.Verse.text, text);
 
-                    String address = NodeUtils.getVerseAddress(chapterIndex, verseIndex);
+                    String address = NodeUtils.getNodeAddress(chapterIndex, verseIndex);
                     NodeUtils.setPropertyAndIndex(verseNode, NodeProperties.General.address, GraphIndices.VerseIndex, address);
 
                     chapterNode.createRelationshipTo(verseNode, RelationshipTypes.CONTAINS_VERSE);

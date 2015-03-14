@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class LeedsCorpusImporter implements Importer {
 
-    private static final int IGNORED_LINES = 57;
+    public static final int IGNORED_LINES = 57;
     private File corpusFile;
 
     private static final Pattern addressPattern = Pattern.compile("\\((\\d+):(\\d+):(\\d+):(\\d+)\\)");
@@ -33,19 +33,19 @@ public class LeedsCorpusImporter implements Importer {
     private static final String TOKEN_NODE = "T_NODE";
 
 
-    private Map<String, Object> prev, current;
+//    private Map<String, Object> prev, current;
 
     public LeedsCorpusImporter(String filename) {
         corpusFile = new File(filename);
 
-        prev = new HashMap<>(4);
-        prev.put(CHAPTER, 0);
-        prev.put(VERSE, 0);
-        prev.put(WORD, 0);
-        prev.put(TOKEN, 0);
-
-        current = new HashMap<>(4);
-        current.put(CHAPTER, 0);
+//        prev = new HashMap<>(4);
+//        prev.put(CHAPTER, 0);
+//        prev.put(VERSE, 0);
+//        prev.put(WORD, 0);
+//        prev.put(TOKEN, 0);
+//
+//        current = new HashMap<>(4);
+//        current.put(CHAPTER, 0);
 
     }
 
@@ -54,7 +54,7 @@ public class LeedsCorpusImporter implements Importer {
         try (Transaction tx = graphDB.beginTx()) {
             int counter = 0;
             while (scanner.hasNextLine()) {
-                System.out.println( "add token #" + (++counter) );
+//                System.out.println("add token #" + (++counter));
                 String line = scanner.nextLine();
 
                 String[] options = line.split("\t");
@@ -88,7 +88,8 @@ public class LeedsCorpusImporter implements Importer {
             sb.append(line);
             sb.append("\n");
 
-            if (counter == tokensPerTransaction) {
+            if (counter % tokensPerTransaction == 0) {
+                System.out.println("TRANSACTION#" + (counter/tokensPerTransaction));
                 tempScanner = new Scanner(sb.toString());
                 doImport(graphDB, tempScanner);
                 sb = new StringBuilder();
@@ -205,20 +206,20 @@ public class LeedsCorpusImporter implements Importer {
         Integer word = Integer.parseInt(matcher.group(3));
         Integer token = Integer.parseInt(matcher.group(4));
 
-        current.put(CHAPTER, chapter);
-        current.put(VERSE, verse);
-        current.put(WORD, word);
-        current.put(TOKEN, token);
+//        current.put(CHAPTER, chapter);
+//        current.put(VERSE, verse);
+//        current.put(WORD, word);
+//        current.put(TOKEN, token);
 
         Node chapterNode = graphDB.index().forNodes(GraphIndices.ChapterIndex).get(NodeProperties.General.index, chapter).getSingle();
         Node verseNode = createIfAbsentVerse(graphDB, chapterNode, chapter, verse);
         Node wordNode = createIfAbsentWord(graphDB, verseNode, word);
         Node tokenNode = createToken(graphDB, wordNode, token, form);
 
-        prev.put(CHAPTER, current.get(CHAPTER));
-        prev.put(VERSE, current.get(VERSE));
-        prev.put(WORD, current.get(WORD));
-        prev.put(TOKEN, current.get(TOKEN));
+//        prev.put(CHAPTER, current.get(CHAPTER));
+//        prev.put(VERSE, current.get(VERSE));
+//        prev.put(WORD, current.get(WORD));
+//        prev.put(TOKEN, current.get(TOKEN));
 
         return tokenNode;
     }
@@ -229,6 +230,9 @@ public class LeedsCorpusImporter implements Importer {
 
         NodeUtils.setBuckwalterPropertyAndIndex(tokenNode, GraphIndices.TokenIndex, form);
 
+        String address = NodeUtils.getNodeAddress((String) wordNode.getProperty(NodeProperties.General.address), index);
+        NodeUtils.setPropertyAndIndex(tokenNode, NodeProperties.General.address, GraphIndices.TokenIndex, address);
+
         wordNode.createRelationshipTo(tokenNode, RelationshipTypes.CONTAINS_TOKEN);
         return tokenNode;
     }
@@ -237,35 +241,51 @@ public class LeedsCorpusImporter implements Importer {
     private Node createIfAbsentWord(GraphDatabaseService graphDB, Node verseNode, Integer index) {
 
         Node wordNode;
-        if (prev.get(VERSE) != current.get(VERSE) || prev.get(WORD) != current.get(WORD)) {
+//        if (prev.get(VERSE) != current.get(VERSE) || prev.get(WORD) != current.get(WORD)) {
+        String address = NodeUtils.getNodeAddress((String) verseNode.getProperty(NodeProperties.General.address), index);
+        wordNode = graphDB.index().forNodes(GraphIndices.WordIndex).get(NodeProperties.General.address, address).getSingle();
+        if (wordNode == null) {
             wordNode = graphDB.createNode(NodeLabels.WORD);
             wordNode.setProperty(NodeProperties.General.index, index);
-            current.put(WORD_NODE, wordNode);
+
+            NodeUtils.setPropertyAndIndex(wordNode, NodeProperties.General.address, GraphIndices.WordIndex, address);
+
+//            current.put(WORD_NODE, wordNode);
 
             verseNode.createRelationshipTo(wordNode, RelationshipTypes.CONTAINS_WORD);
-        } else {
-            wordNode = (Node) current.get(WORD_NODE);
         }
+//        else {
+//            wordNode = (Node) current.get(WORD_NODE);
+//        }
         return wordNode;
     }
 
     private Node createIfAbsentVerse(GraphDatabaseService graphDB, Node chapterNode, Integer chapterIndex, Integer verseIndex) {
 
-        Node verseNode = graphDB.index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.General.address, NodeUtils.getVerseAddress(chapterIndex, verseIndex)).getSingle();
+        Node verseNode = graphDB.index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.General.address, NodeUtils.getNodeAddress(chapterIndex, verseIndex)).getSingle();
 
         if (verseNode != null)
             return verseNode;
 
 
-        if (prev.get(VERSE) != current.get(VERSE)) {
+//        if (prev.get(VERSE) != current.get(VERSE)) {
+
+
+        String address = NodeUtils.getNodeAddress(chapterIndex, verseIndex);
+        verseNode = graphDB.index().forNodes(GraphIndices.WordIndex).get(NodeProperties.General.address, address).getSingle();
+        if (verseNode == null) {
             verseNode = graphDB.createNode(NodeLabels.VERSE);
             verseNode.setProperty(NodeProperties.General.index, verseIndex);
-            current.put(VERSE_NODE, verseNode);
+
+            NodeUtils.setPropertyAndIndex(verseNode, NodeProperties.General.address, GraphIndices.VerseIndex, address);
+
+//            current.put(VERSE_NODE, verseNode);
 
             chapterNode.createRelationshipTo(verseNode, RelationshipTypes.CONTAINS_VERSE);
-        } else {
-            verseNode = (Node) current.get(VERSE_NODE);
         }
+//        else {
+//            verseNode = (Node) current.get(VERSE_NODE);
+//        }
         return verseNode;
     }
 }
