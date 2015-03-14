@@ -43,7 +43,6 @@ public class GraphInitializer {
         LeedsCorpusNextUpdater leedsCorpusNextUpdater = new LeedsCorpusNextUpdater();
         leedsCorpusNextUpdater.doImport(initializer.graphDB);
 
-
         initializer.close();
     }
 

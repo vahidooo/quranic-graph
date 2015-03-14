@@ -253,23 +253,26 @@ public class RootResource {
                     Token currentToken = token;
 
                     for (int i = 0; i < parts.length; i++) {
-                        if ( !flag )
+                        if (!flag)
                             break;
 
                         Root expectedRoot = rootManager.getRootByArabic(parts[i]);
 
-                        if ( (!currentToken.hasRoot()) || (!currentToken.getRoot().equals(expectedRoot)) ){
+                        if ((!currentToken.hasRoot()) || (!currentToken.getRoot().equals(expectedRoot))) {
                             flag = false;
                         }
 
-                        while ( currentToken.getWord().getSuccessor() != null && !currentToken.getWord().getSuccessor().getStem().hasRoot() ){
+                        while (currentToken.getWord().getSuccessor() != null && !currentToken.getWord().getSuccessor().getStem().hasRoot()) {
                             currentToken = currentToken.getWord().getSuccessor().getStem();
                         }
 
                         Word successorWord = currentToken.getWord().getSuccessor();
-                        if ( successorWord == null){
+                        if (successorWord == null) {
                             flag = false;
+                        } else {
+                            currentToken = successorWord.getStem();
                         }
+
 
                     }
 
