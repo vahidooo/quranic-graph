@@ -14,3 +14,6 @@ START n=node:TokenIdx( "simpleArabic:احمد") RETURN n
 :GET /quran/root/verses/{r1-r2-r3-...}
 :GET /quran/root/verses/{r1-r2-r3-...}/{min}
 :GET /quran/root/verses/{r1-r2-r3-...}/{min}/{max}
+	 /quran/root/verses/ولي-نصر
+
+:GET /quran/root/verses/seq/ولي-نصر
