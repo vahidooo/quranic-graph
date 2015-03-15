@@ -28,7 +28,7 @@ public class RootResourceTest {
     @Test
     public void sequenceTest(){
 
-        String seq = "حمد-اله" ;
+        String seq = "رحم-رحم" ;
 
         System.out.println( new RootResource(database).sequence(seq) );
 

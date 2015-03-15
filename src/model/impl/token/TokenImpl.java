@@ -59,8 +59,17 @@ public class TokenImpl extends TextualImpl implements Token {
     }
 
     @Override
+    public String getAddress() {
+        return (String) node.getProperty(NodeProperties.General.address);
+    }
+
+    @Override
     public Verse getVerse() {
         return getWord().getVerse();
     }
 
+    @Override
+    public String toString() {
+        return getAddress();
+    }
 }

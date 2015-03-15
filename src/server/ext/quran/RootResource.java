@@ -268,7 +268,9 @@ public class RootResource {
 
                         Word successorWord = currentToken.getWord().getSuccessor();
                         if (successorWord == null) {
-                            flag = false;
+                            if ((i != parts.length - 1)) {
+                                flag = false;
+                            }
                         } else {
                             currentToken = successorWord.getStem();
                         }

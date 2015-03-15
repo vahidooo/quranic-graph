@@ -17,7 +17,9 @@ public interface Token extends Textual {
     Root getRoot();
 
     TokenPosition getPosition();
-    Object getIndex();
+    Integer getIndex();
+    String getAddress();
+
 
 
     Verse getVerse();
