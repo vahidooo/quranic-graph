@@ -1,9 +1,11 @@
 package server.ext.quran;
 
+import alg.root.TokensInWindowAlgorithm;
 import base.GraphIndices;
 import base.NodeLabels;
 import base.NodeProperties;
 import base.RelationshipTypes;
+import model.api.block.VerseBlock;
 import model.api.root.Root;
 import model.api.root.RootManager;
 import model.api.token.Token;
@@ -14,6 +16,7 @@ import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
 import org.neo4j.graphdb.traversal.TraversalDescription;
 import server.repr.HasArabicPropertyRepresentation;
+import server.repr.MapRepresentation;
 import server.repr.TokenRepresentation;
 import server.repr.VerseRepresentation;
 
@@ -301,5 +304,41 @@ public class RootResource {
 
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/dis/{mode}/{window}/{roots}")
+    public Response distance(@PathParam("mode") final String mode , @PathParam("window") final int window ,@PathParam("roots") String roots) {
+
+        List<Node> verses = new ArrayList<>();
+        Response response;
+        try {
+            try (Transaction tx = database.beginTx()) {
+
+                String[] parts = roots.split("-");
+
+                List<Root> rootList = new ArrayList<>();
+                for (String part : parts) {
+                    Root root = rootManager.getRootByArabic(part);
+                    rootList.add(root);
+                }
+
+                TokensInWindowAlgorithm alg = new TokensInWindowAlgorithm();
+                Map<VerseBlock,Integer> res=  alg.solve(rootList,window);
+
+                response = Response.status(Response.Status.OK)
+                        .entity((new MapRepresentation().represent(res)).
+                                getBytes(Charset.forName("UTF-8"))).build();
+
+                tx.success();
+            }
+        } catch (Throwable th) {
+            th.printStackTrace();
+            response = Response.status(Response.Status.OK).entity(
+                    (th.getMessage()).getBytes(Charset.forName("UTF-8"))).build();
+        }
+
+        return response;
+
+    }
 
 }

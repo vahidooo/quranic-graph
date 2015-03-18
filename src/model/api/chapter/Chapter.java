@@ -13,4 +13,5 @@ public interface Chapter {
     Integer getIndex();
     Verse getVerse(int verse);
 
+    Chapter getNextChapter();
 }

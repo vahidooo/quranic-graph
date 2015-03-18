@@ -34,4 +34,9 @@ public class RootImpl extends TextualImpl implements Root {
         }
         return tokens;
     }
+
+    @Override
+    public int hashCode() {
+        return getBuckwalter().hashCode();
+    }
 }

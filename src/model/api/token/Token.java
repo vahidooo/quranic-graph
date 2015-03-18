@@ -23,5 +23,9 @@ public interface Token extends Textual {
 
 
     Verse getVerse();
+
+    int getChapterIndex();
+
+//    int getIndexInQuran();
 }
 

@@ -12,4 +12,10 @@ public interface Word {
 
     Token getStem();
     Verse getVerse();
+
+    int getIndexInQuran();
+
+    Word getSuccessorInQuran();
+
+    String getAddress();
 }

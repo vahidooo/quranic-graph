@@ -25,14 +25,23 @@ public class RootResourceTest {
         database.shutdown();
     }
 
-    @Test
+//    @Test
     public void sequenceTest(){
 
         String seq = "رحم-رحم" ;
 
         System.out.println( new RootResource(database).sequence(seq) );
 
+    }
 
+    @Test
+    public void distanceTest(){
+
+        String roots = "دخل-شتت"  ;
+        int window = 10;
+        String mode = "word" ;
+
+        System.out.println( new RootResource(database).distance(mode, window, roots) );
 
     }
 

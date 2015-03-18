@@ -1,8 +1,6 @@
 package main;
 
-import graph.quran.corpus.leeds.LeedsCorpusImporter;
-import graph.quran.corpus.leeds.LeedsCorpusNextUpdater;
-import graph.quran.tanzil.TanzilImporter;
+import graph.quran.corpus.leeds.WordIndexInQuranUpdater;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.xml.sax.SAXException;
@@ -34,14 +32,17 @@ public class GraphInitializer {
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 
         GraphInitializer initializer = new GraphInitializer();
-        TanzilImporter tanzilImporter = new TanzilImporter(TANZIL_UTHMANI_PATH,TANZIL_METADATA_PATH);
-        LeedsCorpusImporter leedsCorpusImporter = new LeedsCorpusImporter(LEEDS_CORPUS_PATH);
+//        TanzilImporter tanzilImporter = new TanzilImporter(TANZIL_UTHMANI_PATH,TANZIL_METADATA_PATH);
+//        LeedsCorpusImporter leedsCorpusImporter = new LeedsCorpusImporter(LEEDS_CORPUS_PATH);
+//
+//        tanzilImporter.doImport(initializer.graphDB);
+//        leedsCorpusImporter.doImport(initializer.graphDB , 10000);
+//
+//        LeedsCorpusNextUpdater leedsCorpusNextUpdater = new LeedsCorpusNextUpdater();
+//        leedsCorpusNextUpdater.doImport(initializer.graphDB);
 
-        tanzilImporter.doImport(initializer.graphDB);
-        leedsCorpusImporter.doImport(initializer.graphDB , 10000);
-
-        LeedsCorpusNextUpdater leedsCorpusNextUpdater = new LeedsCorpusNextUpdater();
-        leedsCorpusNextUpdater.doImport(initializer.graphDB);
+        WordIndexInQuranUpdater updater = new WordIndexInQuranUpdater();
+        updater.doImport(initializer.graphDB);
 
         initializer.close();
     }

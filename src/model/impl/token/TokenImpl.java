@@ -55,18 +55,29 @@ public class TokenImpl extends TextualImpl implements Token {
 
     @Override
     public Integer getIndex() {
-        return (Integer) node.getProperty(NodeProperties.General.index);
+        return (Integer) node.getProperty(NodeProperties.Token.index);
     }
 
     @Override
     public String getAddress() {
-        return (String) node.getProperty(NodeProperties.General.address);
+        return (String) node.getProperty(NodeProperties.Token.address);
     }
 
     @Override
     public Verse getVerse() {
         return getWord().getVerse();
     }
+
+    @Override
+    public int getChapterIndex() {
+        String address = getAddress();
+        return Integer.parseInt(address.split(":")[0]);
+    }
+
+//    @Override
+//    public int getIndexInQuran() {
+//        return (int) node.getProperty(NodeProperties.Token.indexInQuran);
+//    }
 
     @Override
     public String toString() {

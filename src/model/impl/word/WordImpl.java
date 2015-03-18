@@ -1,6 +1,8 @@
 package model.impl.word;
 
+import base.GraphIndices;
 import base.NodeLabels;
+import base.NodeProperties;
 import base.RelationshipTypes;
 import model.api.token.Token;
 import model.api.verse.Verse;
@@ -53,5 +55,44 @@ public class WordImpl extends NodeContainerImpl implements Word {
     public Verse getVerse() {
         Node n = NodeUtils.singleNeighborhood(node, RelationshipTypes.CONTAINS_WORD, Direction.INCOMING, true);
         return (Verse) NodeContainerImpl.createNewInstance(VerseImpl.class, n);
+    }
+
+    @Override
+    public int getIndexInQuran() {
+        return (int) node.getProperty(NodeProperties.Word.indexInQuran);
+
+    }
+
+    @Override
+    public Word getSuccessorInQuran() {
+//        Word successor = getSuccessor();
+//        if (successor != null) {
+//            return successor;
+//        }
+//
+//        Verse nextVerse = getVerse().getSuccessor();
+//
+//        if ( nextVerse != null)
+//            return nextVerse.getWord(1);
+//
+//        Chapter nextChapter = getVerse().getChapter().getNextChapter();
+//        if ( nextChapter != null ){
+//            return nextChapter.getVerse(1).getWord(1);
+//        }
+//
+//        return null;
+
+        int index = getIndexInQuran();
+        Node next = node.getGraphDatabase().index().forNodes(GraphIndices.WordIndex).get(NodeProperties.Word.indexInQuran, index + 1).getSingle();
+        if (next == null)
+            return null;
+
+        return new WordImpl(next);
+
+    }
+
+    @Override
+    public String getAddress() {
+        return (String) node.getProperty(NodeProperties.General.address);
     }
 }
