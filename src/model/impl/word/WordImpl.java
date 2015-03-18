@@ -95,4 +95,5 @@ public class WordImpl extends NodeContainerImpl implements Word {
     public String getAddress() {
         return (String) node.getProperty(NodeProperties.General.address);
     }
+
 }
