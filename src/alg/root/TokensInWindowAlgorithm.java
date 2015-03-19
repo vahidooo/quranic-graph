@@ -29,7 +29,7 @@ public class TokensInWindowAlgorithm {
         List<Token> tokens = findTokenAndSort(roots);
 
         for (int i = 0; i < tokens.size(); i++) {
-            for (int j = 0; j < tokens.size(); j++) {
+            for (int j = i; j < tokens.size(); j++) {
 
                 int score;
 
