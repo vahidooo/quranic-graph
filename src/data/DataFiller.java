@@ -49,7 +49,7 @@ public abstract class DataFiller {
             }
 
             for (Class<? extends DataFiller> clazz : DataFillerManager.getDependencies(this.getClass())) {
-                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database);
+                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database ,properties);
                 if (dependency.getStatus() != State.FILLED) {
                     node.setProperty(NodeProperties.DataFiller.state, State.DEPENDENCY_ERROR.name());
                 }

@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 /**
@@ -70,11 +71,11 @@ public class ReflectionUtils {
         return classes;
     }
 
-    public static DataFiller createNewDataFiller(Class<? extends DataFiller> clazz, GraphDatabaseService database) {
+    public static DataFiller createNewDataFiller(Class<? extends DataFiller> clazz, GraphDatabaseService database, Properties properties) {
 
         try {
-            Constructor<? extends DataFiller> constructor = clazz.getConstructor(GraphDatabaseService.class);
-            DataFiller df = constructor.newInstance(database);
+            Constructor<? extends DataFiller> constructor = clazz.getConstructor(GraphDatabaseService.class, Properties.class);
+            DataFiller df = constructor.newInstance(database, properties);
             return df;
 
         } catch (Throwable th) {
