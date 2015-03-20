@@ -8,7 +8,7 @@ import org.neo4j.graphdb.Label;
 public enum NodeLabels implements Label {
     CHAPTER , VERSE , WORD , TOKEN, TAG,
     STEM , SUFFIX , PREFIX ,
-    ROOT , LEMMA, POS,
+    ROOT , LEMMA, POS, DataFiller,
 
 
 

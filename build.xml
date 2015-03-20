@@ -131,6 +131,7 @@
 
     <property name="artifacts.temp.dir" value="${basedir}/out/__artifacts_temp"/>
     <property name="plugin.temp.jar" value="${artifacts.temp.dir}/quranic-graph-plugin.jar"/>
+    <property name="plugin.properties.file" value="${basedir}/docs/quranic-graph-plugin.properties"/>
 
     <path id="quranic-graph.module.sourcepath">
         <dirset dir="${module.quranic-graph.basedir}">
@@ -185,9 +186,9 @@
     <target name="graph.init" depends="compile" description="initialize graph">
         <java classname="main.GraphInitializer" fork="true">
             <classpath>
-                 <path refid="quranic-graph.runtime.classpath"/>
+                <path refid="quranic-graph.runtime.classpath"/>
             </classpath>
- 	    <jvmarg value="-Xmx2400m"/>
+            <jvmarg value="-Xmx2400m"/>
         </java>
     </target>
 
@@ -198,7 +199,8 @@
     </target>
 
     <target name="plugin.build" depends="compile" description="Build plugin artifact">
-        <jar destfile="${plugin.temp.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+        <jar destfile="${plugin.temp.jar}" duplicate="preserve">
+            <metainf dir="${basedir}/resources/META-INF"/>
             <zipfileset dir="${quranic-graph.output.dir}"/>
         </jar>
     </target>
@@ -206,6 +208,13 @@
     <target name="neo4j.plugin.reload" depends="plugin.build" description="Build all artifacts">
         <copy todir="${neo4j.dir}/plugins">
             <file file="${plugin.temp.jar}"/>
+        </copy>
+
+        <copydir src="${basedir}/resources"
+                 dest="${neo4j.dir}/resources"/>
+
+        <copy todir="${neo4j.dir}/conf">
+            <file file="${plugin.properties.file}"/>
         </copy>
     </target>
 

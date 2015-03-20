@@ -47,4 +47,14 @@ public class NodeProperties {
     }
 
 
+    public class DataFiller {
+        public static final String clazz = "clazz";
+        public static final String state = "state";
+        public static final String progress = "progress";
+    }
+
+
+
+
+
 }

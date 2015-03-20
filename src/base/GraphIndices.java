@@ -16,5 +16,5 @@ public class GraphIndices {
     public static final String PosIndex = "PosIdx" ;
 
 
-
+    public static final String DataFillerIdx = "DataFillerIdx";
 }
