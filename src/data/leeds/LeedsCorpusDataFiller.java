@@ -33,7 +33,6 @@ public class LeedsCorpusDataFiller extends DataFiller {
     private static final String LEEDS_CORPUS_IGNORED_LINES_KEY = "leeds.corpus.ignoredLines";
 
 
-
     private File corpusFile;
 
     private static final Pattern addressPattern = Pattern.compile("\\((\\d+):(\\d+):(\\d+):(\\d+)\\)");
@@ -57,7 +56,7 @@ public class LeedsCorpusDataFiller extends DataFiller {
     protected List<TransactionalFiller> getTransactionalFillers() throws Throwable {
         List<TransactionalFiller> fillers = new ArrayList<>();
 
-        List<Scanner> chunks = splitCorpus( );
+        List<Scanner> chunks = splitCorpus();
 
         for (Scanner chunk : chunks) {
             CorpusFiller filler = new CorpusFiller(chunk);
@@ -72,8 +71,8 @@ public class LeedsCorpusDataFiller extends DataFiller {
         Scanner scanner = new Scanner(corpusFile);
         List<Scanner> chunks = new ArrayList<>();
 
-        int ignoredLines = (Integer) properties.get(LEEDS_CORPUS_IGNORED_LINES_KEY);
-        int tokensPerTransaction = (Integer) properties.get(LEEDS_CORPUS_TOKEN_PER_TRANSACTION_KEY);
+        int ignoredLines = Integer.parseInt((String) properties.get(LEEDS_CORPUS_IGNORED_LINES_KEY));
+        int tokensPerTransaction = Integer.parseInt((String) properties.get(LEEDS_CORPUS_TOKEN_PER_TRANSACTION_KEY));
 
         for (int i = 0; i < ignoredLines; i++) {
             scanner.nextLine();

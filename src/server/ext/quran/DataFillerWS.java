@@ -59,7 +59,7 @@ public class DataFillerWS extends BaseWs {
         try (Transaction tx = database.beginTx()) {
 
             List<DataFiller> dataFillers = new ArrayList<>();
-            for (Class<? extends DataFiller> clazz : DataFillerManager.getFillers()) {
+            for (Class<? extends DataFiller> clazz : DataFillerManager.getTopologicalSorted()) {
 
                 logger.info("try to construct " + clazz.getName());
                 DataFiller df = null;

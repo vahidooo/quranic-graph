@@ -45,11 +45,11 @@ public abstract class DataFiller {
                 node = database.createNode();
                 NodeUtils.setPropertyAndIndex(node, NodeProperties.DataFiller.clazz, GraphIndices.DataFillerIdx, this.getClass().getName());
                 node.setProperty(NodeProperties.DataFiller.state, State.NOT_FILLED.name());
-                node.setProperty(NodeProperties.DataFiller.progress, 0);
+                node.setProperty(NodeProperties.DataFiller.progress, "-" );
             }
 
             for (Class<? extends DataFiller> clazz : DataFillerManager.getDependencies(this.getClass())) {
-                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database ,properties);
+                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database, properties);
                 if (dependency.getStatus() != State.FILLED) {
                     node.setProperty(NodeProperties.DataFiller.state, State.DEPENDENCY_ERROR.name());
                 }
@@ -65,12 +65,13 @@ public abstract class DataFiller {
                 logger.info("Filling starts:" + getClass().getName());
                 setState(State.PENDING);
 
-                for (int i = 0; i < getTransactionalFillers().size(); i++) {
-                    TransactionalFiller filler = getTransactionalFillers().get(i);
+                List<TransactionalFiller> txFillers = getTransactionalFillers();
+                for (int i = 0; i < txFillers.size(); i++) {
+                    TransactionalFiller filler = txFillers.get(i);
                     try (Transaction tx = database.beginTx()) {
                         logger.info("filler : " + filler);
                         filler.fillInTransaction(database);
-                        node.setProperty(NodeProperties.DataFiller.progress, i);
+                        node.setProperty(NodeProperties.DataFiller.progress, (i+1) + "/" + txFillers.size());
                         tx.success();
                     }
                 }
@@ -111,6 +112,15 @@ public abstract class DataFiller {
 
     public String getName() {
         return getClass().getName();
+    }
+
+    public String getProgress() {
+        String progress;
+        try (Transaction tx = database.beginTx()) {
+            progress = (String) node.getProperty(NodeProperties.DataFiller.progress);
+            tx.success();
+        }
+        return progress;
     }
 
 }

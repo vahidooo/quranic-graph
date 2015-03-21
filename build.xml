@@ -208,10 +208,15 @@
     <target name="neo4j.plugin.reload" depends="plugin.build" description="Build all artifacts">
         <copy todir="${neo4j.dir}/plugins">
             <file file="${plugin.temp.jar}"/>
+            <path refid="library.jqurantree-1.0.0.classpath"/>
+
         </copy>
 
-        <copydir src="${basedir}/resources"
-                 dest="${neo4j.dir}/resources"/>
+        <mkdir dir="${neo4j.dir}/resources"/>
+
+        <copy todir="${neo4j.dir}/resources">
+            <fileset dir="${basedir}/resources" includes="**"/>
+        </copy>
 
         <copy todir="${neo4j.dir}/conf">
             <file file="${plugin.properties.file}"/>

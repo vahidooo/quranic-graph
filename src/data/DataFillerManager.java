@@ -1,6 +1,8 @@
 package data;
 
 import data.leeds.LeedsCorpusDataFiller;
+import data.leeds.more.LeedsCorpusNextDataFiller;
+import data.leeds.more.WordIndexInQuranDataFiller;
 import graph.quran.tanzil.TanzilDataFiller;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,6 +22,10 @@ public class DataFillerManager {
 
         addDataFiller(TanzilDataFiller.class, null);
         addDataFiller(LeedsCorpusDataFiller.class, TanzilDataFiller.class);
+        addDataFiller(LeedsCorpusNextDataFiller.class, LeedsCorpusDataFiller.class);
+        addDataFiller(WordIndexInQuranDataFiller.class, LeedsCorpusNextDataFiller.class);
+
+
 
 //        fillers.add(TanzilDataFiller.class);
 //        fillers.add(LeedsCorpusDataFiller.class);
@@ -61,7 +67,7 @@ public class DataFillerManager {
                     }
                 }
 
-                if (flag) {
+                if (flag && !topologicalSorted.contains(filler)) {
                     topologicalSorted.add(filler);
                     added++;
                 }
