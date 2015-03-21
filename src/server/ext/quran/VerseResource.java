@@ -29,7 +29,7 @@ public class VerseResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/go/{chapterNo}/{verseNo }")
+    @Path("/go/{chapterNo}/{verseNo}")
     public Response go(@PathParam("chapterNo") int chapterNo, @PathParam("verseNo") int verseNo) {
 
         Response response;

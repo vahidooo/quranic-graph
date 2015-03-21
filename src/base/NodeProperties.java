@@ -33,6 +33,7 @@ public class NodeProperties {
         public static final String text = "text";
         public static final String index = General.index;
         public static final String address = General.address;
+        public static final String indexInQuran = General.indexInQuran;
     }
 
 

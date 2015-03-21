@@ -60,7 +60,6 @@ public class WordImpl extends NodeContainerImpl implements Word {
     @Override
     public int getIndexInQuran() {
         return (int) node.getProperty(NodeProperties.Word.indexInQuran);
-
     }
 
     @Override

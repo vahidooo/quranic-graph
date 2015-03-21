@@ -1,8 +1,12 @@
 package model.impl.chapter;
 
+import model.api.chapter.Chapter;
+
 /**
  * Created by vahidoo on 3/11/15.
  */
-public class ChapterManager {
+public interface ChapterManager {
+
+    Chapter get(int index);
 
 }

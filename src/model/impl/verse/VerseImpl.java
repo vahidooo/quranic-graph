@@ -14,6 +14,9 @@ import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import util.NodeUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by vahidoo on 3/13/15.
  */
@@ -40,10 +43,38 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
     }
 
     @Override
+    public List<Word> getWords() {
+        List<Word> words = new ArrayList<>();
+
+        Word word = getWord(1);
+        if (word != null) {
+            words.add(word);
+            word = word.getSuccessor();
+        }
+        return words;
+    }
+
+    @Override
+    public Verse getNextInQuran() {
+        int index = getIndexInQuran();
+        Node next = node.getGraphDatabase().index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.Verse.indexInQuran, index + 1).getSingle();
+        if (next == null)
+            return null;
+
+        return new VerseImpl(next);
+
+    }
+
+    @Override
+    public int getIndexInQuran() {
+        return (int) node.getProperty(NodeProperties.Verse.indexInQuran);
+    }
+
+    @Override
     public Word getWord(int index) {
         GraphDatabaseService database = node.getGraphDatabase();
-        Node wordNode = database.index().forNodes(GraphIndices.WordIndex).get(NodeProperties.General.address, NodeUtils.getNodeAddress(getAddress(),index) ).getSingle();
-        if ( wordNode == null ){
+        Node wordNode = database.index().forNodes(GraphIndices.WordIndex).get(NodeProperties.General.address, NodeUtils.getNodeAddress(getAddress(), index)).getSingle();
+        if (wordNode == null) {
             return null;
         }
         return new WordImpl(wordNode);
@@ -67,5 +98,10 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
     @Override
     public int hashCode() {
         return getAddress().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return getAddress();
     }
 }

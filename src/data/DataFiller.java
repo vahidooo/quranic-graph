@@ -2,11 +2,9 @@ package data;
 
 import base.GraphIndices;
 import base.NodeProperties;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.Transaction;
+import base.RelationshipTypes;
+import org.neo4j.graphdb.*;
 import util.NodeUtils;
-import utils.ReflectionUtils;
 
 import java.util.List;
 import java.util.Properties;
@@ -45,12 +43,25 @@ public abstract class DataFiller {
                 node = database.createNode();
                 NodeUtils.setPropertyAndIndex(node, NodeProperties.DataFiller.clazz, GraphIndices.DataFillerIdx, this.getClass().getName());
                 node.setProperty(NodeProperties.DataFiller.state, State.NOT_FILLED.name());
-                node.setProperty(NodeProperties.DataFiller.progress, "-" );
+                node.setProperty(NodeProperties.DataFiller.progress, "-");
             }
 
             for (Class<? extends DataFiller> clazz : DataFillerManager.getDependencies(this.getClass())) {
-                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database, properties);
-                if (dependency.getStatus() != State.FILLED) {
+//                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database, properties);
+                Node dependencyNode = database.index().forNodes(GraphIndices.DataFillerIdx).get(NodeProperties.DataFiller.clazz, clazz.getName()).getSingle();
+
+                boolean flag = true;
+                Iterable<Relationship> it = node.getRelationships(RelationshipTypes.DEPENDS, Direction.OUTGOING);
+                for (Relationship relationship : it) {
+                    if (relationship.getStartNode().equals(dependencyNode)) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    node.createRelationshipTo(dependencyNode, RelationshipTypes.DEPENDS);
+                }
+
+                if (State.valueOf((String) dependencyNode.getProperty(NodeProperties.DataFiller.state)) != State.FILLED) {
                     node.setProperty(NodeProperties.DataFiller.state, State.DEPENDENCY_ERROR.name());
                 }
             }
@@ -71,7 +82,7 @@ public abstract class DataFiller {
                     try (Transaction tx = database.beginTx()) {
                         logger.info("filler : " + filler);
                         filler.fillInTransaction(database);
-                        node.setProperty(NodeProperties.DataFiller.progress, (i+1) + "/" + txFillers.size());
+                        node.setProperty(NodeProperties.DataFiller.progress, (i + 1) + "/" + txFillers.size());
                         tx.success();
                     }
                 }

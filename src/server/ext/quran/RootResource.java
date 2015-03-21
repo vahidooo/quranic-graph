@@ -1,5 +1,6 @@
 package server.ext.quran;
 
+import alg.base.MappedLCS;
 import alg.root.TokensInWindowAlgorithm;
 import base.GraphIndices;
 import base.NodeLabels;
@@ -9,6 +10,8 @@ import model.api.block.VerseBlock;
 import model.api.root.Root;
 import model.api.root.RootManager;
 import model.api.token.Token;
+import model.api.verse.Verse;
+import model.api.verse.VerseManager;
 import model.api.word.Word;
 import model.impl.base.ManagerFactory;
 import org.neo4j.graphdb.*;
@@ -19,6 +22,7 @@ import server.repr.HasArabicPropertyRepresentation;
 import server.repr.MapRepresentation;
 import server.repr.TokenRepresentation;
 import server.repr.VerseRepresentation;
+import util.VerseUtils;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -37,10 +41,12 @@ public class RootResource {
     private static final Logger logger = Logger.getLogger(RootResource.class.getName());
     private final GraphDatabaseService database;
     private RootManager rootManager;
+    private VerseManager verseManager;
 
     public RootResource(@Context GraphDatabaseService database) {
         this.database = database;
-        this.rootManager = ManagerFactory.getFor(database).getRootIndex();
+        this.rootManager = ManagerFactory.getFor(database).getRootManager();
+        this.verseManager = ManagerFactory.getFor(database).getVerseManager();
     }
 
     @GET
@@ -307,7 +313,7 @@ public class RootResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/dis/{mode}/{window}/{roots}")
-    public Response distance(@PathParam("mode") final String mode , @PathParam("window") final int window ,@PathParam("roots") String roots) {
+    public Response distance(@PathParam("mode") final String mode, @PathParam("window") final int window, @PathParam("roots") String roots) {
 
         List<Node> verses = new ArrayList<>();
         Response response;
@@ -323,7 +329,7 @@ public class RootResource {
                 }
 
                 TokensInWindowAlgorithm alg = new TokensInWindowAlgorithm();
-                Map<VerseBlock,Integer> res=  alg.solve(rootList,window);
+                Map<VerseBlock, Integer> res = alg.solve(rootList, window);
 
                 response = Response.status(Response.Status.OK)
                         .entity((new MapRepresentation().represent(res)).
@@ -340,5 +346,56 @@ public class RootResource {
         return response;
 
     }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/verse/lcs/{chapterNo}/{verseNo}/{threshold}")
+    public Response lcs(@PathParam("chapterNo") int chapterNo, @PathParam("verseNo") int verseNo, @PathParam("threshold") int threshold) {
+
+
+        Response response;
+        StringBuilder res = new StringBuilder();
+
+        try {
+            try (Transaction tx = database.beginTx()) {
+
+                Verse verse = verseManager.get(chapterNo, verseNo);
+
+                List<Root> mainRootList = VerseUtils.getRootList(verse);
+                Verse nextVerse = verse.getSuccessor();
+
+                while (nextVerse != null) {
+                    List<Root> secondRootList = VerseUtils.getRootList(nextVerse);
+
+                    MappedLCS<Root> lcs = new MappedLCS<Root>(mainRootList, secondRootList);
+
+                    int score = lcs.run();
+                    if (score >= threshold) {
+                        res.append(verse.getAddress() + " - ");
+                        res.append(nextVerse.getAddress() + " : ");
+                        res.append(lcs.run() + " \n ");
+                    }
+
+                    nextVerse = nextVerse.getNextInQuran();
+                }
+
+
+                response = Response.status(Response.Status.OK)
+                        .entity((res.toString()).
+                                getBytes(Charset.forName("UTF-8"))).build();
+
+                tx.success();
+            }
+        } catch (Throwable th) {
+            th.printStackTrace();
+            response = Response.status(Response.Status.OK).entity(
+                    (th.getMessage()).getBytes(Charset.forName("UTF-8"))).build();
+        }
+
+        return response;
+
+    }
+
 
 }

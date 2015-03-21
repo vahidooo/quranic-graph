@@ -1,7 +1,9 @@
 package model.impl.base;
 
 import model.api.root.RootManager;
+import model.api.verse.VerseManager;
 import model.impl.root.RootManagerImpl;
+import model.impl.verse.VerseManagerImpl;
 import org.neo4j.graphdb.GraphDatabaseService;
 
 import java.util.HashMap;
@@ -14,10 +16,12 @@ public class ManagerFactory {
     private static Map<GraphDatabaseService,ManagerFactory> map = new HashMap<>();
 
 
-    private RootManager rootIndex;
+    private RootManager rootManager;
+    private VerseManager verseManager;
 
     public ManagerFactory(GraphDatabaseService database) {
-        rootIndex = new RootManagerImpl(database);
+        rootManager = new RootManagerImpl(database);
+        verseManager = new VerseManagerImpl(database);
     }
 
     public static ManagerFactory getFor(GraphDatabaseService database) {
@@ -27,7 +31,11 @@ public class ManagerFactory {
         return map.get(database);
     }
 
-    public RootManager getRootIndex() {
-        return rootIndex;
+    public RootManager getRootManager() {
+        return rootManager;
+    }
+
+    public VerseManager getVerseManager() {
+        return verseManager;
     }
 }

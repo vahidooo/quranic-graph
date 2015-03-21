@@ -2,6 +2,7 @@ package data;
 
 import data.leeds.LeedsCorpusDataFiller;
 import data.leeds.more.LeedsCorpusNextDataFiller;
+import data.leeds.more.NextVerseInQuranDataFiller;
 import data.leeds.more.WordIndexInQuranDataFiller;
 import graph.quran.tanzil.TanzilDataFiller;
 
@@ -24,6 +25,7 @@ public class DataFillerManager {
         addDataFiller(LeedsCorpusDataFiller.class, TanzilDataFiller.class);
         addDataFiller(LeedsCorpusNextDataFiller.class, LeedsCorpusDataFiller.class);
         addDataFiller(WordIndexInQuranDataFiller.class, LeedsCorpusNextDataFiller.class);
+        addDataFiller(NextVerseInQuranDataFiller.class, LeedsCorpusNextDataFiller.class);
 
 
 
