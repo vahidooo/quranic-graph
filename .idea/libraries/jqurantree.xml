@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jqurantree">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/jqurantree" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/jqurantree" recursive="false" />
+  </library>
+</component>
