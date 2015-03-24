@@ -19,6 +19,20 @@
     },
     {
       "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
+      "id": "28af69e4-e329-eebf-0e90-e38fe5734804",
+      "name": "Root base similarity by Smith-Waterman Aligmnet ",
+      "description": "",
+      "url": "http://localhost:7474/quran/root/verse/algin/sw/27/87/3",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
       "id": "5165d0c1-8f52-3aaa-d87a-708fb30008f7",
       "name": "Ø³ÙˆØ±Ù‡ - Ø¢ÙŠÙ‡",
       "description": "",

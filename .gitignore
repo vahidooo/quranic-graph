@@ -18,5 +18,6 @@ neo4j/system/*
 scripts/*
 
 out/*
+quranic-graph.iml
 
 

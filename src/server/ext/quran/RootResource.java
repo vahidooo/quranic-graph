@@ -1,7 +1,10 @@
 package server.ext.quran;
 
 import alg.base.MappedLCS;
+import alg.base.Scored;
 import alg.root.TokensInWindowAlgorithm;
+import alg.root.align.RootCompoundSet;
+import alg.root.align.RootSubstitutionMatrix;
 import base.GraphIndices;
 import base.NodeLabels;
 import base.NodeProperties;
@@ -14,6 +17,10 @@ import model.api.verse.Verse;
 import model.api.verse.VerseManager;
 import model.api.word.Word;
 import model.impl.base.ManagerFactory;
+import org.biojava.nbio.alignment.SimpleGapPenalty;
+import org.biojava.nbio.alignment.SmithWaterman;
+import org.biojava.nbio.alignment.template.GapPenalty;
+import org.biojava.nbio.core.sequence.storage.ArrayListSequenceReader;
 import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
@@ -36,7 +43,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 @Path("/root")
-public class RootResource {
+public class RootResource extends BaseWs {
 
     private static final Logger logger = Logger.getLogger(RootResource.class.getName());
     private final GraphDatabaseService database;
@@ -383,6 +390,76 @@ public class RootResource {
 
                 response = Response.status(Response.Status.OK)
                         .entity((res.toString()).
+                                getBytes(Charset.forName("UTF-8"))).build();
+
+                tx.success();
+            }
+        } catch (Throwable th) {
+            th.printStackTrace();
+            response = Response.status(Response.Status.OK).entity(
+                    (th.getMessage()).getBytes(Charset.forName("UTF-8"))).build();
+        }
+
+        return response;
+
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/verse/algin/sw/{chapterNo}/{verseNo}/{threshold}")
+    public Response smithWaterman(@PathParam("chapterNo") int chapterNo, @PathParam("verseNo") int verseNo, @PathParam("threshold") int threshold) {
+
+
+        int MATCH_SCORE = 3;
+        Response response;
+        StringBuilder res = new StringBuilder();
+        List<Scored<Verse>> scores;
+        try {
+            try (Transaction tx = database.beginTx()) {
+                scores = new ArrayList<>();
+                Verse verse = verseManager.get(chapterNo, verseNo);
+
+                List<Root> mainRootList = VerseUtils.getRootList(verse);
+                Verse nextVerse = verse.getSuccessor();
+
+                while (nextVerse != null) {
+                    List<Root> secondRootList = VerseUtils.getRootList(nextVerse);
+
+                    RootCompoundSet cs = new RootCompoundSet(mainRootList, secondRootList);
+
+                    SmithWaterman sw = new SmithWaterman();
+                    sw.setQuery(new ArrayListSequenceReader(cs.getCompounds(0), cs));
+                    sw.setTarget(new ArrayListSequenceReader(cs.getCompounds(1), cs));
+
+                    GapPenalty penalty = new SimpleGapPenalty(2, 1);
+                    sw.setGapPenalty(penalty);
+
+                    RootSubstitutionMatrix matrix = new RootSubstitutionMatrix(cs, (short) MATCH_SCORE, (short) -4);
+                    sw.setSubstitutionMatrix(matrix);
+
+                    Double score = sw.getScore();
+                    if (score >= (MATCH_SCORE * threshold)) {
+                        scores.add(new Scored<Verse>(nextVerse, score));
+                        System.out.println(nextVerse.getAddress() + "***" + score);
+                    }
+
+                    nextVerse = nextVerse.getNextInQuran();
+                }
+
+
+                Collections.sort(scores, new Comparator<Scored<Verse>>() {
+                    @Override
+                    public int compare(Scored<Verse> o1, Scored<Verse> o2) {
+                        return o2.getScore().compareTo(o1.getScore());
+                    }
+                });
+
+
+                String ret = getJson("scores", scores);
+
+                response = Response.status(Response.Status.OK)
+                        .entity((ret).
                                 getBytes(Charset.forName("UTF-8"))).build();
 
                 tx.success();

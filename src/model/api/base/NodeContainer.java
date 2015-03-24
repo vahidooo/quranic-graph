@@ -1,5 +1,6 @@
 package model.api.base;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.neo4j.graphdb.Node;
 
 /**
@@ -7,5 +8,6 @@ import org.neo4j.graphdb.Node;
  */
 public interface NodeContainer {
 
+    @JsonIgnore
     Node getNode();
 }

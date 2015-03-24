@@ -43,6 +43,12 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
     }
 
     @Override
+    public String getText() {
+        return (String) node.getProperty(NodeProperties.Verse.text);
+
+    }
+
+    @Override
     public List<Word> getWords() {
         List<Word> words = new ArrayList<>();
 

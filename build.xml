@@ -109,6 +109,12 @@
         </fileset>
     </path>
 
+    <path id="library.biojava.classpath">
+        <fileset dir="${basedir}/lib/biojava">
+        <patternset refid="library.patterns"/>
+        </fileset>
+    </path>
+
 
     <!-- Global Libraries -->
 
@@ -148,6 +154,7 @@
         <path refid="library.javax.ws.rs-api-2.0.classpath"/>
         <path refid="library.neo4j-2.1-system.classpath"/>
         <path refid="library.neo4j-2.1-lib.classpath"/>
+        <path refid="library.biojava.classpath"/>
     </path>
 
     <path id="quranic-graph.runtime.classpath">
@@ -157,6 +164,7 @@
         <path refid="library.javax.ws.rs-api-2.0.classpath"/>
         <path refid="library.neo4j-2.1-system.classpath"/>
         <path refid="library.neo4j-2.1-lib.classpath"/>
+        <path refid="library.biojava.classpath"/>
     </path>
 
 
@@ -209,7 +217,7 @@
         <copy todir="${neo4j.dir}/plugins">
             <file file="${plugin.temp.jar}"/>
             <path refid="library.jqurantree-1.0.0.classpath"/>
-
+            <path refid="library.biojava.classpath"/>
         </copy>
 
         <mkdir dir="${neo4j.dir}/resources"/>

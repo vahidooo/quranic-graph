@@ -2,16 +2,18 @@ package model.api.chapter;
 
 
 import model.api.verse.Verse;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Created by vahidoo on 3/11/15.
  */
 public interface Chapter {
 
-
-    Object getName();
+    String getName();
     Integer getIndex();
-    Verse getVerse(int verse);
 
+    @JsonIgnore
+    Verse getVerse(int verse);
+    @JsonIgnore
     Chapter getNextChapter();
 }

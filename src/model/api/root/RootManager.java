@@ -5,4 +5,6 @@ package model.api.root;
  */
 public interface RootManager {
     Root getRootByArabic(String arabic);
+
+    Iterable<Root> getAll();
 }
