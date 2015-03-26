@@ -1,1 +1,1 @@
-server.filter.GZipInitialiser
+server.ext.quran.DummyPluginInitializer

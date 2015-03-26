@@ -1,22 +1,12 @@
 package resource;
 
 
-import alg.root.align.RootCompoundSet;
-import alg.root.align.RootSubstitutionMatrix;
-import model.api.root.Root;
-import org.biojava.nbio.alignment.SimpleGapPenalty;
-import org.biojava.nbio.alignment.SmithWaterman;
-import org.biojava.nbio.alignment.template.GapPenalty;
-import org.biojava.nbio.alignment.template.SequencePair;
-import org.biojava.nbio.core.sequence.storage.ArrayListSequenceReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-import server.ext.quran.RootResource;
-
-import java.util.List;
+import server.ext.quran.ws.RootResource;
  
 /*
  * Created on Mar 28, 2006

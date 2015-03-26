@@ -33,6 +33,7 @@ public class DataFillerWS extends BaseWs {
     private final Properties properties;
 
     public DataFillerWS(@Context GraphDatabaseService database) throws IOException {
+
         this.database = database;
 
         InputStream stream = getClass().getClassLoader().getResourceAsStream(PluginWS.PLUGIN_CONF_PATH);
@@ -52,8 +53,6 @@ public class DataFillerWS extends BaseWs {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/fillers/list")
     public Response list() throws IOException, ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
-
-        logger.info("/data/fillers/list");
 
         Response response;
         try (Transaction tx = database.beginTx()) {

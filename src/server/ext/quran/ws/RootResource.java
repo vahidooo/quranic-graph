@@ -1,4 +1,4 @@
-package server.ext.quran;
+package server.ext.quran.ws;
 
 import alg.base.MappedLCS;
 import alg.base.Scored;
@@ -25,6 +25,7 @@ import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
 import org.neo4j.graphdb.traversal.TraversalDescription;
+import server.ext.quran.BaseWs;
 import server.repr.HasArabicPropertyRepresentation;
 import server.repr.MapRepresentation;
 import server.repr.TokenRepresentation;

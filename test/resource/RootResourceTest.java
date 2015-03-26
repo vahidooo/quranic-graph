@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-import server.ext.quran.RootResource;
+import server.ext.quran.ws.RootResource;
 
 /**
  * Created by vahidoo on 3/13/15.
