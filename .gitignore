@@ -13,6 +13,7 @@ neo4j/*
 scripts/*
 build/*
 .idea/*
+.gradle/*
 
 quranic-graph.iml
 
