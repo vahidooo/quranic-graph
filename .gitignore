@@ -9,15 +9,11 @@
 hs_err_pid*
 
 
-neo4j/plugins/*
-neo4j/lib/*
-neo4j/bin/*
-neo4j/data/*
-neo4j/system/*
-
+neo4j/*
 scripts/*
+build/*
+.idea/*
 
-out/*
 quranic-graph.iml
 
 

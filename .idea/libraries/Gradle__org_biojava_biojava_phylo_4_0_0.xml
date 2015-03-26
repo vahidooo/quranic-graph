@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.biojava:biojava-phylo:4.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.biojava/biojava-phylo/4.0.0/53f7d3e3600f5dcf0231f49e2f4dec3fe6d434f1/biojava-phylo-4.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.biojava/biojava-phylo/4.0.0/c9a9e0d07b0f97127d5099eb43e51e11e38bc842/biojava-phylo-4.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
