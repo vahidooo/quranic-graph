@@ -1,4 +1,4 @@
-package server.ext.quran.filter;
+package server.ext.quran;
 
 import org.apache.commons.configuration.Configuration;
 import org.neo4j.graphdb.GraphDatabaseService;
@@ -19,14 +19,20 @@ public class FiltersInitializer implements SPIPluginLifecycle {
     private WebServer webServer;
 
     private ConvertKafYaInParametersFilter convertKafYaInParametersFilter;
+    private BeginTransactionFilter beginTransactionFilter;
 
     private static Map<Class<?>, List<String>> mappings;
 
     static {
+
+        System.out.println("FiltersInitializer -> static");
         mappings = new HashMap<>();
 
         mappings.put(ConvertKafYaInParametersFilter.class, new ArrayList<String>());
-        mappings.get(ConvertKafYaInParametersFilter.class).add("/*");
+        mappings.get(ConvertKafYaInParametersFilter.class).add("/quran/*");
+
+        mappings.put(BeginTransactionFilter.class, new ArrayList<String>());
+        mappings.get(BeginTransactionFilter.class).add("/root/*");
 
     }
 
@@ -48,11 +54,19 @@ public class FiltersInitializer implements SPIPluginLifecycle {
     @Override
     public Collection<Injectable<?>> start(final NeoServer neoServer) {
         logger.info("start");
+        webServer = getWebServer(neoServer);
 
         convertKafYaInParametersFilter = new ConvertKafYaInParametersFilter();
-        for (String path : mappings.get(ConvertKafYaInParametersFilter.class)) {
-            webServer.addFilter(convertKafYaInParametersFilter, path);
+        beginTransactionFilter = new BeginTransactionFilter(neoServer.getDatabase().getGraph());
+
+        logger.info("start.new");
+
+        for (String path : mappings.get(BeginTransactionFilter.class)) {
+            logger.info("start.set " + beginTransactionFilter.toString() + " --->" + path);
+                webServer.addFilter(beginTransactionFilter, path);
         }
+        logger.info("start.ret");
+
 
         return Collections.emptyList();
     }

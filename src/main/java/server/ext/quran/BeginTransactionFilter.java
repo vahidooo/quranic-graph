@@ -27,19 +27,22 @@ public class BeginTransactionFilter implements Filter {
             throws IOException, ServletException {
 
         try (Transaction tx = database.beginTx()) {
-            log.debug("Starting a database transaction");
+            System.out.println( " ------------------------------------- ");
+            log.info("Starting a database transaction");
 
             // Call the next filter (continue request processing)
             chain.doFilter(request, response);
 
             // Commit and cleanup
-            log.debug("Committing the database transaction");
+            log.info("Committing the database transaction");
             tx.success();
 
         }
     }
 
     public void init(FilterConfig filterConfig) throws ServletException {
+        System.out.println( " -init :))) ----- " );
+
     }
 
     public void destroy() {

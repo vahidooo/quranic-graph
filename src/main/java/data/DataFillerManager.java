@@ -4,7 +4,7 @@ import data.leeds.LeedsCorpusDataFiller;
 import data.leeds.more.LeedsCorpusNextDataFiller;
 import data.leeds.more.NextVerseInQuranDataFiller;
 import data.leeds.more.WordIndexInQuranDataFiller;
-import graph.quran.tanzil.TanzilDataFiller;
+import data.tanzil.TanzilDataFiller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -26,13 +26,6 @@ public class DataFillerManager {
         addDataFiller(LeedsCorpusNextDataFiller.class, LeedsCorpusDataFiller.class);
         addDataFiller(WordIndexInQuranDataFiller.class, LeedsCorpusNextDataFiller.class);
         addDataFiller(NextVerseInQuranDataFiller.class, LeedsCorpusNextDataFiller.class);
-
-
-
-//        fillers.add(TanzilDataFiller.class);
-//        fillers.add(LeedsCorpusDataFiller.class);
-//        fillers.add(WordIndexInQuranDataFiller.class);
-//        fillers.add(LeedsCorpusNextDataFiller.class);
 
     }
 
