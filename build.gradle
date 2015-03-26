@@ -24,6 +24,9 @@ dependencies {
     compile('org.springframework:spring-web:4.1.5.RELEASE')
 
     compile files('lib/jqurantree/jqurantree-1.0.0.jar')
+
+
+    testCompile 'junit:junit:4.11'
 }
 
 sourceSets.main.compileClasspath += configurations.providedCompile
