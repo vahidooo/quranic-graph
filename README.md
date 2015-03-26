@@ -27,3 +27,5 @@ ant neo4j.plugin.reload
 
 ./neo4j/bin/neo4j restart
 
+
+->Hello World!<-
