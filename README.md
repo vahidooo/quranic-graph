@@ -1,5 +1,5 @@
 # quranic-graph
-&#x202b;۱.از آدرس https://github.com/vahidooo/quranic-graph پروژه رو clone بفرمایید.
+:&#x202b;۱.از آدرس https://github.com/vahidooo/quranic-graph پروژه رو clone بفرمایید.
 
 ۲.یه فولدر داخلش هست به نام neo4j. نئو۴جی ویندوزی خودتون را جایگزینش کنید.به جز فولدر neo4j/conf. یعنی این فولدر همون گیته بمونه.
 
