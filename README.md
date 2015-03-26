@@ -15,6 +15,7 @@ After running the Neo4j server,to upgrade database with new DataFillers you must
 `"./gradlew dropDatabase"` command will drop database by remove *'neo4j/data/graph.db'* directory.
 
 
+
 ## Queries
 
 

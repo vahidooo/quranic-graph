@@ -81,3 +81,4 @@ task wrapper(type: Wrapper) {
 task dropDatabase(type: Delete) {
     delete project.ext.neo4j.db
 }
+
