@@ -1,17 +1,18 @@
 //project.name = 'quranic-plugin'
 apply plugin: 'java'
 
-project.ext.neo4j = [lib: 'neo4j/lib', bin: 'neo4j/bin', system: 'neo4j/system/lib', db: 'neo4j/data/graph.db', conf: 'neo4j/conf', plugins: 'neo4j/plugins']
+project.ext.neo4j = [ base: 'neo4j' ,lib: 'neo4j/lib', bin: 'neo4j/bin', system: 'neo4j/system/lib', db: 'neo4j/data/graph.db', conf: 'neo4j/conf', plugins: 'neo4j/plugins']
 project.ext.plugin = [properties: 'quranic-graph-plugin.properties']
-
-
+project.ext.rawdata = fileTree (dir: sourceSets.main.resources.srcDirs[0] , exclude: 'META-INF' )
 
 repositories {
     mavenCentral()
 }
 
 
-configurations { providedCompile }
+configurations {
+    providedCompile
+}
 
 
 dependencies {
@@ -20,10 +21,9 @@ dependencies {
     providedCompile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
 
     compile 'org.biojava:biojava-alignment:4.0.0'
-//    compile('org.springframework:spring-web:4.1.5.RELEASE')
+    compile('org.springframework:spring-web:4.1.5.RELEASE')
 
     compile files('lib/jqurantree/jqurantree-1.0.0.jar')
-
 }
 
 sourceSets.main.compileClasspath += configurations.providedCompile
@@ -43,23 +43,29 @@ task cleanPluginJars(type: Delete) {
 }
 
 task cleanConfigFiles(type: Delete) {
-    println "${project.ext.neo4j.conf}/${project.ext.plugin.properties}"
     delete "${project.ext.neo4j.conf}/${project.ext.plugin.properties}"
 }
 
 
-task deployConfigFiles(type: Copy, dependsOn: 'jar') {
+
+task deployRawDataFiles(type: Copy) {
+    from project.ext.rawdata
+    into "${project.ext.neo4j.base}/resources"
+
+}
+task deployConfigFiles(type: Copy) {
     from "docs/${project.ext.plugin.properties}"
+    from "docs/neo4j-server.properties"
     into project.ext.neo4j.conf
 }
 
 
 
-task deploy(dependsOn: ['deployPluginJars', 'deployConfigFiles']) {
+task deploy(dependsOn: ['deployPluginJars', 'deployConfigFiles','deployRawDataFiles']) {
 
 }
 
-clean.dependsOn(['cleanPluginJars', 'cleanConfigFiles'])
+clean.dependsOn(['cleanPluginJars', 'cleanConfigFiles' ])
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2'
