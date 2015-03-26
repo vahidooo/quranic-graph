@@ -1,28 +1,24 @@
 # quranic-graph
-۱.از آدرس https://github.com/vahidooo/quranic-graph پروژه رو clone بفرمایید.
-
-۲.یه فولدر داخلش هست به نام neo4j. نئو۴جی ویندوزی خودتون را جایگزینش کنید.به جز فولدر neo4j/conf. یعنی این فولدر همون گیته بمونه.
-
-۳.به داخل فولدر پروژه رفته و دستور زیر را اجرا کنید(قبلش باید ant نصب کرده باشید).پس از مدتی گراف حاضر می‌شود.
-
-ant graph.init
-
-۴.دستور زیر را اجرا کنید:
-
-ant neo4j.plugin.reload
-
-۵.نیو۴جی را بالا بیاورید
-
-./neo4j/bin/neo4j start
-
-۶.در فولدر docs فایلی به نام queries.txt‌ هست که قالب چند کویری نوشته شده است.
-
-۷.برای توسعه پلاگین و بانک کوئری‌ها میتوانیم پکیج server.ext.quran را ملاحظه فرمایید.
 
 
 
-اگر پلاگین رو توسعه دادید باید دوکار انجام بدید:
+## Installation
+1. Download neo4j-2.2 from [Neo4j download page] (http://neo4j.com/download/)
+2. Extract it and rename it to *'neo4j'*
+3. Compile and deploy plugin via `"./gradlew deploy"` command.(Instead of using ./gradlew,I recommend that install gradle)
+4. Run Neo4j by `"./neo4j/bin/neo4j restart"`
 
-ant neo4j.plugin.reload
+## Upgrade database
+After running the Neo4j server,to upgrade database with new DataFillers you must make a GET request to *'/quran/data/upgrade'*
 
-./neo4j/bin/neo4j restart
+## Drop database
+`"./gradlew dropDatabase"` command will drop database by remove *'neo4j/data/graph.db'* directory.
+
+
+## Queries
+
+
+## How to develop
+### DataFillers
+### Quran API
+### WebServices

@@ -1,0 +1,83 @@
+//project.name = 'quranic-plugin'
+apply plugin: 'java'
+
+project.ext.neo4j = [lib: 'neo4j/lib', bin: 'neo4j/bin', system: 'neo4j/system/lib', db: 'neo4j/data/graph.db', conf: 'neo4j/conf', plugins: 'neo4j/plugins']
+project.ext.plugin = [properties: 'quranic-graph-plugin.properties']
+
+
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+
+configurations { providedCompile }
+
+
+dependencies {
+    providedCompile fileTree(dir: project.ext.neo4j.lib, include: '*.jar')
+    providedCompile fileTree(dir: project.ext.neo4j.system, include: '*.jar')
+    providedCompile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+
+    compile 'org.biojava:biojava-alignment:4.0.0'
+//    compile('org.springframework:spring-web:4.1.5.RELEASE')
+
+    compile files('lib/jqurantree/jqurantree-1.0.0.jar')
+
+}
+
+sourceSets.main.compileClasspath += configurations.providedCompile
+
+
+task deployPluginJars(type: Copy, dependsOn: 'jar') {
+    from(configurations.runtime) {
+        exclude '**/*slf4j*.jar', '**/*log4j*.jar'
+
+    }
+    from tasks.getByName('jar')
+    into project.ext.neo4j.plugins
+}
+
+task cleanPluginJars(type: Delete) {
+    delete tasks.getByName('deployPluginJars')
+}
+
+task cleanConfigFiles(type: Delete) {
+    println "${project.ext.neo4j.conf}/${project.ext.plugin.properties}"
+    delete "${project.ext.neo4j.conf}/${project.ext.plugin.properties}"
+}
+
+
+task deployConfigFiles(type: Copy, dependsOn: 'jar') {
+    from "docs/${project.ext.plugin.properties}"
+    into project.ext.neo4j.conf
+}
+
+
+
+task deploy(dependsOn: ['deployPluginJars', 'deployConfigFiles']) {
+
+}
+
+clean.dependsOn(['cleanPluginJars', 'cleanConfigFiles'])
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}
+
+task dropDatabase(type: Delete) {
+    delete project.ext.neo4j.db
+}
