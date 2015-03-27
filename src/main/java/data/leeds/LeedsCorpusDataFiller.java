@@ -6,6 +6,7 @@ import base.NodeProperties;
 import base.RelationshipTypes;
 import data.DataFiller;
 import data.TransactionalFiller;
+import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.xml.sax.SAXException;
@@ -47,8 +48,8 @@ public class LeedsCorpusDataFiller extends DataFiller {
     private static final String WORD_NODE = "W_NODE";
     private static final String TOKEN_NODE = "T_NODE";
 
-    public LeedsCorpusDataFiller(GraphDatabaseService database, Properties properties) {
-        super(database, properties);
+    public LeedsCorpusDataFiller(GraphDatabaseService database, ManagersSet managersSet, Properties properties) {
+        super(database,managersSet, properties);
         corpusFile = new File((String) properties.get(LEEDS_CORPUS_PATH_KEY));
     }
 

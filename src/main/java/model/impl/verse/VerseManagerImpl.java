@@ -2,6 +2,7 @@ package model.impl.verse;
 
 import base.GraphIndices;
 import base.NodeProperties;
+import model.api.base.Session;
 import model.api.verse.Verse;
 import model.api.verse.VerseManager;
 import org.neo4j.graphdb.GraphDatabaseService;
@@ -13,14 +14,18 @@ import util.NodeUtils;
  */
 public class VerseManagerImpl implements VerseManager {
     private GraphDatabaseService database;
+    private Session session;
 
-    public VerseManagerImpl(GraphDatabaseService database) {
+
+    public VerseManagerImpl(Session session, GraphDatabaseService database) {
         this.database = database;
+        this.session = session;
     }
 
     @Override
     public Verse get(int chapter, int verse) {
         Node node = database.index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.Verse.address, NodeUtils.getNodeAddress(chapter, verse)).getSingle();
-        return new VerseImpl(node);
+        return session.get(Verse.class ,node);
     }
+
 }

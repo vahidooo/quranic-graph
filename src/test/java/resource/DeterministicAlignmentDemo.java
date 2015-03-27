@@ -1,6 +1,7 @@
 package resource;
 
 
+import model.impl.base.ManagersSet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,10 +58,12 @@ public class DeterministicAlignmentDemo {
 
     private static final String DB_PATH = "/home/vahidoo/projects/graph/quranic-graph/neo4j/data/graph.db";
     private GraphDatabaseService database;
+    private ManagersSet managersSet;
 
     @Before
     public void setUp() throws Exception {
         database = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
+        managersSet = new ManagersSet(database);
     }
 
     @After
@@ -71,8 +74,8 @@ public class DeterministicAlignmentDemo {
     @Test
     public void smithWatermanTest() {
 
-        RootResource ws = new RootResource(database);
-        ws.smithWaterman(27, 87 , 3);
+        RootResource ws = new RootResource(database,managersSet);
+        ws.smithWaterman(27, 87, 3);
 //        ws.smithWaterman(114, 1 , 3);
 
 

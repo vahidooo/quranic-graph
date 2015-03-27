@@ -5,6 +5,7 @@ import base.NodeProperties;
 import base.RelationshipTypes;
 import data.DataFiller;
 import data.TransactionalFiller;
+import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.xml.sax.SAXException;
@@ -21,8 +22,8 @@ import java.util.Properties;
  */
 public class LeedsCorpusNextDataFiller extends DataFiller {
 
-    public LeedsCorpusNextDataFiller(GraphDatabaseService database, Properties properties) {
-        super(database, properties);
+    public LeedsCorpusNextDataFiller(GraphDatabaseService database, ManagersSet managersSet, Properties properties) {
+        super(database,managersSet, properties);
     }
 
     @Override

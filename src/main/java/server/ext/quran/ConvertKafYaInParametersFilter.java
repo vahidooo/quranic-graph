@@ -1,4 +1,4 @@
-package server.ext.quran.filter;
+package server.ext.quran;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 import server.util.LocaleUtils;
@@ -16,36 +16,25 @@ import java.util.Enumeration;
  */
 public class ConvertKafYaInParametersFilter extends OncePerRequestFilter {
 
-    private Boolean defaultEnable = null;
-
-    public boolean isDefaultEnable() {
-        if (defaultEnable == null) {
-            String de = getFilterConfig().getInitParameter("defaultEnable");
-            defaultEnable = de != null ? Boolean.valueOf(de): false;
-        }
-        return defaultEnable;
-    }
-
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        boolean enable = isDefaultEnable();
-        if (request.getParameter("ckye") != null) {
-            enable = true;
-        }
-        else if (request.getParameter("ckyd") != null) {
-            enable = false;
-        }
+        System.out.println(ConvertKafYaInParametersFilter.class.getName() + " internalFilter " + request.getClass().getName() );
 
-    	if (enable && request instanceof MutableRequestParameterWrapper) {
+        if (request instanceof MutableRequestParameterWrapper) {
     		MutableRequestParameterWrapper mr = (MutableRequestParameterWrapper)request;
     		Enumeration names = mr.getParameterNames();
+            System.out.println(ConvertKafYaInParametersFilter.class.getName() + " internalFilter " + names.hasMoreElements() );
     		while (names.hasMoreElements()) {
     			String n = (String) names.nextElement();
     			String v = mr.getParameter(n);
-    			String res = convertIfNeeded(v);
+
+                System.out.println(ConvertKafYaInParametersFilter.class.getName() + " internalFilter " + n + " --- " + v);
+
+                String res = convertIfNeeded(v);
     			if (res != null) {
-    				mr.updateRequestParameter(n, res);
+                    System.out.println(ConvertKafYaInParametersFilter.class.getName() + " internalFilter.update ");
+                    mr.updateRequestParameter(n, res);
     			}
     		}
     	}

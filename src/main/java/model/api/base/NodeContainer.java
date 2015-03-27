@@ -10,4 +10,9 @@ public interface NodeContainer {
 
     @JsonIgnore
     Node getNode();
+
+    @JsonIgnore
+    Session getSession();
+
+
 }

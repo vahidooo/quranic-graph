@@ -1,36 +1,24 @@
 package resource;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import server.ext.quran.ws.RootResource;
+import ws.BaseWSTest;
 
 /**
  * Created by vahidoo on 3/13/15.
  */
-public class RootResourceTest {
+public class RootResourceTest extends BaseWSTest {
 
-    private static final String DB_PATH = "/home/vahidoo/projects/graph/quranic-graph/neo4j/data/graph.db";
-    private GraphDatabaseService database;
 
-    @Before
-    public void setUp() throws Exception {
-        database = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
-    }
 
-    @After
-    public void tearDown() throws Exception {
-        database.shutdown();
-    }
+
 
 //    @Test
     public void sequenceTest(){
 
         String seq = "رحم-رحم" ;
 
-        System.out.println( new RootResource(database).sequence(seq) );
+        System.out.println( new RootResource(database, managersSet).sequence(seq) );
 
     }
 
@@ -41,7 +29,7 @@ public class RootResourceTest {
         int window = 10;
         String mode = "word" ;
 
-        System.out.println( new RootResource(database).distance(mode, window, roots) );
+        System.out.println( new RootResource(database,managersSet).distance(mode, window, roots) );
 
     }
 

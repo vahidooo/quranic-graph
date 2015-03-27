@@ -11,12 +11,10 @@ import base.NodeProperties;
 import base.RelationshipTypes;
 import model.api.block.VerseBlock;
 import model.api.root.Root;
-import model.api.root.RootManager;
 import model.api.token.Token;
 import model.api.verse.Verse;
-import model.api.verse.VerseManager;
 import model.api.word.Word;
-import model.impl.base.ManagerFactory;
+import model.impl.base.ManagersSet;
 import org.biojava.nbio.alignment.SimpleGapPenalty;
 import org.biojava.nbio.alignment.SmithWaterman;
 import org.biojava.nbio.alignment.template.GapPenalty;
@@ -48,13 +46,16 @@ public class RootResource extends BaseWs {
 
     private static final Logger logger = Logger.getLogger(RootResource.class.getName());
     private final GraphDatabaseService database;
-    private RootManager rootManager;
-    private VerseManager verseManager;
+//    private RootManager rootManager;
+//    private VerseManager verseManager;
 
-    public RootResource(@Context GraphDatabaseService database) {
+    private ManagersSet managerFactory;
+
+    public RootResource(@Context GraphDatabaseService database , @Context ManagersSet managerFactory) {
         this.database = database;
-        this.rootManager = ManagerFactory.getFor(database).getRootManager();
-        this.verseManager = ManagerFactory.getFor(database).getVerseManager();
+//        this.rootManager = managerFactory.getRootManager();
+//        this.verseManager = managerFactory.getVerseManager();
+        this.managerFactory = managerFactory;
     }
 
     @GET
@@ -230,7 +231,7 @@ public class RootResource extends BaseWs {
         List<Node> verses = new ArrayList<>();
 
         String[] parts = roots.split("-");
-        Root first = rootManager.getRootByArabic(parts[0]);
+        Root first = managerFactory.getRootManager().getRootByArabic(parts[0]);
 
         for (Token token : first.getTokens()) {
 
@@ -241,7 +242,7 @@ public class RootResource extends BaseWs {
                 if (!flag)
                     break;
 
-                Root expectedRoot = rootManager.getRootByArabic(parts[i]);
+                Root expectedRoot = managerFactory.getRootManager().getRootByArabic(parts[i]);
 
                 if ((!currentToken.hasRoot()) || (!currentToken.getRoot().equals(expectedRoot))) {
                     flag = false;
@@ -288,7 +289,7 @@ public class RootResource extends BaseWs {
 
         List<Root> rootList = new ArrayList<>();
         for (String part : parts) {
-            Root root = rootManager.getRootByArabic(part);
+            Root root = managerFactory.getRootManager().getRootByArabic(part);
             rootList.add(root);
         }
 
@@ -310,7 +311,7 @@ public class RootResource extends BaseWs {
         Response response;
         StringBuilder res = new StringBuilder();
 
-        Verse verse = verseManager.get(chapterNo, verseNo);
+        Verse verse = managerFactory.getVerseManager().get(chapterNo, verseNo);
 
         List<Root> mainRootList = VerseUtils.getRootList(verse);
         Verse nextVerse = verse.getSuccessor();
@@ -349,7 +350,7 @@ public class RootResource extends BaseWs {
         StringBuilder res = new StringBuilder();
         List<Scored<Verse>> scores;
         scores = new ArrayList<>();
-        Verse verse = verseManager.get(chapterNo, verseNo);
+        Verse verse = managerFactory.getVerseManager().get(chapterNo, verseNo);
 
         List<Root> mainRootList = VerseUtils.getRootList(verse);
         Verse nextVerse = verse.getSuccessor();
@@ -395,6 +396,5 @@ public class RootResource extends BaseWs {
 
 
     }
-
 
 }

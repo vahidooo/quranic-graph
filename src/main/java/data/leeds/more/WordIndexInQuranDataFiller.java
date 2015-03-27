@@ -7,6 +7,7 @@ import data.TransactionalFiller;
 import model.api.chapter.Chapter;
 import model.api.verse.Verse;
 import model.api.word.Word;
+import model.impl.base.ManagersSet;
 import model.impl.word.WordImpl;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
@@ -31,8 +32,8 @@ public class WordIndexInQuranDataFiller extends DataFiller {
         return fillers;
     }
 
-    public WordIndexInQuranDataFiller(GraphDatabaseService database, Properties properties) {
-        super(database, properties);
+    public WordIndexInQuranDataFiller(GraphDatabaseService database, ManagersSet managersSet, Properties properties) {
+        super(database, managersSet, properties);
     }
 
 
@@ -42,17 +43,14 @@ public class WordIndexInQuranDataFiller extends DataFiller {
             int index = 1;
 
             Node node = database.index().forNodes(GraphIndices.WordIndex).get(NodeProperties.General.address, "1:1:1").getSingle();
-            Word current = new WordImpl(node);
+            Word current = managersSet.getSession().get(Word.class, node);
 
             while (current != null) {
 
                 node = ((WordImpl) current).getNode();
                 NodeUtils.setPropertyAndIndex(node, NodeProperties.Word.indexInQuran, GraphIndices.WordIndex, index);
 
-                System.out.println(current.getAddress() + "-->" + index);
-
                 current = nextWord(current);
-
 
                 index++;
 
@@ -60,6 +58,9 @@ public class WordIndexInQuranDataFiller extends DataFiller {
         }
 
         private Word nextWord(Word current) {
+
+            System.out.println("Update chapter #" + current.getVerse().getChapter().getIndex());
+
             Word successor = current.getSuccessor();
             if (successor != null) {
                 return successor;

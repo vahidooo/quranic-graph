@@ -3,7 +3,7 @@
 
 
 ## Installation
-1. Download neo4j-2.2 from [Neo4j download page] (http://neo4j.com/download/)
+1. Download neo4j-2.2+ from [Neo4j download page] (http://neo4j.com/download/)
 2. Extract it and rename it to *'neo4j'*
 3. Compile and deploy plugin via `"./gradlew deploy"` command.(Instead of using ./gradlew,I recommend that install gradle)
 4. Run Neo4j by `"./neo4j/bin/neo4j restart"`

@@ -3,15 +3,13 @@ package model.impl.token;
 import base.NodeLabels;
 import base.NodeProperties;
 import base.RelationshipTypes;
+import model.api.base.Session;
 import model.api.root.Root;
 import model.api.token.Token;
 import model.api.token.TokenPosition;
 import model.api.verse.Verse;
 import model.api.word.Word;
-import model.impl.base.NodeContainerImpl;
 import model.impl.base.TextualImpl;
-import model.impl.root.RootImpl;
-import model.impl.word.WordImpl;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
 import util.NodeUtils;
@@ -20,14 +18,15 @@ import util.NodeUtils;
  * Created by vahidoo on 3/13/15.
  */
 public class TokenImpl extends TextualImpl implements Token {
-    public TokenImpl(Node node) {
-        super(node);
+    public TokenImpl(Node node,Session session) {
+        super(node,session);
     }
 
     @Override
     public Word getWord() {
         Node word = NodeUtils.singleNeighborhood(node, RelationshipTypes.CONTAINS_TOKEN, Direction.INCOMING, true);
-        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, word);
+//        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, word);
+        return session.get(Word.class,word);
     }
 
     @Override
@@ -38,7 +37,8 @@ public class TokenImpl extends TextualImpl implements Token {
     @Override
     public Root getRoot() {
         Node root = NodeUtils.singleNeighborhood(node, RelationshipTypes.HAS_ROOT, Direction.OUTGOING, false);
-        return (Root) NodeContainerImpl.createNewInstance(RootImpl.class, root);
+//        return (Root) NodeContainerImpl.createNewInstance(RootImpl.class, root);
+        return session.get(Root.class,root);
     }
 
     @Override

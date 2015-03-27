@@ -3,6 +3,7 @@ package model.impl.verse;
 import base.GraphIndices;
 import base.NodeProperties;
 import base.RelationshipTypes;
+import model.api.base.Session;
 import model.api.chapter.Chapter;
 import model.api.verse.Verse;
 import model.api.word.Word;
@@ -21,8 +22,9 @@ import java.util.List;
  * Created by vahidoo on 3/13/15.
  */
 public class VerseImpl extends NodeContainerImpl implements Verse {
-    public VerseImpl(Node node) {
-        super(node);
+
+    VerseImpl(Node node,Session session) {
+        super(node,session);
     }
 
     @Override
@@ -33,7 +35,8 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
     @Override
     public Chapter getChapter() {
         Node chapter = NodeUtils.singleNeighborhood(node, RelationshipTypes.CONTAINS_VERSE, Direction.INCOMING, true);
-        return (Chapter) NodeContainerImpl.createNewInstance(ChapterImpl.class, chapter);
+//        return (Chapter) NodeContainerImpl.createNewInstance(ChapterImpl.class, chapter);
+        return session.get(Chapter.class,chapter);
     }
 
     @Override
@@ -67,7 +70,8 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
         if (next == null)
             return null;
 
-        return new VerseImpl(next);
+//        return new VerseImpl(next);
+        return session.get(Verse.class , next);
 
     }
 
@@ -83,13 +87,15 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
         if (wordNode == null) {
             return null;
         }
-        return new WordImpl(wordNode);
+//        return new WordImpl(wordNode);
+        return session.get(Word.class,wordNode);
     }
 
     @Override
     public Verse getSuccessor() {
         Node n = NodeUtils.singleNeighborhood(node, RelationshipTypes.NEXT_VERSE, Direction.OUTGOING, false);
-        return (Verse) NodeContainerImpl.createNewInstance(VerseImpl.class, n);
+//        return (Verse) NodeContainerImpl.createNewInstance(VerseImpl.class, n);
+        return session.get(Verse.class,n);
     }
 
     @Override
@@ -110,4 +116,5 @@ public class VerseImpl extends NodeContainerImpl implements Verse {
     public String toString() {
         return getAddress();
     }
+
 }

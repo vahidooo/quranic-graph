@@ -1,2 +1,4 @@
 server.ext.quran.FiltersInitializer
 server.ext.quran.DummyPluginInitializer
+server.ext.quran.ManagerFactoryPluginInitializer
+

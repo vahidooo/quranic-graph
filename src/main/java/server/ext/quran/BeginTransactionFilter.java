@@ -27,7 +27,6 @@ public class BeginTransactionFilter implements Filter {
             throws IOException, ServletException {
 
         try (Transaction tx = database.beginTx()) {
-            System.out.println( " ------------------------------------- ");
             log.info("Starting a database transaction");
 
             // Call the next filter (continue request processing)
@@ -41,8 +40,6 @@ public class BeginTransactionFilter implements Filter {
     }
 
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println( " -init :))) ----- " );
-
     }
 
     public void destroy() {

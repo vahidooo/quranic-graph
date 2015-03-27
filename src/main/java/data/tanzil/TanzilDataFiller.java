@@ -1,4 +1,4 @@
-package graph.quran.tanzil;
+package data.tanzil;
 
 import base.GraphIndices;
 import base.NodeLabels;
@@ -6,6 +6,7 @@ import base.NodeProperties;
 import base.RelationshipTypes;
 import data.DataFiller;
 import data.TransactionalFiller;
+import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -40,11 +41,11 @@ public class TanzilDataFiller extends DataFiller {
     private File metadataFile;
     private File uthmaniFile;
 
-    public TanzilDataFiller(GraphDatabaseService database, Properties properties) {
-        super(database, properties);
+    public TanzilDataFiller(GraphDatabaseService database, ManagersSet managersSet, Properties properties) {
+        super(database, managersSet, properties);
 
-        logger.info( (String) properties.get(TANZIL_UTHMANI_PATH_KEY) );
-        logger.info( (String) properties.get(TANZIL_METADATA_PATH_KEY) );
+        logger.info((String) properties.get(TANZIL_UTHMANI_PATH_KEY));
+        logger.info((String) properties.get(TANZIL_METADATA_PATH_KEY));
 
         uthmaniFile = new File((String) properties.get(TANZIL_UTHMANI_PATH_KEY));
         metadataFile = new File((String) properties.get(TANZIL_METADATA_PATH_KEY));

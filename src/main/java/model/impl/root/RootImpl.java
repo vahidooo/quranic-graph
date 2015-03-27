@@ -1,10 +1,10 @@
 package model.impl.root;
 
 import base.RelationshipTypes;
+import model.api.base.Session;
 import model.api.root.Root;
 import model.api.token.Token;
 import model.impl.base.TextualImpl;
-import model.impl.token.TokenImpl;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
@@ -18,8 +18,8 @@ import java.util.Set;
  */
 public class RootImpl extends TextualImpl implements Root {
 
-    public RootImpl(Node node) {
-        super(node);
+    RootImpl(Node node, Session session) {
+        super(node, session);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class RootImpl extends TextualImpl implements Root {
         Iterator<Relationship> it = node.getRelationships(Direction.INCOMING, RelationshipTypes.HAS_ROOT).iterator();
         while (it.hasNext()) {
             Node tokenNode = it.next().getStartNode();
-            Token token = new TokenImpl(tokenNode);
+            Token token = session.get(Token.class , tokenNode);
             tokens.add(token);
         }
         return tokens;

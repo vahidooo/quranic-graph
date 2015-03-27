@@ -4,12 +4,11 @@ import base.GraphIndices;
 import base.NodeLabels;
 import base.NodeProperties;
 import base.RelationshipTypes;
+import model.api.base.Session;
 import model.api.token.Token;
 import model.api.verse.Verse;
 import model.api.word.Word;
 import model.impl.base.NodeContainerImpl;
-import model.impl.token.TokenImpl;
-import model.impl.verse.VerseImpl;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
@@ -21,20 +20,23 @@ import java.util.Iterator;
  * Created by vahidoo on 3/13/15.
  */
 public class WordImpl extends NodeContainerImpl implements Word {
-    public WordImpl(Node node) {
-        super(node);
+
+    WordImpl(Node node,Session session) {
+        super(node,session);
     }
 
     @Override
     public Word getSuccessor() {
         Node n = NodeUtils.singleNeighborhood(node, RelationshipTypes.NEXT_WORD, Direction.OUTGOING, false);
-        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, n);
+//        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, n);
+        return session.get(Word.class,n);
     }
 
     @Override
     public Word getPredecessor() {
         Node n = NodeUtils.singleNeighborhood(node, RelationshipTypes.NEXT_WORD, Direction.INCOMING, true);
-        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, n);
+//        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, n);
+        return session.get(Word.class,n);
     }
 
     @Override
@@ -48,13 +50,15 @@ public class WordImpl extends NodeContainerImpl implements Word {
         if (n == null) {
             throw new RuntimeException();
         }
-        return new TokenImpl(n);
+//        return new TokenImpl(n);
+        return session.get(Token.class,n);
     }
 
     @Override
     public Verse getVerse() {
         Node n = NodeUtils.singleNeighborhood(node, RelationshipTypes.CONTAINS_WORD, Direction.INCOMING, true);
-        return (Verse) NodeContainerImpl.createNewInstance(VerseImpl.class, n);
+//        return (Verse) NodeContainerImpl.createNewInstance(VerseImpl.class, n);
+        return session.get(Verse.class,n);
     }
 
     @Override
@@ -86,8 +90,8 @@ public class WordImpl extends NodeContainerImpl implements Word {
         if (next == null)
             return null;
 
-        return new WordImpl(next);
-
+//        return new WordImpl(next);
+        return session.get(Word.class,next);
     }
 
     @Override

@@ -3,6 +3,7 @@ package data;
 import base.GraphIndices;
 import base.NodeProperties;
 import base.RelationshipTypes;
+import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.*;
 import util.NodeUtils;
 
@@ -18,7 +19,9 @@ public abstract class DataFiller {
     protected abstract List<data.TransactionalFiller> getTransactionalFillers() throws Throwable;
 
     protected GraphDatabaseService database;
+    protected ManagersSet managersSet;
     protected Properties properties;
+
     protected Node node;
 
     protected static final Logger logger = Logger.getLogger(DataFiller.class.getName());
@@ -28,9 +31,10 @@ public abstract class DataFiller {
         FILLED, NOT_FILLED, FILLING_ERROR, DEPENDENCY_ERROR, PENDING
     }
 
-    public DataFiller(GraphDatabaseService database, Properties properties) {
+    public DataFiller(GraphDatabaseService database, ManagersSet managersSet, Properties properties) {
         this.database = database;
         this.properties = properties;
+        this.managersSet = managersSet;
         initNode();
     }
 

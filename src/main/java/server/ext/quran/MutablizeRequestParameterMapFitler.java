@@ -1,4 +1,4 @@
-package server.ext.quran.filter;
+package server.ext.quran;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 

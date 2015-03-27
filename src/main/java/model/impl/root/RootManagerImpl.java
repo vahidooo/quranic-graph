@@ -3,6 +3,7 @@ package model.impl.root;
 import base.GraphIndices;
 import base.NodeLabels;
 import base.NodeProperties;
+import model.api.base.Session;
 import model.api.root.Root;
 import model.api.root.RootManager;
 import org.neo4j.graphdb.GraphDatabaseService;
@@ -19,9 +20,12 @@ import java.util.List;
 public class RootManagerImpl implements RootManager {
 
     private GraphDatabaseService database;
+    private Session session;
 
-    public RootManagerImpl(GraphDatabaseService database) {
+
+    public RootManagerImpl(Session session, GraphDatabaseService database) {
         this.database = database;
+        this.session = session;
     }
 
 
@@ -30,7 +34,7 @@ public class RootManagerImpl implements RootManager {
         ResourceIterable<Node> nodes = GlobalGraphOperations.at(database).getAllNodesWithLabel(NodeLabels.ROOT);
 
         for (Node node : nodes) {
-            Root root = new RootImpl(node);
+            Root root = session.get(Root.class,node);
             roots.add(root);
         }
         return roots;
@@ -42,7 +46,7 @@ public class RootManagerImpl implements RootManager {
         if (rootNode == null)
             return null;
 
-        return new RootImpl(rootNode);
+        return session.get(Root.class,rootNode);
     }
 
 

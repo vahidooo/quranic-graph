@@ -2,10 +2,10 @@ package model.impl.chapter;
 
 import base.GraphIndices;
 import base.NodeProperties;
+import model.api.base.Session;
 import model.api.chapter.Chapter;
 import model.api.verse.Verse;
 import model.impl.base.NodeContainerImpl;
-import model.impl.verse.VerseImpl;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import util.NodeUtils;
@@ -15,8 +15,8 @@ import util.NodeUtils;
  */
 public class ChapterImpl extends NodeContainerImpl implements Chapter {
 
-    public ChapterImpl(Node node) {
-        super(node);
+    public ChapterImpl(Node node,Session session) {
+        super(node,session);
     }
 
 
@@ -37,17 +37,17 @@ public class ChapterImpl extends NodeContainerImpl implements Chapter {
         if ( verseNode == null ){
             return null;
         }
-        return new VerseImpl(verseNode);
+        return session.get(Verse.class , verseNode);
     }
 
     @Override
     public Chapter getNextChapter() {
         GraphDatabaseService database = node.getGraphDatabase();
-        Node chapterNode = database.index().forNodes(GraphIndices.ChapterIndex).get(NodeProperties.Chapter.index, getIndex()+1 ).getSingle();
-        if ( chapterNode == null ){
+        Node nextChapterNode = database.index().forNodes(GraphIndices.ChapterIndex).get(NodeProperties.Chapter.index, getIndex()+1 ).getSingle();
+        if ( nextChapterNode == null ){
             return null;
         }
-        return new ChapterImpl(chapterNode);
+        return session.get(Chapter.class,nextChapterNode);
     }
 
     @Override

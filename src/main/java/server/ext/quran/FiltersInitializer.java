@@ -18,6 +18,7 @@ public class FiltersInitializer implements SPIPluginLifecycle {
     private static final Logger logger = LoggerFactory.getLogger(FiltersInitializer.class);
     private WebServer webServer;
 
+    private MutablizeRequestParameterMapFitler mutablizeRequestParameterMapFitler;
     private ConvertKafYaInParametersFilter convertKafYaInParametersFilter;
     private BeginTransactionFilter beginTransactionFilter;
 
@@ -28,8 +29,11 @@ public class FiltersInitializer implements SPIPluginLifecycle {
         System.out.println("FiltersInitializer -> static");
         mappings = new HashMap<>();
 
+        mappings.put(MutablizeRequestParameterMapFitler.class, new ArrayList<String>());
+        mappings.get(MutablizeRequestParameterMapFitler.class).add("/root/*");
+
         mappings.put(ConvertKafYaInParametersFilter.class, new ArrayList<String>());
-        mappings.get(ConvertKafYaInParametersFilter.class).add("/quran/*");
+        mappings.get(ConvertKafYaInParametersFilter.class).add("/root/*");
 
         mappings.put(BeginTransactionFilter.class, new ArrayList<String>());
         mappings.get(BeginTransactionFilter.class).add("/root/*");
@@ -53,19 +57,23 @@ public class FiltersInitializer implements SPIPluginLifecycle {
 
     @Override
     public Collection<Injectable<?>> start(final NeoServer neoServer) {
-        logger.info("start");
         webServer = getWebServer(neoServer);
 
+        mutablizeRequestParameterMapFitler = new MutablizeRequestParameterMapFitler();
         convertKafYaInParametersFilter = new ConvertKafYaInParametersFilter();
         beginTransactionFilter = new BeginTransactionFilter(neoServer.getDatabase().getGraph());
 
-        logger.info("start.new");
+        for (String path : mappings.get(MutablizeRequestParameterMapFitler.class)) {
+            webServer.addFilter(mutablizeRequestParameterMapFitler, path);
+        }
+
+        for (String path : mappings.get(ConvertKafYaInParametersFilter.class)) {
+            webServer.addFilter(convertKafYaInParametersFilter, path);
+        }
 
         for (String path : mappings.get(BeginTransactionFilter.class)) {
-            logger.info("start.set " + beginTransactionFilter.toString() + " --->" + path);
-                webServer.addFilter(beginTransactionFilter, path);
+            webServer.addFilter(beginTransactionFilter, path);
         }
-        logger.info("start.ret");
 
 
         return Collections.emptyList();

@@ -6,9 +6,8 @@ import data.DataFiller;
 import data.TransactionalFiller;
 import model.api.verse.Verse;
 import model.api.verse.VerseManager;
-import model.impl.base.ManagerFactory;
+import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.xml.sax.SAXException;
 import util.NodeUtils;
 
@@ -30,8 +29,8 @@ public class NextVerseInQuranDataFiller extends DataFiller {
         return fillers;
     }
 
-    public NextVerseInQuranDataFiller(GraphDatabaseService database, Properties properties) {
-        super(database, properties);
+    public NextVerseInQuranDataFiller(GraphDatabaseService database, ManagersSet managersSet, Properties properties) {
+        super(database, managersSet, properties);
     }
 
 
@@ -40,7 +39,7 @@ public class NextVerseInQuranDataFiller extends DataFiller {
         public void fillInTransaction(GraphDatabaseService database) throws ParserConfigurationException, IOException, SAXException {
 
             int index = 1;
-            VerseManager verseManager = ManagerFactory.getFor(database).getVerseManager();
+            VerseManager verseManager = managersSet.getVerseManager();
             Verse current = verseManager.get(1, 1);
 
             while (current != null) {
@@ -71,13 +70,4 @@ public class NextVerseInQuranDataFiller extends DataFiller {
         }
     }
 
-
-    public static void main(String[] args) {
-
-        GraphDatabaseService database = new GraphDatabaseFactory().newEmbeddedDatabase("/home/vahidoo/projects/graph/quranic-graph/neo4j/data/graph.db");
-        NextVerseInQuranDataFiller updater = new NextVerseInQuranDataFiller(database, null);
-        updater.fill();
-
-
-    }
 }
