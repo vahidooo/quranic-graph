@@ -1,6 +1,6 @@
 package model.impl.base;
 
-import base.NodeProperties;
+import data.schema.NodeProperties;
 import model.api.base.Session;
 import model.api.base.Textual;
 import org.neo4j.graphdb.Node;

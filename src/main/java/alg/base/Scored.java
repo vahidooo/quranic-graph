@@ -1,13 +1,17 @@
 package alg.base;
 
+import org.codehaus.jackson.annotate.JsonPropertyOrder;
+
 /**
  * Created by vahidoo on 3/24/15.
  */
-public class Scored<T> {
-    private T object;
-    private double score;
 
-    public Scored(T object, Double score) {
+@JsonPropertyOrder(value = "score,object")
+public class Scored<T,N extends Comparable> {
+    private T object;
+    private N score;
+
+    public Scored(T object, N score) {
         this.object = object;
         this.score = score;
     }
@@ -16,7 +20,8 @@ public class Scored<T> {
         return object;
     }
 
-    public Double getScore() {
+
+    public N getScore() {
         return score;
     }
 }

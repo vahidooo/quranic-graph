@@ -1,4 +1,4 @@
-package data;
+package data.filler;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.xml.sax.SAXException;

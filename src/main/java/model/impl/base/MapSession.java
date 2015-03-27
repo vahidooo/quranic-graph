@@ -4,7 +4,9 @@ import model.api.base.Factory;
 import model.api.base.Session;
 import org.neo4j.graphdb.Node;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,7 +28,7 @@ public class MapSession implements Session {
     @Override
     public <T> T get(Class<T> clazz, Node node) {
 
-        if ( node == null || clazz == null )
+        if (node == null || clazz == null)
             return null;
 
         if (!map.containsKey(clazz)) {
@@ -43,6 +45,15 @@ public class MapSession implements Session {
         m.put(node, object);
 
         return (T) object;
+    }
+
+    @Override
+    public <T> Iterable<T> get(Class<T> clazz, Iterable<Node> nodes) {
+        List<T> list = new ArrayList<>();
+        for (Node node : nodes) {
+            list.add(get(clazz, node));
+        }
+        return list;
     }
 
 }

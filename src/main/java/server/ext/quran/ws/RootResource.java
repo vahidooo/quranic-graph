@@ -2,13 +2,14 @@ package server.ext.quran.ws;
 
 import alg.base.MappedLCS;
 import alg.base.Scored;
+import alg.base.ScoredList;
 import alg.root.TokensInWindowAlgorithm;
 import alg.root.align.RootCompoundSet;
 import alg.root.align.RootSubstitutionMatrix;
-import base.GraphIndices;
-import base.NodeLabels;
-import base.NodeProperties;
-import base.RelationshipTypes;
+import data.schema.GraphIndices;
+import data.schema.NodeLabels;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
 import model.api.block.VerseBlock;
 import model.api.root.Root;
 import model.api.token.Token;
@@ -23,11 +24,8 @@ import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
 import org.neo4j.graphdb.traversal.TraversalDescription;
-import server.ext.quran.BaseWs;
+import server.ext.quran.BaseWS;
 import server.repr.HasArabicPropertyRepresentation;
-import server.repr.MapRepresentation;
-import server.repr.TokenRepresentation;
-import server.repr.VerseRepresentation;
 import util.VerseUtils;
 
 import javax.ws.rs.GET;
@@ -42,20 +40,12 @@ import java.util.*;
 import java.util.logging.Logger;
 
 @Path("/root")
-public class RootResource extends BaseWs {
+public class RootResource extends BaseWS {
 
     private static final Logger logger = Logger.getLogger(RootResource.class.getName());
-    private final GraphDatabaseService database;
-//    private RootManager rootManager;
-//    private VerseManager verseManager;
 
-    private ManagersSet managerFactory;
-
-    public RootResource(@Context GraphDatabaseService database , @Context ManagersSet managerFactory) {
-        this.database = database;
-//        this.rootManager = managerFactory.getRootManager();
-//        this.verseManager = managerFactory.getVerseManager();
-        this.managerFactory = managerFactory;
+    public RootResource(@Context GraphDatabaseService database, @Context ManagersSet managerFactory) {
+        super(database, managerFactory);
     }
 
     @GET
@@ -63,33 +53,19 @@ public class RootResource extends BaseWs {
     @Path("/tokens/{root}")
     public Response tokens(@PathParam("root") final String root) {
 
-        logger.info(" /tokens/ (" + root + ")");
+        List<Node> tokens = new ArrayList<>();
 
-        Response response;
-        try {
-//            try (Transaction tx = database.beginTx()) {
-            List<Node> tokens = new ArrayList<>();
-
-
-            Node rootNode = database.index().forNodes(GraphIndices.RootIndex).get(NodeProperties.GeneralText.arabic, root).getSingle();
-            Iterable<Relationship> it = rootNode.getRelationships(Direction.INCOMING, RelationshipTypes.HAS_ROOT);
-            for (Relationship r : it) {
-                Node token = r.getStartNode();
-                tokens.add(token);
-            }
-
-
-            response = Response.status(Response.Status.OK).entity(
-                    (new TokenRepresentation().represent(tokens)).getBytes(Charset.forName("UTF-8"))).build();
-
-//                tx.success();
-//            }
-        } catch (Throwable th) {
-            response = Response.status(Response.Status.OK).entity(
-                    (th.getMessage()).getBytes(Charset.forName("UTF-8"))).build();
+        Node rootNode = database.index().forNodes(GraphIndices.RootIndex).get(NodeProperties.GeneralText.arabic, root).getSingle();
+        Iterable<Relationship> it = rootNode.getRelationships(Direction.INCOMING, RelationshipTypes.HAS_ROOT);
+        for (Relationship r : it) {
+            Node token = r.getStartNode();
+            tokens.add(token);
         }
 
-        return response;
+
+        Iterable<Token> t = managersSet.getSession().get(Token.class, tokens);
+        String json = getJson("tokens", t);
+        return getOkResponse(json);
     }
 
 
@@ -122,6 +98,8 @@ public class RootResource extends BaseWs {
                 );
         ResourceIterable<Node> lemmas = td.traverse(rootNode).nodes();
 
+
+        //TODO : use new framework
         return Response.status(Response.Status.OK)
                 .entity((new HasArabicPropertyRepresentation().represent(lemmas)).
                         getBytes(Charset.forName("UTF-8"))).build();
@@ -216,9 +194,9 @@ public class RootResource extends BaseWs {
 
         }
 
-        return Response.status(Response.Status.OK)
-                .entity((new VerseRepresentation().represent(verses)).
-                        getBytes(Charset.forName("UTF-8"))).build();
+        Iterable<Verse> v = managersSet.getSession().get(Verse.class, verses);
+        String json = getJson("verses", v);
+        return getOkResponse(json);
 
     }
 
@@ -228,10 +206,10 @@ public class RootResource extends BaseWs {
     @Path("/verses/seq/{roots}")
     public Response sequence(@PathParam("roots") final String roots) {
 
-        List<Node> verses = new ArrayList<>();
+        List<Verse> verses = new ArrayList<>();
 
         String[] parts = roots.split("-");
-        Root first = managerFactory.getRootManager().getRootByArabic(parts[0]);
+        Root first = managersSet.getRootManager().getRootByArabic(parts[0]);
 
         for (Token token : first.getTokens()) {
 
@@ -242,7 +220,7 @@ public class RootResource extends BaseWs {
                 if (!flag)
                     break;
 
-                Root expectedRoot = managerFactory.getRootManager().getRootByArabic(parts[i]);
+                Root expectedRoot = managersSet.getRootManager().getRootByArabic(parts[i]);
 
                 if ((!currentToken.hasRoot()) || (!currentToken.getRoot().equals(expectedRoot))) {
                     flag = false;
@@ -265,15 +243,14 @@ public class RootResource extends BaseWs {
             }
 
             if (flag) {
-                verses.add(token.getVerse().getNode());
+                verses.add(token.getVerse());
             }
 
 
         }
 
-        return Response.status(Response.Status.OK)
-                .entity((new VerseRepresentation().represent(verses)).
-                        getBytes(Charset.forName("UTF-8"))).build();
+        String json = getJson("verses", verses);
+        return getOkResponse(json);
 
     }
 
@@ -282,23 +259,20 @@ public class RootResource extends BaseWs {
     @Path("/dis/{mode}/{window}/{roots}")
     public Response distance(@PathParam("mode") final String mode, @PathParam("window") final int window, @PathParam("roots") String roots) {
 
-        List<Node> verses = new ArrayList<>();
-        Response response;
-
         String[] parts = roots.split("-");
 
         List<Root> rootList = new ArrayList<>();
         for (String part : parts) {
-            Root root = managerFactory.getRootManager().getRootByArabic(part);
+            Root root = managersSet.getRootManager().getRootByArabic(part);
             rootList.add(root);
         }
 
         TokensInWindowAlgorithm alg = new TokensInWindowAlgorithm();
-        Map<VerseBlock, Integer> res = alg.solve(rootList, window);
+        ScoredList<VerseBlock, Integer> blocks = alg.solve(rootList, window);
 
-        return Response.status(Response.Status.OK)
-                .entity((new MapRepresentation().represent(res)).
-                        getBytes(Charset.forName("UTF-8"))).build();
+        String json = getJson("blocks", blocks);
+        return getOkResponse(json);
+
     }
 
 
@@ -311,7 +285,7 @@ public class RootResource extends BaseWs {
         Response response;
         StringBuilder res = new StringBuilder();
 
-        Verse verse = managerFactory.getVerseManager().get(chapterNo, verseNo);
+        Verse verse = managersSet.getVerseManager().get(chapterNo, verseNo);
 
         List<Root> mainRootList = VerseUtils.getRootList(verse);
         Verse nextVerse = verse.getSuccessor();
@@ -348,9 +322,9 @@ public class RootResource extends BaseWs {
         int MATCH_SCORE = 3;
         Response response;
         StringBuilder res = new StringBuilder();
-        List<Scored<Verse>> scores;
-        scores = new ArrayList<>();
-        Verse verse = managerFactory.getVerseManager().get(chapterNo, verseNo);
+        ScoredList<Verse, Double> scores = new ScoredList<>();
+
+        Verse verse = managersSet.getVerseManager().get(chapterNo, verseNo);
 
         List<Root> mainRootList = VerseUtils.getRootList(verse);
         Verse nextVerse = verse.getSuccessor();
@@ -372,29 +346,16 @@ public class RootResource extends BaseWs {
 
             Double score = sw.getScore();
             if (score >= (MATCH_SCORE * threshold)) {
-                scores.add(new Scored<Verse>(nextVerse, score));
+                scores.add(new Scored<Verse, Double>(nextVerse, score));
                 System.out.println(nextVerse.getAddress() + "***" + score);
             }
 
             nextVerse = nextVerse.getNextInQuran();
         }
 
-
-        Collections.sort(scores, new Comparator<Scored<Verse>>() {
-            @Override
-            public int compare(Scored<Verse> o1, Scored<Verse> o2) {
-                return o2.getScore().compareTo(o1.getScore());
-            }
-        });
-
-
-        String ret = getJson("scores", scores);
-
-        return Response.status(Response.Status.OK)
-                .entity((ret).
-                        getBytes(Charset.forName("UTF-8"))).build();
-
-
+        scores.descendSort();
+        String json = getJson("scores", scores);
+        return getOkResponse(json);
     }
 
 }

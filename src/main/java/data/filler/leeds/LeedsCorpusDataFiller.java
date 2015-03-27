@@ -1,11 +1,11 @@
-package data.leeds;
+package data.filler.leeds;
 
-import base.GraphIndices;
-import base.NodeLabels;
-import base.NodeProperties;
-import base.RelationshipTypes;
-import data.DataFiller;
-import data.TransactionalFiller;
+import data.schema.GraphIndices;
+import data.schema.NodeLabels;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
+import data.filler.DataFiller;
+import data.filler.TransactionalFiller;
 import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;

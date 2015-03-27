@@ -1,8 +1,8 @@
 package model.impl.root;
 
-import base.GraphIndices;
-import base.NodeLabels;
-import base.NodeProperties;
+import data.schema.GraphIndices;
+import data.schema.NodeLabels;
+import data.schema.NodeProperties;
 import model.api.base.Session;
 import model.api.root.Root;
 import model.api.root.RootManager;

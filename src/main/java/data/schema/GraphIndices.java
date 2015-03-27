@@ -1,4 +1,4 @@
-package base;
+package data.schema;
 
 /**
  * Created by vahidoo on 3/6/15.

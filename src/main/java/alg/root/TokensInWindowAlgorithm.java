@@ -1,5 +1,7 @@
 package alg.root;
 
+import alg.base.Scored;
+import alg.base.ScoredList;
 import model.api.block.VerseBlock;
 import model.api.root.Root;
 import model.api.token.Token;
@@ -21,7 +23,7 @@ public class TokensInWindowAlgorithm {
     private static final int THRESHOLD = 50;
 
 
-    public Map<VerseBlock, Integer> solve(List<Root> roots, int window) {
+    public ScoredList<VerseBlock, Integer> solve(List<Root> roots, int window) {
 
         Map<VerseBlock, Integer> result = new HashMap<>(roots.size() * roots.size());
         Set<Root> set = new HashSet<>(roots);
@@ -45,7 +47,16 @@ public class TokensInWindowAlgorithm {
             }
         }
 
-        return result;
+
+        ScoredList<VerseBlock, Integer> scores = new ScoredList<>();
+        for (Map.Entry<VerseBlock, Integer> entry : result.entrySet()) {
+            VerseBlock block = entry.getKey();
+            Integer score = entry.getValue();
+            scores.add(new Scored<VerseBlock, Integer>(block, score));
+        }
+        scores.descendSort();
+
+        return scores;
     }
 
     private int computeScore(Collection<Root> roots, List<Token> tokens, int start, int end, int dis) {

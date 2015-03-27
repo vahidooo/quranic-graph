@@ -1,15 +1,13 @@
 package model.impl.verse;
 
-import base.GraphIndices;
-import base.NodeProperties;
-import base.RelationshipTypes;
+import data.schema.GraphIndices;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
 import model.api.base.Session;
 import model.api.chapter.Chapter;
 import model.api.verse.Verse;
 import model.api.word.Word;
 import model.impl.base.NodeContainerImpl;
-import model.impl.chapter.ChapterImpl;
-import model.impl.word.WordImpl;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;

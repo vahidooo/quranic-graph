@@ -1,6 +1,6 @@
 package model.impl.root;
 
-import base.RelationshipTypes;
+import data.schema.RelationshipTypes;
 import model.api.base.Session;
 import model.api.root.Root;
 import model.api.token.Token;

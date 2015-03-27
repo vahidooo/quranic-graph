@@ -1,7 +1,7 @@
 package util;
 
-import base.NodeProperties;
-import base.RelationshipTypes;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
 import org.jqurantree.arabic.ArabicText;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;

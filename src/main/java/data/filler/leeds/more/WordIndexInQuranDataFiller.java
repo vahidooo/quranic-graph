@@ -1,9 +1,9 @@
-package data.leeds.more;
+package data.filler.leeds.more;
 
-import base.GraphIndices;
-import base.NodeProperties;
-import data.DataFiller;
-import data.TransactionalFiller;
+import data.schema.GraphIndices;
+import data.schema.NodeProperties;
+import data.filler.DataFiller;
+import data.filler.TransactionalFiller;
 import model.api.chapter.Chapter;
 import model.api.verse.Verse;
 import model.api.word.Word;

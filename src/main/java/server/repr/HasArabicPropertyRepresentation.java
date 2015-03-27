@@ -1,6 +1,6 @@
 package server.repr;
 
-import base.NodeProperties;
+import data.schema.NodeProperties;
 import org.neo4j.graphdb.Node;
 
 /**

@@ -1,7 +1,7 @@
 package model.impl.verse;
 
-import base.GraphIndices;
-import base.NodeProperties;
+import data.schema.GraphIndices;
+import data.schema.NodeProperties;
 import model.api.base.Session;
 import model.api.verse.Verse;
 import model.api.verse.VerseManager;
@@ -25,7 +25,13 @@ public class VerseManagerImpl implements VerseManager {
     @Override
     public Verse get(int chapter, int verse) {
         Node node = database.index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.Verse.address, NodeUtils.getNodeAddress(chapter, verse)).getSingle();
-        return session.get(Verse.class ,node);
+        return session.get(Verse.class, node);
+    }
+
+    @Override
+    public Verse get(String address) {
+        Node node = database.index().forNodes(GraphIndices.VerseIndex).get(NodeProperties.General.address, address).getSingle();
+        return session.get(Verse.class, node);
     }
 
 }

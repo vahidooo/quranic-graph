@@ -37,6 +37,7 @@ public class FiltersInitializer implements SPIPluginLifecycle {
 
         mappings.put(BeginTransactionFilter.class, new ArrayList<String>());
         mappings.get(BeginTransactionFilter.class).add("/root/*");
+        mappings.get(BeginTransactionFilter.class).add("/verse/*");
 
     }
 

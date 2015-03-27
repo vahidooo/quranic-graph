@@ -1,10 +1,10 @@
-package data;
+package data.filler;
 
-import data.leeds.LeedsCorpusDataFiller;
-import data.leeds.more.LeedsCorpusNextDataFiller;
-import data.leeds.more.NextVerseInQuranDataFiller;
-import data.leeds.more.WordIndexInQuranDataFiller;
-import data.tanzil.TanzilDataFiller;
+import data.filler.leeds.LeedsCorpusDataFiller;
+import data.filler.leeds.more.LeedsCorpusNextDataFiller;
+import data.filler.leeds.more.NextVerseInQuranDataFiller;
+import data.filler.leeds.more.WordIndexInQuranDataFiller;
+import data.filler.tanzil.TanzilDataFiller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;

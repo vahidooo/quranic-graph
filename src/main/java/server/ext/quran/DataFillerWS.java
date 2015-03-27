@@ -1,7 +1,8 @@
 package server.ext.quran;
 
-import data.DataFiller;
-import data.DataFillerManager;
+import data.filler.DataFiller;
+import data.filler.DataFillerManager;
+import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Transaction;
 
@@ -26,28 +27,18 @@ import java.util.logging.Logger;
  */
 
 @Path("/data")
-public class DataFillerWS extends BaseWs {
+public class DataFillerWS extends BaseWS {
 
     private static final Logger logger = Logger.getLogger(DataFiller.class.getName());
-    private final GraphDatabaseService database;
     private final Properties properties;
 
-    public DataFillerWS(@Context GraphDatabaseService database) throws IOException {
-
-        this.database = database;
+    public DataFillerWS(@Context GraphDatabaseService database , @Context ManagersSet managersSet) throws IOException {
+        super(database,managersSet);
 
         InputStream stream = getClass().getClassLoader().getResourceAsStream(PluginWS.PLUGIN_CONF_PATH);
         this.properties = new Properties();
         properties.load(stream);
     }
-
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/list")
-//    public Response list() throws IOException, ClassNotFoundException {
-//        String ret = getJson("classes", DataFiller.subclasses);
-//        return Response.status(Response.Status.OK).entity((ret).getBytes(Charset.forName("UTF-8"))).build();
-//    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

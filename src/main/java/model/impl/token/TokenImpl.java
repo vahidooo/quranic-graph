@@ -1,8 +1,8 @@
 package model.impl.token;
 
-import base.NodeLabels;
-import base.NodeProperties;
-import base.RelationshipTypes;
+import data.schema.NodeLabels;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
 import model.api.base.Session;
 import model.api.root.Root;
 import model.api.token.Token;

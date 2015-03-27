@@ -1,9 +1,9 @@
 package model.impl.word;
 
-import base.GraphIndices;
-import base.NodeLabels;
-import base.NodeProperties;
-import base.RelationshipTypes;
+import data.schema.GraphIndices;
+import data.schema.NodeLabels;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
 import model.api.base.Session;
 import model.api.token.Token;
 import model.api.verse.Verse;

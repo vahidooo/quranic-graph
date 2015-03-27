@@ -5,4 +5,5 @@ package model.api.verse;
  */
 public interface VerseManager {
     Verse get(int chapter, int verse);
+    Verse get(String address);
 }

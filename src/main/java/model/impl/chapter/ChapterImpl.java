@@ -1,7 +1,7 @@
 package model.impl.chapter;
 
-import base.GraphIndices;
-import base.NodeProperties;
+import data.schema.GraphIndices;
+import data.schema.NodeProperties;
 import model.api.base.Session;
 import model.api.chapter.Chapter;
 import model.api.verse.Verse;

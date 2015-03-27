@@ -1,8 +1,8 @@
-package data;
+package data.filler;
 
-import base.GraphIndices;
-import base.NodeProperties;
-import base.RelationshipTypes;
+import data.schema.GraphIndices;
+import data.schema.NodeProperties;
+import data.schema.RelationshipTypes;
 import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.*;
 import util.NodeUtils;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public abstract class DataFiller {
 
-    protected abstract List<data.TransactionalFiller> getTransactionalFillers() throws Throwable;
+    protected abstract List<TransactionalFiller> getTransactionalFillers() throws Throwable;
 
     protected GraphDatabaseService database;
     protected ManagersSet managersSet;
@@ -50,7 +50,7 @@ public abstract class DataFiller {
                 node.setProperty(NodeProperties.DataFiller.progress, "-");
             }
 
-            for (Class<? extends DataFiller> clazz : data.DataFillerManager.getDependencies(this.getClass())) {
+            for (Class<? extends DataFiller> clazz : DataFillerManager.getDependencies(this.getClass())) {
 //                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database, properties);
                 Node dependencyNode = database.index().forNodes(GraphIndices.DataFillerIdx).get(NodeProperties.DataFiller.clazz, clazz.getName()).getSingle();
 
@@ -80,9 +80,9 @@ public abstract class DataFiller {
                 logger.info("Filling starts:" + getClass().getName());
                 setState(State.PENDING);
 
-                List<data.TransactionalFiller> txFillers = getTransactionalFillers();
+                List<TransactionalFiller> txFillers = getTransactionalFillers();
                 for (int i = 0; i < txFillers.size(); i++) {
-                    data.TransactionalFiller filler = txFillers.get(i);
+                    TransactionalFiller filler = txFillers.get(i);
                     try (Transaction tx = database.beginTx()) {
                         logger.info("filler : " + filler);
                         filler.fillInTransaction(database);
