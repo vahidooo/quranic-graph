@@ -1,20 +1,29 @@
 package server.ext.quran;
 
+import model.impl.base.ManagersSet;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.map.SerializationConfig;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Node;
 
+import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.Charset;
+import java.util.*;
 
 /**
  * Created by vahidoo on 3/20/15.
  */
-public class BaseWs {
+public class BaseWS {
 
+    protected GraphDatabaseService database;
+    protected ManagersSet managersSet;
+
+    public BaseWS(GraphDatabaseService database, ManagersSet managersSet) {
+        this.database = database;
+        this.managersSet = managersSet;
+    }
 
     public String getJson(String objName, Object obj) {
 
@@ -46,7 +55,7 @@ public class BaseWs {
                     items.add(getJson(key.toString(), value));
                 }
                 res = concatJson(items);
-            } else if (obj instanceof Collection || obj instanceof Object[]) {
+            } else if (obj instanceof Collection || obj instanceof Iterable || obj instanceof Object[]) {
                 StringBuilder resBuilder = new StringBuilder("[");
                 int i = 0;
                 if (obj instanceof Collection) {
@@ -58,6 +67,18 @@ public class BaseWs {
                                 resBuilder.append(", ");
                             }
                             resBuilder.append(objectMapper.writeValueAsString(o));
+                        }
+                    }
+                } else if (obj instanceof Iterable) {
+                    Iterator it = ((Iterable) obj).iterator();
+                    if (it.hasNext()) {
+
+                        while (it.hasNext()) {
+                            Object o = it.next();
+                            resBuilder.append(objectMapper.writeValueAsString(o));
+                            if (it.hasNext()) {
+                                resBuilder.append(", ");
+                            }
                         }
                     }
                 } else {
@@ -114,4 +135,12 @@ public class BaseWs {
         return stemp;
     }
 
+    protected <T> String getJsonAs(String name, Class<T> clazz, Node node) {
+        T object = managersSet.getSession().get(clazz, node);
+        return getJson(name, object);
+    }
+
+    protected Response getOkResponse(String message) {
+        return Response.status(Response.Status.OK).entity((message).getBytes(Charset.forName("UTF-8"))).build();
+    }
 }
