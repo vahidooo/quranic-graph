@@ -3,16 +3,20 @@ package model.impl.base;
 import model.api.base.Factory;
 import model.api.base.Session;
 import model.api.chapter.Chapter;
+import model.api.lemma.Lemma;
 import model.api.root.Root;
 import model.api.root.RootManager;
 import model.api.token.Token;
+import model.api.token.TokenManager;
 import model.api.verse.Verse;
 import model.api.verse.VerseManager;
 import model.api.word.Word;
 import model.impl.chapter.ChapterFactory;
+import model.impl.lemma.LemmaFactory;
 import model.impl.root.RootFactory;
 import model.impl.root.RootManagerImpl;
 import model.impl.token.TokenFactory;
+import model.impl.token.TokenManagerImpl;
 import model.impl.verse.VerseFactory;
 import model.impl.verse.VerseManagerImpl;
 import model.impl.word.WordFactory;
@@ -30,6 +34,8 @@ public class ManagersSet {
     private Session session;
     private RootManager rootManager;
     private VerseManager verseManager;
+    private TokenManager tokenManager;
+
 
     public ManagersSet(GraphDatabaseService database) {
 
@@ -40,12 +46,12 @@ public class ManagersSet {
         factories.put(Word.class, new WordFactory(session));
         factories.put(Token.class, new TokenFactory(session));
         factories.put(Root.class, new RootFactory(session));
-//        factories.put(Lemma.class, new LemmaFactory(session));
+        factories.put(Lemma.class, new LemmaFactory(session));
         ((MapSession) session).setFactories(factories);
-
 
         rootManager = new RootManagerImpl(session, database);
         verseManager = new VerseManagerImpl(session, database);
+        tokenManager = new TokenManagerImpl(session, database);
     }
 
     public RootManager getRootManager() {
@@ -56,6 +62,9 @@ public class ManagersSet {
         return verseManager;
     }
 
+    public TokenManager getTokenManager() {
+        return tokenManager;
+    }
 
     public Session getSession() {
         return session;

@@ -4,6 +4,7 @@ import data.schema.NodeLabels;
 import data.schema.NodeProperties;
 import data.schema.RelationshipTypes;
 import model.api.base.Session;
+import model.api.lemma.Lemma;
 import model.api.root.Root;
 import model.api.token.Token;
 import model.api.token.TokenPosition;
@@ -18,15 +19,26 @@ import util.NodeUtils;
  * Created by vahidoo on 3/13/15.
  */
 public class TokenImpl extends TextualImpl implements Token {
-    public TokenImpl(Node node,Session session) {
-        super(node,session);
+    public TokenImpl(Node node, Session session) {
+        super(node, session);
     }
 
     @Override
     public Word getWord() {
         Node word = NodeUtils.singleNeighborhood(node, RelationshipTypes.CONTAINS_TOKEN, Direction.INCOMING, true);
 //        return (Word) NodeContainerImpl.createNewInstance(WordImpl.class, word);
-        return session.get(Word.class,word);
+        return session.get(Word.class, word);
+    }
+
+    @Override
+    public boolean hasLemma() {
+        return getLemma() != null;
+    }
+
+    @Override
+    public Lemma getLemma() {
+        Node lemma = NodeUtils.singleNeighborhood(node, RelationshipTypes.HAS_LEMMA, Direction.OUTGOING, false);
+        return session.get(Lemma.class, lemma);
     }
 
     @Override
@@ -34,15 +46,11 @@ public class TokenImpl extends TextualImpl implements Token {
         return getRoot() != null;
     }
 
-//    public boolean hasLemma() {
-//        return getLemma() != null;
-//    }
-
     @Override
     public Root getRoot() {
         Node root = NodeUtils.singleNeighborhood(node, RelationshipTypes.HAS_ROOT, Direction.OUTGOING, false);
 //        return (Root) NodeContainerImpl.createNewInstance(RootImpl.class, root);
-        return session.get(Root.class,root);
+        return session.get(Root.class, root);
     }
 
     @Override
