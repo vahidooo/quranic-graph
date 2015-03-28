@@ -2,10 +2,10 @@ package data.filler;
 
 import data.schema.GraphIndices;
 import data.schema.NodeProperties;
-import data.schema.RelationshipTypes;
 import model.impl.base.ManagersSet;
-import org.neo4j.graphdb.*;
-import util.NodeUtils;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.Transaction;
 
 import java.util.List;
 import java.util.Properties;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public abstract class DataFiller {
 
-    private static final String INITIAL_PROGRESS = "-";
+    public static final String INITIAL_PROGRESS = "-";
 
     protected abstract List<TransactionalFiller> getTransactionalFillers() throws Throwable;
 
@@ -41,36 +41,9 @@ public abstract class DataFiller {
     }
 
     private void initNode() {
-
+        new DataFillerManager(database);
         try (Transaction tx = database.beginTx()) {
-
             node = database.index().forNodes(GraphIndices.DataFillerIdx).get(NodeProperties.DataFiller.clazz, this.getClass().getName()).getSingle();
-            if (node == null) {
-                node = database.createNode();
-                NodeUtils.setPropertyAndIndex(node, NodeProperties.DataFiller.clazz, GraphIndices.DataFillerIdx, this.getClass().getName());
-                node.setProperty(NodeProperties.DataFiller.state, State.NOT_FILLED.name());
-                node.setProperty(NodeProperties.DataFiller.progress, INITIAL_PROGRESS);
-            }
-
-            for (Class<? extends DataFiller> clazz : DataFillerManager.getDependencies(this.getClass())) {
-//                DataFiller dependency = ReflectionUtils.createNewDataFiller(clazz, database, properties);
-                Node dependencyNode = database.index().forNodes(GraphIndices.DataFillerIdx).get(NodeProperties.DataFiller.clazz, clazz.getName()).getSingle();
-
-                boolean flag = true;
-                Iterable<Relationship> it = node.getRelationships(RelationshipTypes.DEPENDS, Direction.OUTGOING);
-                for (Relationship relationship : it) {
-                    if (relationship.getStartNode().equals(dependencyNode)) {
-                        flag = false;
-                    }
-                }
-                if (flag) {
-                    node.createRelationshipTo(dependencyNode, RelationshipTypes.DEPENDS);
-                }
-
-                if (State.valueOf((String) dependencyNode.getProperty(NodeProperties.DataFiller.state)) != State.FILLED) {
-                    node.setProperty(NodeProperties.DataFiller.state, State.DEPENDENCY_ERROR.name());
-                }
-            }
             tx.success();
         }
     }

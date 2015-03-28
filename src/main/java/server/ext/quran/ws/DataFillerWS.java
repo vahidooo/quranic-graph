@@ -46,10 +46,12 @@ public class DataFillerWS extends BaseWS {
     public Response list() throws IOException, ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
 
         Response response;
+        DataFillerManager dataFillerManager = new DataFillerManager(database);
+
         try (Transaction tx = database.beginTx()) {
 
             List<DataFiller> dataFillers = new ArrayList<>();
-            for (Class<? extends DataFiller> clazz : DataFillerManager.getTopologicalSorted()) {
+            for (Class<? extends DataFiller> clazz : dataFillerManager.getTopologicalSorted()) {
 
                 logger.info("try to construct " + clazz.getName());
                 DataFiller df = null;
@@ -77,7 +79,8 @@ public class DataFillerWS extends BaseWS {
         Response response;
         List<DataFiller> dataFillers = new ArrayList<>();
 
-        List<Class<? extends DataFiller>> sorted = DataFillerManager.getTopologicalSorted();
+        DataFillerManager dataFillerManager = new DataFillerManager(database);
+        List<Class<? extends DataFiller>> sorted = dataFillerManager.getTopologicalSorted();
 
         for (Class<? extends DataFiller> clazz : sorted) {
             Constructor constructor = clazz.getConstructor(GraphDatabaseService.class, ManagersSet.class, Properties.class);
