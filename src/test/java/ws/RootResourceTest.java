@@ -1,4 +1,4 @@
-package resource;
+package ws;
 
 import org.junit.Test;
 import server.ext.quran.ws.RootWS;
