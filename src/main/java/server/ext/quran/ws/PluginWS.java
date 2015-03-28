@@ -1,4 +1,4 @@
-package server.ext.quran;
+package server.ext.quran.ws;
 
 import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.GraphDatabaseService;

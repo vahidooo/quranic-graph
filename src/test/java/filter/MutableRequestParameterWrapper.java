@@ -1,4 +1,4 @@
-package server.ext.quran;
+package filter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

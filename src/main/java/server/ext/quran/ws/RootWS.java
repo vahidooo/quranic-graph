@@ -24,7 +24,6 @@ import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
 import org.neo4j.graphdb.traversal.TraversalDescription;
-import server.ext.quran.BaseWS;
 import server.repr.HasArabicPropertyRepresentation;
 import util.VerseUtils;
 

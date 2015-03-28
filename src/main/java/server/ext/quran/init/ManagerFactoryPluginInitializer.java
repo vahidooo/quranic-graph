@@ -1,4 +1,4 @@
-package server.ext.quran;
+package server.ext.quran.init;
 
 import model.impl.base.ManagersSet;
 import org.apache.commons.configuration.Configuration;

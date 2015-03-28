@@ -1,4 +1,4 @@
-package server.ext.quran;
+package filter;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 import server.util.LocaleUtils;

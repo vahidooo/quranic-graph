@@ -1,4 +1,4 @@
-package server.ext.quran;
+package server.ext.quran.ws;
 
 import data.filler.DataFiller;
 import data.filler.DataFillerManager;

@@ -1,4 +1,4 @@
-package server.ext.quran;
+package server.ext.quran.ws;
 
 import model.api.verse.Verse;
 import model.impl.base.ManagersSet;

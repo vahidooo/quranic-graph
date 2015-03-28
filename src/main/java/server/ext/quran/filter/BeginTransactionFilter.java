@@ -1,4 +1,4 @@
-package server.ext.quran;
+package server.ext.quran.filter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

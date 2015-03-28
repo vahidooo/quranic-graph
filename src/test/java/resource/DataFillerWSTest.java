@@ -1,7 +1,7 @@
 package resource;
 
 import org.junit.Test;
-import server.ext.quran.DataFillerWS;
+import server.ext.quran.ws.DataFillerWS;
 import ws.BaseWSTest;
 
 import java.io.IOException;
