@@ -6,7 +6,7 @@
     {
       "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
       "id": "0180c3c9-16c7-695f-4716-ac71121c9f79",
-      "name": "Upgrade database by new DataFillers",
+      "name": "Ø¨Ù‡ Ø±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø¯Ø§Ø¯Ú¯Ø§Ù†",
       "description": "",
       "url": "http://localhost:7474/quran/data/upgrade",
       "method": "GET",
@@ -20,7 +20,7 @@
     {
       "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
       "id": "28af69e4-e329-eebf-0e90-e38fe5734804",
-      "name": "Root base similarity by Smith-Waterman Aligmnet ",
+      "name": "Ù…Ø´Ø§Ø¨Ù‡â€ŒÛŒØ§Ø¨ÛŒ Ø¢ÛŒØ§Øª(smith-waterman)",
       "description": "",
       "url": "http://localhost:7474/quran/root/verse/algin/sw/27/87/3",
       "method": "GET",
@@ -47,10 +47,38 @@
     },
     {
       "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
+      "id": "56f6e374-8bc4-e4cb-f7ad-f947caa5757a",
+      "name": "Ù…Ø´Ø§Ø¨Ù‡â€ŒÛŒØ§Ø¨ÛŒ Ø¢ÛŒØ§Øª(LCS)",
+      "description": "",
+      "url": "http://localhost:7474/quran/root/verse/lcs/27/87/3",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
       "id": "682788fb-9a81-cf1d-16f7-a11d2ec7afd5",
       "name": "Ù„Ù…â€ŒÙ‡Ø§ÙŠ ÙŠÚ© Ø±ÙŠØ´Ù‡",
       "description": "",
       "url": "http://localhost:7474/quran/root/lemmas/ÙˆÙ„ÙŠ",
+      "method": "GET",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
+      "id": "8c14ece3-0213-5756-0b86-af9bd9c5a0f5",
+      "name": "Ø±ÛŒØ´Ù‡â€ŒÙ‡Ø§ Ø¨Ø§ ÙØ§ØµÙ„Ù‡ Ú†Ù†Ø¯ Ú©Ù„Ù…Ù‡â€ŒØ§ÛŒ",
+      "description": "",
+      "url": "http://localhost:7474/quran/root/dis/word/10/Ø±Ø­Ù…-Ø±Ø¨Ø¨",
       "method": "GET",
       "headers": "",
       "data": [],
@@ -90,7 +118,7 @@
     {
       "collectionId": "c6fe37c8-deaf-988a-848f-396985967a3f",
       "id": "c2e14f6e-6ae1-8888-f7d7-6df167bd5f75",
-      "name": "List of DataFillers",
+      "name": "Ù„ÛŒØ³Øª Ø¯Ø§Ø¯Ù‡â€ŒÚ¯Ø°Ø§Ø±Ù‡Ø§",
       "description": "",
       "url": "http://localhost:7474/quran/data/fillers/list",
       "method": "GET",
@@ -129,5 +157,18 @@
       "responses": [],
       "version": 2
     }
+  ],
+  "order": [
+    "c2e14f6e-6ae1-8888-f7d7-6df167bd5f75",
+    "28af69e4-e329-eebf-0e90-e38fe5734804",
+    "56f6e374-8bc4-e4cb-f7ad-f947caa5757a",
+    "0180c3c9-16c7-695f-4716-ac71121c9f79",
+    "d8648357-74ea-5cae-86ee-27c38ce94d0e",
+    "9561b825-66fe-e7cd-c46b-e7bf041b655c",
+    "5165d0c1-8f52-3aaa-d87a-708fb30008f7",
+    "682788fb-9a81-cf1d-16f7-a11d2ec7afd5",
+    "b6a9ce80-ed40-aa4f-0937-2e7d2a3f6ddc",
+    "e5d24ddd-2230-e60c-2a8f-a2bc607dd07b",
+    "8c14ece3-0213-5756-0b86-af9bd9c5a0f5"
   ]
 }

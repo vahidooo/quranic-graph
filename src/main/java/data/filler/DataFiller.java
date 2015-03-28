@@ -16,6 +16,8 @@ import java.util.logging.Logger;
  */
 public abstract class DataFiller {
 
+    private static final String INITIAL_PROGRESS = "-";
+
     protected abstract List<TransactionalFiller> getTransactionalFillers() throws Throwable;
 
     protected GraphDatabaseService database;
@@ -47,7 +49,7 @@ public abstract class DataFiller {
                 node = database.createNode();
                 NodeUtils.setPropertyAndIndex(node, NodeProperties.DataFiller.clazz, GraphIndices.DataFillerIdx, this.getClass().getName());
                 node.setProperty(NodeProperties.DataFiller.state, State.NOT_FILLED.name());
-                node.setProperty(NodeProperties.DataFiller.progress, "-");
+                node.setProperty(NodeProperties.DataFiller.progress, INITIAL_PROGRESS);
             }
 
             for (Class<? extends DataFiller> clazz : DataFillerManager.getDependencies(this.getClass())) {
@@ -76,7 +78,7 @@ public abstract class DataFiller {
     public void fill() {
 
         try {
-            if (!(getStatus().equals(State.FILLED) || (getStatus().equals(State.PENDING)))) {
+            if (!(getStatus().equals(State.FILLED) || ((getStatus().equals(State.PENDING)) && !getProgress().equals(INITIAL_PROGRESS)))) {
                 logger.info("Filling starts:" + getClass().getName());
                 setState(State.PENDING);
 
@@ -88,15 +90,17 @@ public abstract class DataFiller {
                         filler.fillInTransaction(database);
                         node.setProperty(NodeProperties.DataFiller.progress, (i + 1) + "/" + txFillers.size());
                         tx.success();
+                    } catch (Throwable th) {
+                        logger.info("Filling Failed:" + getClass().getName());
+                        setState(State.FILLING_ERROR);
+                        throw new RuntimeException("internal error", th);
                     }
                 }
                 setState(State.FILLED);
                 logger.info("Filling finished Successfully:" + getClass().getName());
             }
         } catch (Throwable th) {
-            logger.info("Filling Failed:" + getClass().getName());
-            setState(State.FILLING_ERROR);
-            throw new RuntimeException("internal error", th);
+            throw new RuntimeException(th);
         }
 
     }

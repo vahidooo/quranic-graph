@@ -32,8 +32,8 @@ public class DataFillerWS extends BaseWS {
     private static final Logger logger = Logger.getLogger(DataFiller.class.getName());
     private final Properties properties;
 
-    public DataFillerWS(@Context GraphDatabaseService database , @Context ManagersSet managersSet) throws IOException {
-        super(database,managersSet);
+    public DataFillerWS(@Context GraphDatabaseService database, @Context ManagersSet managersSet) throws IOException {
+        super(database, managersSet);
 
         InputStream stream = getClass().getClassLoader().getResourceAsStream(PluginWS.PLUGIN_CONF_PATH);
         this.properties = new Properties();
@@ -53,14 +53,14 @@ public class DataFillerWS extends BaseWS {
 
                 logger.info("try to construct " + clazz.getName());
                 DataFiller df = null;
-                Constructor constructor = clazz.getConstructor(GraphDatabaseService.class, Properties.class);
-                df = (DataFiller) constructor.newInstance(database, properties);
+                Constructor constructor = clazz.getConstructor(GraphDatabaseService.class, ManagersSet.class, Properties.class);
+                df = (DataFiller) constructor.newInstance(database, managersSet, properties);
 
                 dataFillers.add(df);
             }
 
-            String ret = getJson("datafillers", dataFillers);
-            response = Response.status(Response.Status.OK).entity((ret).getBytes(Charset.forName("UTF-8"))).build();
+            String json = getJson("datafillers", dataFillers);
+            response = getOkResponse(json);
             tx.success();
         }
         return response;
@@ -80,9 +80,8 @@ public class DataFillerWS extends BaseWS {
         List<Class<? extends DataFiller>> sorted = DataFillerManager.getTopologicalSorted();
 
         for (Class<? extends DataFiller> clazz : sorted) {
-
-            Constructor constructor = clazz.getConstructor(GraphDatabaseService.class, Properties.class);
-            DataFiller df = (DataFiller) constructor.newInstance(database, properties);
+            Constructor constructor = clazz.getConstructor(GraphDatabaseService.class, ManagersSet.class, Properties.class);
+            DataFiller df = (DataFiller) constructor.newInstance(database, managersSet, properties);
             df.fill();
             dataFillers.add(df);
         }

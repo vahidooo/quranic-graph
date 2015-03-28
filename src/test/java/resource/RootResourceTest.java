@@ -1,7 +1,7 @@
 package resource;
 
 import org.junit.Test;
-import server.ext.quran.ws.RootResource;
+import server.ext.quran.ws.RootWS;
 import ws.BaseWSTest;
 
 /**
@@ -18,7 +18,7 @@ public class RootResourceTest extends BaseWSTest {
 
         String seq = "رحم-رحم" ;
 
-        System.out.println( new RootResource(database, managersSet).sequence(seq) );
+        System.out.println( new RootWS(database, managersSet).sequence(seq) );
 
     }
 
@@ -29,7 +29,7 @@ public class RootResourceTest extends BaseWSTest {
         int window = 10;
         String mode = "word" ;
 
-        System.out.println( new RootResource(database,managersSet).distance(mode, window, roots) );
+        System.out.println( new RootWS(database,managersSet).distance(mode, window, roots) );
 
     }
 

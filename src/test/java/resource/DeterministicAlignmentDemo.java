@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
-import server.ext.quran.ws.RootResource;
+import server.ext.quran.ws.RootWS;
  
 /*
  * Created on Mar 28, 2006
@@ -74,7 +74,7 @@ public class DeterministicAlignmentDemo {
     @Test
     public void smithWatermanTest() {
 
-        RootResource ws = new RootResource(database,managersSet);
+        RootWS ws = new RootWS(database,managersSet);
         ws.smithWaterman(27, 87, 3);
 //        ws.smithWaterman(114, 1 , 3);
 

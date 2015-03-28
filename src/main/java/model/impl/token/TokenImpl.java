@@ -34,6 +34,10 @@ public class TokenImpl extends TextualImpl implements Token {
         return getRoot() != null;
     }
 
+//    public boolean hasLemma() {
+//        return getLemma() != null;
+//    }
+
     @Override
     public Root getRoot() {
         Node root = NodeUtils.singleNeighborhood(node, RelationshipTypes.HAS_ROOT, Direction.OUTGOING, false);

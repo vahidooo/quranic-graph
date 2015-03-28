@@ -6,18 +6,18 @@ import org.codehaus.jackson.annotate.JsonPropertyOrder;
  * Created by vahidoo on 3/24/15.
  */
 
-@JsonPropertyOrder(value = "score,object")
-public class Scored<T,N extends Comparable> {
-    private T object;
+@JsonPropertyOrder(value = "score,item")
+public class ResultItem<T,N extends Comparable> {
+    private T item;
     private N score;
 
-    public Scored(T object, N score) {
-        this.object = object;
+    public ResultItem(T item, N score) {
+        this.item = item;
         this.score = score;
     }
 
-    public T getObject() {
-        return object;
+    public T getItem() {
+        return item;
     }
 
 

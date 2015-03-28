@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created by vahidoo on 3/27/15.
  */
 public class MapSession implements Session {
+
+    private static final Logger logger = Logger.getLogger(MapSession.class.getName());
 
     private Map<Class<?>, Factory> factories;
     private Map<Class<?>, Map<Node, Object>> map;
@@ -21,12 +24,22 @@ public class MapSession implements Session {
         map = new HashMap<>();
     }
 
-    public void setFactories(Map<Class<?>, Factory> factories) {
+    public synchronized void setFactories(Map<Class<?>, Factory> factories) {
         this.factories = factories;
+
+        for (Map.Entry<Class<?>, Factory> entry : factories.entrySet()) {
+            logger.info(entry.toString());
+        }
     }
 
     @Override
     public <T> T get(Class<T> clazz, Node node) {
+
+        synchronized (this) {
+            if (factories == null) {
+                throw new RuntimeException();
+            }
+        }
 
         if (node == null || clazz == null)
             return null;

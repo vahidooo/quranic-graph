@@ -37,6 +37,16 @@ public class VerseBlockImpl implements VerseBlock {
     }
 
     @Override
+    public String getStartAddress() {
+        return getStartVerse().getAddress();
+    }
+
+    @Override
+    public String getEndAddress() {
+        return getEndVerse().getAddress();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof VerseBlock) {
             VerseBlock vb = (VerseBlock) obj;

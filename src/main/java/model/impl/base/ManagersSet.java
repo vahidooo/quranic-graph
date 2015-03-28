@@ -2,6 +2,7 @@ package model.impl.base;
 
 import model.api.base.Factory;
 import model.api.base.Session;
+import model.api.chapter.Chapter;
 import model.api.root.Root;
 import model.api.root.RootManager;
 import model.api.token.Token;
@@ -34,14 +35,14 @@ public class ManagersSet {
 
         session = new MapSession();
         HashMap<Class<?>, Factory> factories = new HashMap<>();
-        ((MapSession) session).setFactories(factories);
-
-        factories.put(Character.class, new ChapterFactory(session));
+        factories.put(Chapter.class, new ChapterFactory(session));
         factories.put(Verse.class, new VerseFactory(session));
         factories.put(Word.class, new WordFactory(session));
         factories.put(Token.class, new TokenFactory(session));
         factories.put(Root.class, new RootFactory(session));
 //        factories.put(Lemma.class, new LemmaFactory(session));
+        ((MapSession) session).setFactories(factories);
+
 
         rootManager = new RootManagerImpl(session, database);
         verseManager = new VerseManagerImpl(session, database);

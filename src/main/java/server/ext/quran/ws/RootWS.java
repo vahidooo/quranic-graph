@@ -1,8 +1,8 @@
 package server.ext.quran.ws;
 
 import alg.base.MappedLCS;
-import alg.base.Scored;
-import alg.base.ScoredList;
+import alg.base.ResultItem;
+import alg.base.ResultList;
 import alg.root.TokensInWindowAlgorithm;
 import alg.root.align.RootCompoundSet;
 import alg.root.align.RootSubstitutionMatrix;
@@ -40,11 +40,11 @@ import java.util.*;
 import java.util.logging.Logger;
 
 @Path("/root")
-public class RootResource extends BaseWS {
+public class RootWS extends BaseWS {
 
-    private static final Logger logger = Logger.getLogger(RootResource.class.getName());
+    private static final Logger logger = Logger.getLogger(RootWS.class.getName());
 
-    public RootResource(@Context GraphDatabaseService database, @Context ManagersSet managerFactory) {
+    public RootWS(@Context GraphDatabaseService database, @Context ManagersSet managerFactory) {
         super(database, managerFactory);
     }
 
@@ -268,7 +268,7 @@ public class RootResource extends BaseWS {
         }
 
         TokensInWindowAlgorithm alg = new TokensInWindowAlgorithm();
-        ScoredList<VerseBlock, Integer> blocks = alg.solve(rootList, window);
+        ResultList<VerseBlock, Integer> blocks = alg.solve(rootList, window);
 
         String json = getJson("blocks", blocks);
         return getOkResponse(json);
@@ -281,9 +281,7 @@ public class RootResource extends BaseWS {
     @Path("/verse/lcs/{chapterNo}/{verseNo}/{threshold}")
     public Response lcs(@PathParam("chapterNo") int chapterNo, @PathParam("verseNo") int verseNo, @PathParam("threshold") int threshold) {
 
-
-        Response response;
-        StringBuilder res = new StringBuilder();
+        ResultList<Verse, Integer> result = new ResultList<>();
 
         Verse verse = managersSet.getVerseManager().get(chapterNo, verseNo);
 
@@ -297,18 +295,15 @@ public class RootResource extends BaseWS {
 
             int score = lcs.run();
             if (score >= threshold) {
-                res.append(verse.getAddress() + " - ");
-                res.append(nextVerse.getAddress() + " : ");
-                res.append(lcs.run() + " \n ");
+                result.add(new ResultItem<Verse, Integer>(nextVerse, score));
             }
 
             nextVerse = nextVerse.getNextInQuran();
         }
 
 
-        return Response.status(Response.Status.OK)
-                .entity((res.toString()).
-                        getBytes(Charset.forName("UTF-8"))).build();
+        String json = getJson("verses", result);
+        return getOkResponse(json);
 
     }
 
@@ -320,9 +315,7 @@ public class RootResource extends BaseWS {
 
 
         int MATCH_SCORE = 3;
-        Response response;
-        StringBuilder res = new StringBuilder();
-        ScoredList<Verse, Double> scores = new ScoredList<>();
+        ResultList<Verse, Double> scores = new ResultList<>();
 
         Verse verse = managersSet.getVerseManager().get(chapterNo, verseNo);
 
@@ -346,15 +339,15 @@ public class RootResource extends BaseWS {
 
             Double score = sw.getScore();
             if (score >= (MATCH_SCORE * threshold)) {
-                scores.add(new Scored<Verse, Double>(nextVerse, score));
-                System.out.println(nextVerse.getAddress() + "***" + score);
+                scores.add(new ResultItem<Verse, Double>(nextVerse, score));
+//                System.out.println(nextVerse.getAddress() + "***" + score);
             }
 
             nextVerse = nextVerse.getNextInQuran();
         }
 
         scores.descendSort();
-        String json = getJson("scores", scores);
+        String json = getJson("verses", scores);
         return getOkResponse(json);
     }
 

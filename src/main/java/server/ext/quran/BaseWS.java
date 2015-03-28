@@ -42,7 +42,7 @@ public class BaseWS {
         return ret;
     }
 
-    protected String getJson(String objName, Object obj, ObjectWriter objectMapper) {
+    private String getJson(String objName, Object obj, ObjectWriter objectMapper) {
 
         try {
             String res = null;
