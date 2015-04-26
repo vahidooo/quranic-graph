@@ -7,6 +7,7 @@ import data.filler.leeds.more.RootOfLemmaDataFiller;
 import data.filler.leeds.more.WordIndexInQuranDataFiller;
 import data.filler.tanzil.TanzilDataFiller;
 import data.schema.GraphIndices;
+import data.schema.NodeLabels;
 import data.schema.NodeProperties;
 import data.schema.RelationshipTypes;
 import org.neo4j.graphdb.*;
@@ -50,6 +51,7 @@ public class DataFillerManager {
                 Node node = database.index().forNodes(GraphIndices.DataFillerIdx).get(NodeProperties.DataFiller.clazz, clazz.getName()).getSingle();
                 if (node == null) {
                     node = database.createNode();
+                    node.addLabel(NodeLabels.DataFiller);
                     NodeUtils.setPropertyAndIndex(node, NodeProperties.DataFiller.clazz, GraphIndices.DataFillerIdx, clazz.getName());
                     node.setProperty(NodeProperties.DataFiller.state, DataFiller.State.NOT_FILLED.name());
                     node.setProperty(NodeProperties.DataFiller.progress, DataFiller.INITIAL_PROGRESS);
