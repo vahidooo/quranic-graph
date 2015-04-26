@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   neo-graph="neo-graph"
+   graph-data="frame.response.graph"
+   ng-controller="D3GraphCtrl"
+   style="pointer-events:fill"
+   preserveAspectRatio="xMidYMid"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   width="100%"
+   height="100%"
+   sodipodi:docname="Chapter.svg">
+  <metadata
+     id="metadata274">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1317"
+     inkscape:window-height="744"
+     id="namedview272"
+     showgrid="false"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="286.91162"
+     inkscape:cy="806.62574"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4" />
+  <g
+     class="layer relationships"
+     id="g6"
+     transform="translate(-126.97919,75.740114)">
+    <g
+       class="relationship"
+       id="g8">
+      <path
+         transform="matrix(-0.77933037,-0.62661326,0.62661326,-0.77933037,660.00911,268.26956)"
+         d="m 0,0.5 0.23246119,0 0,-1 L 0,-0.5 z m 58.232461,0 0.232461,0 0,3 7,-3.5 -7,-3.5 0,3 -0.232461,0 z"
+         id="path10"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.77933037,0.62661326,-0.62661326,0.77933037,297.24004,-344.13828)"
+         y="252.95212"
+         x="637.22736"
+         font-size="8px"
+         id="text12"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_…</text>
+      <rect
+         transform="matrix(-0.77933037,-0.62661326,0.62661326,-0.77933037,660.00911,268.26956)"
+         width="65.46492"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect14"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g16">
+      <path
+         transform="matrix(-0.9907141,0.13596162,-0.13596162,-0.9907141,655.78143,283.52106)"
+         d="m 0,0.5 49.303855,0 0,-1 L 0,-0.5 z m 125.30386,0 49.30385,0 0,3 7,-3.5 -7,-3.5 0,3 -49.30385,0 z"
+         id="path18"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.9907141,-0.13596162,0.13596162,0.9907141,-34.875493,80.144328)"
+         y="298.39102"
+         x="569.28827"
+         font-size="8px"
+         id="text20"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_VERSE</text>
+      <rect
+         transform="matrix(-0.9907141,0.13596162,-0.13596162,-0.9907141,655.78143,283.52106)"
+         width="181.60771"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect22"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g24">
+      <path
+         transform="matrix(-0.79710923,0.60383514,-0.60383514,-0.79710923,659.65353,292.87853)"
+         d="m 0,0.5 1.3646162,0 0,-1 L 0,-0.5 z m 55.364616,0 1.364616,0 0,3 7,-3.5 -7,-3.5 0,3 -1.364616,0 z"
+         id="path26"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.79710923,-0.60383514,0.60383514,0.79710923,-57.942252,447.56682)"
+         y="313.00607"
+         x="637.04382"
+         font-size="8px"
+         id="text28"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS…</text>
+      <rect
+         transform="matrix(-0.79710923,0.60383514,-0.60383514,-0.79710923,659.65353,292.87853)"
+         width="63.729233"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect30"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g32">
+      <path
+         transform="matrix(0.4074744,0.91321663,-0.91321663,0.4074744,683.7452,299.06616)"
+         d="m 0,0.5 1.7859409,0 0,-1 L 0,-0.5 z m 21.785941,0 1.785941,0 0,3 7,-3.5 -7,-3.5 0,3 -1.785941,0 z"
+         id="path34"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.4074744,0.91321663,-0.91321663,0.4074744,690.92337,-445.21141)"
+         y="312.82928"
+         x="688.54767"
+         font-size="8px"
+         id="text36"
+         style="font-size:8px;text-anchor:middle;fill:#000000">C…</text>
+      <rect
+         transform="matrix(0.4074744,0.91321663,-0.91321663,0.4074744,683.7452,299.06616)"
+         width="30.571882"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect38"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g40">
+      <path
+         transform="matrix(0.99895545,0.04569471,-0.04569471,0.99895545,695.57482,281.71572)"
+         d="m 0,0.5 1.7915225,0 0,-1 L 0,-0.5 z m 44.791522,0 1.791523,0 0,3 7,-3.5 -7,-3.5 0,3 -1.791523,0 z"
+         id="path42"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.99895545,0.04569471,-0.04569471,0.99895545,13.672415,-32.551897)"
+         y="285.78003"
+         x="718.84204"
+         font-size="8px"
+         id="text44"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAI…</text>
+      <rect
+         transform="matrix(0.99895545,0.04569471,-0.04569471,0.99895545,695.57482,281.71572)"
+         width="53.583046"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect46"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g48">
+      <path
+         transform="matrix(0.80490603,-0.59340229,0.59340229,0.80490603,691.69384,268.93378)"
+         d="m 0,0.5 0.31745298,0 0,-1 L 0,-0.5 z m 68.317453,0 0.317453,0 0,3 7,-3.5 -7,-3.5 0,3 -0.317453,0 z"
+         id="path50"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.80490603,-0.59340229,0.59340229,0.80490603,-7.1676021,475.33831)"
+         y="251.56973"
+         x="719.31616"
+         font-size="8px"
+         id="text52"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_VE…</text>
+      <rect
+         transform="matrix(0.80490603,-0.59340229,0.59340229,0.80490603,691.69384,268.93378)"
+         width="75.634903"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect54"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g56">
+      <path
+         transform="matrix(0.3392879,-0.94068258,0.94068258,0.3392879,682.38147,261.98818)"
+         d="m 0,0.5 2.2978017,0 0,-1 L 0,-0.5 z m 65.297802,0 2.297801,0 0,3 7,-3.5 -7,-3.5 0,3 -2.297801,0 z"
+         id="path58"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.3392879,-0.94068258,0.94068258,0.3392879,241.89362,804.78409)"
+         y="233.19518"
+         x="693.84863"
+         font-size="8px"
+         id="text60"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_V…</text>
+      <rect
+         transform="matrix(0.3392879,-0.94068258,0.94068258,0.3392879,682.38147,261.98818)"
+         width="74.595604"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect62"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g64">
+      <path
+         transform="matrix(-0.81904879,0.57372386,-0.57372386,-0.81904879,577.02272,226.19059)"
+         d="m 0,0.5 31.852067,0 0,-1 L 0,-0.5 z m 88.852067,0 31.852063,0 0,3 7,-3.5 -7,-3.5 0,3 -31.852063,0 z"
+         id="path66"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.81904879,-0.57372386,0.57372386,0.81904879,-54.168061,349.88677)"
+         y="263.81601"
+         x="527.59143"
+         font-size="8px"
+         id="text68"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEXT_VERSE</text>
+      <rect
+         transform="matrix(-0.81904879,0.57372386,-0.57372386,-0.81904879,577.02272,226.19059)"
+         width="127.70413"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect70"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g72">
+      <path
+         transform="matrix(0.97293743,0.23106874,-0.23106874,0.97293743,475.50458,315.55335)"
+         d="m 0,0.5 18.336669,0 0,-1 L 0,-0.5 z m 75.336669,0 18.336669,0 0,3 7.000002,-3.5 -7.000002,-3.5 0,3 -18.336669,0 z"
+         id="path74"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.97293743,0.23106874,-0.23106874,0.97293743,89.516849,-111.57128)"
+         y="329.37582"
+         x="521.07373"
+         font-size="8px"
+         id="text76"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEXT_VERSE</text>
+      <rect
+         transform="matrix(0.97293743,0.23106874,-0.23106874,0.97293743,475.50458,315.55335)"
+         width="100.67334"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect78"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g80">
+      <path
+         transform="matrix(0.99986783,0.0162583,-0.0162583,0.99986783,612.90954,343.76235)"
+         d="m 0,0.5 3.7272478,0 0,-1 L 0,-0.5 z m 60.727248,0 3.727248,0 0,3 7,-3.5 -7,-3.5 0,3 -3.727248,0 z"
+         id="path82"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.99986783,0.0162583,-0.0162583,0.99986783,5.6827806,-10.443253)"
+         y="347.28632"
+         x="645.13251"
+         font-size="8px"
+         id="text84"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEXT_VERSE</text>
+      <rect
+         transform="matrix(0.99986783,0.0162583,-0.0162583,0.99986783,612.90954,343.76235)"
+         width="71.454498"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect86"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g88">
+      <path
+         transform="matrix(0.73242319,-0.68084967,0.68084967,0.73242319,719.00042,331.63225)"
+         d="m 0,0.5 1.1882907,0 0,-1 L 0,-0.5 z m 40.188291,0 1.18829,0 0,3 7,-3.5 -7,-3.5 0,3 -1.18829,0 z"
+         id="path90"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.73242319,-0.68084967,0.68084967,0.73242319,-19.759202,584.81594)"
+         y="320.54663"
+         x="734.15302"
+         font-size="8px"
+         id="text92"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEXT_…</text>
+      <rect
+         transform="matrix(0.73242319,-0.68084967,0.68084967,0.73242319,719.00042,331.63225)"
+         width="48.376583"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect94"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g96">
+      <path
+         transform="matrix(-0.00562531,-0.99998418,0.99998418,-0.00562531,768.9685,265.07839)"
+         d="m 0,0.5 0.44771043,0 0,-1 L 0,-0.5 z m 25.44771,0 0.447711,0 0,3 7,-3.5 -7,-3.5 0,3 -0.447711,0 z"
+         id="path98"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.00562531,0.99998418,-0.99998418,0.00562531,1016.6973,-518.17093)"
+         y="255.13089"
+         x="768.89569"
+         font-size="8px"
+         id="text100"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NE…</text>
+      <rect
+         transform="matrix(-0.00562531,-0.99998418,0.99998418,-0.00562531,768.9685,265.07839)"
+         width="32.89542"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect102"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g104">
+      <path
+         transform="matrix(-0.81039722,-0.58588083,0.58588083,-0.81039722,752.46301,200.46619)"
+         d="m 0,0.5 9.9368943,0 0,-1 L 0,-0.5 z m 9.9368943,0 9.9368947,0 0,3 7,-3.5 -7,-3.5 0,3 -9.9368947,0 z"
+         id="path106"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.81039722,0.58588083,-0.58588083,0.81039722,255.18063,-399.23054)"
+         y="197.64436"
+         x="744.41016"
+         font-size="8px"
+         id="text108"
+         style="font-size:8px;text-anchor:middle;fill:#000000" />
+      <rect
+         transform="matrix(-0.81039722,-0.58588083,0.58588083,-0.81039722,752.46301,200.46619)"
+         width="26.873789"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect110"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g112">
+      <path
+         transform="matrix(-0.89138841,0.45324023,-0.45324023,-0.89138841,438.21806,319.99678)"
+         d="m 0,0.5 3.0911059,0 0,-1 L 0,-0.5 z m 61.091106,0 3.091106,0 0,3 7,-3.5 -7,-3.5 0,3 -3.091106,0 z"
+         id="path114"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.89138841,-0.45324023,0.45324023,0.89138841,-107.13913,221.98794)"
+         y="337.54175"
+         x="409.61243"
+         font-size="8px"
+         id="text116"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_…</text>
+      <rect
+         transform="matrix(-0.89138841,0.45324023,-0.45324023,-0.89138841,438.21806,319.99678)"
+         width="71.182213"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect118"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g120">
+      <path
+         transform="matrix(-0.96297809,-0.26957966,0.26957966,-0.96297809,436.78627,305.54038)"
+         d="m 0,0.5 7.8531497,0 0,-1 L 0,-0.5 z m 83.85315,0 7.853149,0 0,3 7,-3.5 -7,-3.5 0,3 -7.853149,0 z"
+         id="path122"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.96297809,0.26957966,-0.26957966,0.96297809,93.571114,-94.991192)"
+         y="296.17929"
+         x="392.63068"
+         font-size="8px"
+         id="text124"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_WORD</text>
+      <rect
+         transform="matrix(-0.96297809,-0.26957966,0.26957966,-0.96297809,436.78627,305.54038)"
+         width="98.706299"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect126"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g128">
+      <path
+         transform="matrix(-0.50595907,-0.86255748,0.86255748,-0.50595907,445.92665,293.68082)"
+         d="m 0,0.5 6.9256157,0 0,-1 L 0,-0.5 z m 82.925616,0 6.925615,0 0,3 7,-3.5 -7,-3.5 0,3 -6.925615,0 z"
+         id="path130"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.50595907,0.86255748,-0.86255748,0.50595907,428.9679,-239.08519)"
+         y="257.9299"
+         x="423.19614"
+         font-size="8px"
+         id="text132"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_WORD</text>
+      <rect
+         transform="matrix(-0.50595907,-0.86255748,0.86255748,-0.50595907,445.92665,293.68082)"
+         width="96.851234"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect134"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g136">
+      <path
+         transform="matrix(0.08494468,-0.99638567,0.99638567,0.08494468,457.74473,291.00426)"
+         d="m 0,0.5 0.97457302,0 0,-1 L 0,-0.5 z m 41.974573,0 0.974573,0 0,3 7,-3.5 -7,-3.5 0,3 -0.974573,0 z"
+         id="path138"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.08494468,-0.99638567,0.99638567,0.08494468,151.89809,704.61344)"
+         y="272.6073"
+         x="459.56888"
+         font-size="8px"
+         id="text140"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTA…</text>
+      <rect
+         transform="matrix(0.08494468,-0.99638567,0.99638567,0.08494468,457.74473,291.00426)"
+         width="49.949146"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect142"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g144">
+      <path
+         transform="matrix(0.36544813,0.93083171,-0.93083171,0.36544813,329.78367,292.15621)"
+         d="m 0,0.5 0.15387784,0 0,-1 L 0,-0.5 z m 47.153878,0 0.153878,0 0,3 7,-3.5 -7,-3.5 0,3 -0.153878,0 z"
+         id="path146"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.36544813,0.93083171,-0.93083171,0.36544813,507.19319,-115.65976)"
+         y="317.17398"
+         x="338.42792"
+         font-size="8px"
+         id="text148"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEXT_W…</text>
+      <rect
+         transform="matrix(0.36544813,0.93083171,-0.93083171,0.36544813,329.78367,292.15621)"
+         width="54.307755"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect150"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g152">
+      <path
+         transform="matrix(-0.62357305,0.78176509,-0.78176509,-0.62357305,374.33325,208.52522)"
+         d="m 0,0.5 1.5817717,0 0,-1 L 0,-0.5 z m 54.581772,0 1.581771,0 0,3 7,-3.5 -7,-3.5 0,3 -1.581771,0 z"
+         id="path154"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.62357305,-0.78176509,0.78176509,0.62357305,-45.862601,365.70949)"
+         y="233.47856"
+         x="356.8222"
+         font-size="8px"
+         id="text156"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEXT_WO…</text>
+      <rect
+         transform="matrix(-0.62357305,0.78176509,-0.78176509,-0.62357305,374.33325,208.52522)"
+         width="63.163544"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect158"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g160">
+      <path
+         transform="matrix(-0.937974,-0.34670559,0.34670559,-0.937974,444.92705,214.37382)"
+         d="m 0,0.5 2.4829183,0 0,-1 L 0,-0.5 z m 32.482918,0 2.482919,0 0,3 7,-3.5 -7,-3.5 0,3 -2.482919,0 z"
+         id="path162"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.937974,0.34670559,-0.34670559,0.937974,98.802981,-135.65245)"
+         y="211.31239"
+         x="428.52853"
+         font-size="8px"
+         id="text164"
+         style="font-size:8px;text-anchor:middle;fill:#000000">NEX…</text>
+      <rect
+         transform="matrix(-0.937974,-0.34670559,0.34670559,-0.937974,444.92705,214.37382)"
+         width="41.965836"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect166"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       class="relationship"
+       id="g176">
+      <path
+         transform="matrix(0.58362094,-0.81202623,0.81202623,0.58362094,398.47713,176.64939)"
+         d="m 0,0.5 2.4138399,0 0,-1 L 0,-0.5 z m 60.41384,0 2.41384,0 0,3 7,-3.5 -7,-3.5 0,3 -2.41384,0 z"
+         id="path178"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.58362094,-0.81202623,0.81202623,0.58362094,50.821255,401.39314)"
+         y="154.14053"
+         x="416.81091"
+         font-size="8px"
+         id="text180"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_…</text>
+      <rect
+         transform="matrix(0.58362094,-0.81202623,0.81202623,0.58362094,398.47713,176.64939)"
+         width="69.827682"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect182"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+    <g
+       transform="matrix(0.18936303,0.85801632,-0.8550071,0.1745729,494.63498,-425.3901)"
+       class="relationship"
+       id="g16-1">
+      <path
+         transform="matrix(-0.9907141,0.13596162,-0.13596162,-0.9907141,655.78143,283.52106)"
+         d="m 0,0.5 49.303855,0 0,-1 L 0,-0.5 z m 125.30386,0 49.30385,0 0,3 7,-3.5 -7,-3.5 0,3 -49.30385,0 z"
+         id="path18-7"
+         inkscape:connector-curvature="0"
+         style="fill:#d4d6d7;stroke:none" />
+      <text
+         transform="matrix(0.9907141,-0.13596162,0.13596162,0.9907141,-34.875493,80.144328)"
+         y="298.39102"
+         x="569.28827"
+         font-size="8px"
+         id="text20-0"
+         style="font-size:8px;text-anchor:middle;fill:#000000">CONTAINS_TOKEN</text>
+      <rect
+         transform="matrix(-0.9907141,0.13596162,-0.13596162,-0.9907141,655.78143,283.52106)"
+         width="181.60771"
+         height="20"
+         y="-10"
+         x="0"
+         class="overlay"
+         id="rect22-9"
+         style="opacity:0;fill:#ffff00" />
+    </g>
+  </g>
+  <g
+     class="layer nodes"
+     id="g184"
+     transform="translate(-126.97919,75.740114)">
+    <g
+       transform="translate(675.59572,280.80183)"
+       class="node"
+       id="g186">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle188"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#f25a29;stroke:#dc4717;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text190"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">الفاتحة</text>
+    </g>
+    <g
+       transform="translate(593.4037,214.71611)"
+       class="node"
+       id="g192">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle194"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text196"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">1</text>
+    </g>
+    <g
+       transform="translate(456.04583,310.93197)"
+       class="node"
+       id="g198">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle200"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text202"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">2</text>
+    </g>
+    <g
+       transform="translate(592.91219,343.43718)"
+       class="node"
+       id="g204">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle206"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text208"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">3</text>
+    </g>
+    <g
+       transform="translate(704.35195,345.24924)"
+       class="node"
+       id="g210">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle212"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text214"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">4</text>
+    </g>
+    <g
+       transform="translate(769.08101,285.07808)"
+       class="node"
+       id="g216">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle218"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text220"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">5</text>
+    </g>
+    <g
+       transform="translate(768.67095,212.18381)"
+       class="node"
+       id="g222">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle224"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text226"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">6</text>
+    </g>
+    <g
+       transform="translate(714.47662,173.00374)"
+       class="node"
+       id="g228"
+       inkscape:transform-center-x="-9"
+       inkscape:transform-center-y="21">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle230"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text232"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">7</text>
+    </g>
+    <g
+       transform="translate(356.9393,361.32422)"
+       class="node"
+       id="g234">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle236"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#30b6af;stroke:#46a39e;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text238"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">4</text>
+    </g>
+    <g
+       transform="translate(322.4747,273.53957)"
+       class="node"
+       id="g240">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle242"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#30b6af;stroke:#46a39e;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text244"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">3</text>
+    </g>
+    <g
+       transform="translate(386.80471,192.88992)"
+       class="node"
+       id="g246">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle248"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#30b6af;stroke:#46a39e;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text250"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">2</text>
+    </g>
+    <g
+       transform="translate(463.68653,221.30793)"
+       class="node"
+       id="g252">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle254"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#30b6af;stroke:#46a39e;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text256"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">1</text>
+    </g>
+    <g
+       transform="translate(317.8834,17.567235)"
+       class="node"
+       id="g258">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle260"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ff6c7c;stroke:#eb5d6c;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text262"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">لَّهِ</text>
+    </g>
+    <g
+       transform="translate(450.90244,103.70696)"
+       class="node"
+       id="g264">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle268"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20"
+         style="fill:#ff6c7c;stroke:#eb5d6c;stroke-width:2px" />
+      <text
+         font-size="10px"
+         y="5"
+         id="text270"
+         style="font-size:10px;text-anchor:middle;fill:#ffffff">لِ</text>
+    </g>
+  </g>
+  <g
+     id="g3148">
+    <g
+       id="g3132">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle568-2"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         style="fill:#ad62ce;stroke:#9453b1;stroke-width:2px"
+         transform="matrix(0.47619047,0,0,0.47619048,35.70711,72.362183)"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20" />
+      <text
+         font-size="10px"
+         y="75.716675"
+         id="text570-8-6-9"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;font-family:Abyssinica SIL;-inkscape-font-specification:Abyssinica SIL"
+         x="64.921875"
+         sodipodi:linespacing="125%">
+        <tspan
+           sodipodi:role="line"
+           id="tspan3153"
+           x="64.921875"
+           y="75.716675">VERSE
+                </tspan>
+      </text>
+    </g>
+    <g
+       id="g3137">
+      <g
+         id="g572-1"
+         class="node"
+         transform="matrix(0.47617818,0,0,0.47619693,34.99975,102.36206)"
+         style="fill:#30b6af;stroke:#46a39e">
+        <circle
+           style="fill:#30b6af;stroke:#46a39e;stroke-width:2px"
+           d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+           id="circle574-8"
+           class="outline"
+           cx="0"
+           cy="0"
+           r="20"
+           sodipodi:cx="0"
+           sodipodi:cy="0"
+           sodipodi:rx="20"
+           sodipodi:ry="20" />
+      </g>
+      <text
+         font-size="10px"
+         y="106.07227"
+         id="text570-8-6-9-7"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;font-family:Abyssinica SIL;-inkscape-font-specification:Abyssinica SIL"
+         x="64.931641"
+         sodipodi:linespacing="125%">
+        <tspan
+           sodipodi:role="line"
+           id="tspan3158"
+           x="64.931641"
+           y="106.07227">WORD
+                </tspan>
+      </text>
+    </g>
+    <g
+       id="g3127">
+      <text
+         sodipodi:linespacing="125%"
+         font-size="10px"
+         y="45.716995"
+         id="text570-8-6"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;font-family:Abyssinica SIL;-inkscape-font-specification:Abyssinica SIL"
+         x="49.609375">
+        <tspan
+           sodipodi:role="line"
+           id="tspan3149"
+           x="49.609375"
+           y="45.716995">CHAPTER
+                </tspan>
+      </text>
+      <circle
+         transform="matrix(0.47619047,0,0,0.47619048,35,42.362183)"
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle586-1"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         style="fill:#f25a29;stroke:#dc4717;stroke-width:2px"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20" />
+    </g>
+    <g
+       id="g3143">
+      <circle
+         r="20"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle538-4"
+         d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+         style="fill:#ff6c7c;stroke:#eb5d6c;stroke-width:2px"
+         transform="matrix(0.47619287,0,0,0.47618753,35.000048,132.36224)"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="20"
+         sodipodi:ry="20" />
+      <text
+         x="69.243164"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;font-family:Abyssinica SIL;-inkscape-font-specification:Abyssinica SIL"
+         id="text4706"
+         y="135.71667"
+         font-size="10px"
+         sodipodi:linespacing="125%">
+        <tspan
+           sodipodi:role="line"
+           id="tspan3162"
+           x="69.243164"
+           y="135.71667">TOKEN
+                </tspan>
+      </text>
+    </g>
+  </g>
+</svg>

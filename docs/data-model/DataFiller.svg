@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   neo-graph="neo-graph"
+   graph-data="frame.response.graph"
+   ng-controller="D3GraphCtrl"
+   style="pointer-events:fill"
+   preserveAspectRatio="xMidYMid"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   width="100%"
+   height="100%"
+   sodipodi:docname="DataFiller.svg">
+  <metadata
+     id="metadata90">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1317"
+     inkscape:window-height="744"
+     id="namedview88"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="372.04724"
+     inkscape:cy="926.18109"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4" />
+  <g
+     class="layer relationships"
+     id="g6">
+    <g
+       class="relationship"
+       id="g8">
+      <path
+         transform="translate(165.84316050553443 322.57101681213277) rotate(-41.08578872568314)"
+         d="M 0 0.5 L 38.825089189032454 0.5 L 38.825089189032454 -0.5 L 0 -0.5 Z M 82.82508918903245 0.5 L 121.65017837806491 0.5 L 121.65017837806491 3.5 L 128.6501783780649 0 L 121.65017837806491 -3.5 L 121.65017837806491 -0.5 L 82.82508918903245 -0.5 Z"
+         stroke="none"
+         fill="#D4D6D7"
+         id="path10" />
+      <text
+         transform="rotate(-41.08578872568314 211.68863723962988 282.5974788416545)"
+         y="285.5974788416545"
+         x="211.68863723962988"
+         fill="#000000"
+         font-size="8px"
+         text-anchor="middle"
+         id="text12">DEPENDS
+            </text>
+      <rect
+         transform="translate(165.84316050553443 322.57101681213277) rotate(-41.08578872568314)"
+         width="128.6501783780649"
+         opacity="0"
+         height="20"
+         y="-10"
+         x="0"
+         fill="yellow"
+         class="overlay"
+         id="rect14" />
+    </g>
+    <g
+       class="relationship"
+       id="g16">
+      <path
+         transform="translate(303.5564002872346 209.5416618055766) rotate(-28.822000078536657)"
+         d="M 0 0.5 L 31.37754485524279 0.5 L 31.37754485524279 -0.5 L 0 -0.5 Z M 75.37754485524279 0.5 L 106.75508971048558 0.5 L 106.75508971048558 3.5 L 113.75508971048558 0 L 106.75508971048558 -3.5 L 106.75508971048558 -0.5 L 75.37754485524279 -0.5 Z"
+         stroke="none"
+         fill="#D4D6D7"
+         id="path18" />
+      <text
+         transform="rotate(-28.822000078536657 350.3216221397877 183.80887494027672)"
+         y="186.80887494027672"
+         x="350.3216221397877"
+         fill="#000000"
+         font-size="8px"
+         text-anchor="middle"
+         id="text20">
+                DEPENDS
+            </text>
+      <rect
+         transform="translate(303.5564002872346 209.5416618055766) rotate(-28.822000078536657)"
+         width="113.75508971048558"
+         opacity="0"
+         height="20"
+         y="-10"
+         x="0"
+         fill="yellow"
+         class="overlay"
+         id="rect22" />
+    </g>
+    <g
+       class="relationship"
+       id="g24">
+      <path
+         transform="translate(386.6820072165933 321.76243812421365) rotate(-136.35680507214354)"
+         d="M 0 0.5 L 34.56850200795597 0.5 L 34.56850200795597 -0.5 L 0 -0.5 Z M 78.56850200795597 0.5 L 113.13700401591194 0.5 L 113.13700401591194 3.5 L 120.13700401591194 0 L 113.13700401591194 -3.5 L 113.13700401591194 -0.5 L 78.56850200795597 -0.5 Z"
+         stroke="none"
+         fill="#D4D6D7"
+         id="path26" />
+      <text
+         transform="rotate(43.643194927856456 345.74611141239626 282.72082117342586)"
+         y="285.72082117342586"
+         x="345.74611141239626"
+         fill="#000000"
+         font-size="8px"
+         text-anchor="middle"
+         id="text28">
+                DEPENDS
+            </text>
+      <rect
+         transform="translate(386.6820072165933 321.76243812421365) rotate(-136.35680507214354)"
+         width="120.13700401591194"
+         opacity="0"
+         height="20"
+         y="-10"
+         x="0"
+         fill="yellow"
+         class="overlay"
+         id="rect30" />
+    </g>
+    <g
+       class="relationship"
+       id="g32">
+      <path
+         transform="translate(532.8088568227909 211.72598406412888) rotate(-147.32128569162913)"
+         d="M 0 0.5 L 25.96855097035069 0.5 L 25.96855097035069 -0.5 L 0 -0.5 Z M 69.96855097035069 0.5 L 95.93710194070138 0.5 L 95.93710194070138 3.5 L 102.93710194070138 0 L 95.93710194070138 -3.5 L 95.93710194070138 -0.5 L 69.96855097035069 -0.5 Z"
+         stroke="none"
+         fill="#D4D6D7"
+         id="path34" />
+      <text
+         transform="rotate(32.67871430837087 492.4331793791548 185.8264367097331)"
+         y="188.8264367097331"
+         x="492.4331793791548"
+         fill="#000000"
+         font-size="8px"
+         text-anchor="middle"
+         id="text36">DEPENDS
+            </text>
+      <rect
+         transform="translate(532.8088568227909 211.72598406412888) rotate(-147.32128569162913)"
+         width="102.93710194070138"
+         opacity="0"
+         height="20"
+         y="-10"
+         x="0"
+         fill="yellow"
+         class="overlay"
+         id="rect38" />
+    </g>
+    <g
+       class="relationship"
+       id="g40">
+      <path
+         transform="translate(423.952844654796 117.67659224973917) rotate(-92.68217368083883)"
+         d="M 0 0.5 L 2.016264548077231 0.5 L 2.016264548077231 -0.5 L 0 -0.5 Z M 46.01626454807723 0.5 L 48.03252909615446 0.5 L 48.03252909615446 3.5 L 55.03252909615446 0 L 48.03252909615446 -3.5 L 48.03252909615446 -0.5 L 46.01626454807723 -0.5 Z"
+         stroke="none"
+         fill="#D4D6D7"
+         id="path42" />
+      <text
+         transform="rotate(87.31782631916117 422.8289875637326 93.68663793377397)"
+         y="96.68663793377397"
+         x="422.8289875637326"
+         fill="#000000"
+         font-size="8px"
+         text-anchor="middle"
+         id="text44">DEPENDS
+            </text>
+      <rect
+         transform="translate(423.952844654796 117.67659224973917) rotate(-92.68217368083883)"
+         width="55.03252909615446"
+         opacity="0"
+         height="20"
+         y="-10"
+         x="0"
+         fill="yellow"
+         class="overlay"
+         id="rect46" />
+    </g>
+  </g>
+  <g
+     class="layer nodes"
+     id="g48">
+    <g
+       transform="translate(147,339.00072472684224)"
+       class="node"
+       id="g50">
+      <circle
+         stroke-width="2px"
+         stroke="#D4D6D7"
+         fill="#DFE1E3"
+         r="25"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle52"
+         d="M 25,0 C 25,13.807119 13.807119,25 0,25 -13.807119,25 -25,13.807119 -25,0 c 0,-13.807119 11.192881,-25 25,-25 13.807119,0 25,11.192881 25,25 z" />
+      <text
+         fill="#000000"
+         font-size="10px"
+         y="5"
+         text-anchor="middle"
+         id="text54">data.filler.leeds.more.NextVerseInQuranDataFiller</text>
+    </g>
+    <g
+       transform="translate(281.6533594208094,221.5939147403481)"
+       class="node"
+       id="g56">
+      <circle
+         stroke-width="2px"
+         stroke="#D4D6D7"
+         fill="#DFE1E3"
+         r="25"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle58"
+         d="M 25,0 C 25,13.807119 13.807119,25 0,25 -13.807119,25 -25,13.807119 -25,0 c 0,-13.807119 11.192881,-25 25,-25 13.807119,0 25,11.192881 25,25 z" />
+      <text
+         fill="#000000"
+         font-size="10px"
+         y="5"
+         text-anchor="middle"
+         id="text60">data.filler.leeds.more.LeedsCorpusNextDataFiller</text>
+    </g>
+    <g
+       transform="translate(404.7733011129916,339.0165705322527)"
+       class="node"
+       id="g62">
+      <circle
+         stroke-width="2px"
+         stroke="#D4D6D7"
+         fill="#DFE1E3"
+         r="25"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle64"
+         d="M 25,0 C 25,13.807119 13.807119,25 0,25 -13.807119,25 -25,13.807119 -25,0 c 0,-13.807119 11.192881,-25 25,-25 13.807119,0 25,11.192881 25,25 z" />
+      <text
+         fill="#000000"
+         font-size="10px"
+         y="5"
+         text-anchor="middle"
+         id="text66">data.filler.leeds.more.WordIndexInQuranDataFiller</text>
+    </g>
+    <g
+       transform="translate(425.12273630136497,142.64920431846934)"
+       class="node"
+       id="g68">
+      <circle
+         stroke-width="2px"
+         stroke="#D4D6D7"
+         fill="#DFE1E3"
+         r="25"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle70"
+         d="M 25,0 C 25,13.807119 13.807119,25 0,25 -13.807119,25 -25,13.807119 -25,0 c 0,-13.807119 11.192881,-25 25,-25 13.807119,0 25,11.192881 25,25 z" />
+      <text
+         fill="#000000"
+         font-size="10px"
+         y="5"
+         text-anchor="middle"
+         id="text72">data.filler.leeds.LeedsCorpusDataFiller</text>
+    </g>
+    <g
+       transform="translate(553.8516424744735,225.22417549918197)"
+       class="node"
+       id="g74">
+      <circle
+         stroke-width="2px"
+         stroke="#D4D6D7"
+         fill="#DFE1E3"
+         r="25"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle76"
+         d="M 25,0 C 25,13.807119 13.807119,25 0,25 -13.807119,25 -25,13.807119 -25,0 c 0,-13.807119 11.192881,-25 25,-25 13.807119,0 25,11.192881 25,25 z" />
+      <text
+         fill="#000000"
+         font-size="10px"
+         y="5"
+         text-anchor="middle"
+         id="text78">data.filler.leeds.more.RootOfLemmaDataFiller</text>
+    </g>
+    <g
+       transform="translate(420.2076691650609,37.731740169834126)"
+       class="node"
+       id="g80">
+      <circle
+         stroke-width="2px"
+         stroke="#D4D6D7"
+         fill="#DFE1E3"
+         r="25"
+         cy="0"
+         cx="0"
+         class="outline"
+         id="circle84"
+         d="M 25,0 C 25,13.807119 13.807119,25 0,25 -13.807119,25 -25,13.807119 -25,0 c 0,-13.807119 11.192881,-25 25,-25 13.807119,0 25,11.192881 25,25 z" />
+      <text
+         fill="#000000"
+         font-size="10px"
+         y="5"
+         text-anchor="middle"
+         id="text86">data.filler.tanzil.TanzilDataFiller</text>
+    </g>
+  </g>
+  <g
+     id="g3061">
+    <text
+       x="49.838867"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#000000;font-family:Abyssinica SIL;-inkscape-font-specification:Abyssinica SIL"
+       id="text570-8-6"
+       y="45.716995"
+       font-size="10px"
+       sodipodi:linespacing="125%">
+      <tspan
+         id="tspan3059"
+         sodipodi:role="line">DataFiller</tspan>
+    </text>
+    <circle
+       sodipodi:ry="20"
+       sodipodi:rx="20"
+       sodipodi:cy="0"
+       sodipodi:cx="0"
+       style="fill:#dfe1e3;stroke:#d4d6d7;stroke-width:2px"
+       d="m 20,0 c 0,11.045695 -8.954305,20 -20,20 -11.045695,0 -20,-8.954305 -20,-20 0,-11.045695 8.954305,-20 20,-20 11.045695,0 20,8.954305 20,20 z"
+       id="circle580-6"
+       class="outline"
+       cx="0"
+       cy="0"
+       r="20"
+       transform="matrix(0.47619047,0,0,0.47619048,35,42.36218)" />
+  </g>
+</svg>
