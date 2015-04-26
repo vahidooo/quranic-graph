@@ -3,6 +3,7 @@ package model.api.lemma;
 import model.api.base.Textual;
 import model.api.root.Root;
 import model.api.token.Token;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
  */
 public interface Lemma extends Textual {
 
+    @JsonIgnore
     Set<Token> getTokens();
 
     boolean hasRoot();

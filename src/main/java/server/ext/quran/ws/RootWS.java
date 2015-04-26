@@ -11,6 +11,7 @@ import data.schema.NodeLabels;
 import data.schema.NodeProperties;
 import data.schema.RelationshipTypes;
 import model.api.block.VerseBlock;
+import model.api.lemma.Lemma;
 import model.api.root.Root;
 import model.api.token.Token;
 import model.api.verse.Verse;
@@ -24,7 +25,6 @@ import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.traversal.Evaluation;
 import org.neo4j.graphdb.traversal.Evaluator;
 import org.neo4j.graphdb.traversal.TraversalDescription;
-import server.repr.HasArabicPropertyRepresentation;
 import util.VerseUtils;
 
 import javax.ws.rs.GET;
@@ -34,7 +34,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -71,37 +70,43 @@ public class RootWS extends BaseWS {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/lemmas/{root}")
-    public Response lemmas(@PathParam("root") final String root) {
-        Node rootNode = database.index().forNodes(GraphIndices.RootIndex).get(NodeProperties.GeneralText.arabic, root).getSingle();
+    public Response lemmas(@PathParam("root") final String arabic) {
+//        Node rootNode = database.index().forNodes(GraphIndices.RootIndex).get(NodeProperties.GeneralText.arabic, root).getSingle();
+//
+//        TraversalDescription td = database.traversalDescription()
+//                .depthFirst()
+//                .relationships(RelationshipTypes.HAS_ROOT)
+//                .relationships(RelationshipTypes.HAS_LEMMA)
+//                .evaluator(new Evaluator() {
+//                               @Override
+//                               public Evaluation evaluate(org.neo4j.graphdb.Path path) {
+//
+//                                   Node node = path.endNode();
+//
+//                                   if (path.length() > 2) {
+//                                       return Evaluation.EXCLUDE_AND_PRUNE;
+//                                   }
+//                                   if (node.hasLabel(NodeLabels.LEMMA)) {
+//                                       return Evaluation.INCLUDE_AND_PRUNE;
+//                                   }
+//                                   return Evaluation.EXCLUDE_AND_CONTINUE;
+//                               }
+//                           }
+//
+//                );
+//        ResourceIterable<Node> lemmas = td.traverse(rootNode).nodes();
+//
+//
+//        //TODO : use new framework
+//        return Response.status(Response.Status.OK)
+//                .entity((new HasArabicPropertyRepresentation().represent(lemmas)).
+//                        getBytes(Charset.forName("UTF-8"))).build();
 
-        TraversalDescription td = database.traversalDescription()
-                .depthFirst()
-                .relationships(RelationshipTypes.HAS_ROOT)
-                .relationships(RelationshipTypes.HAS_LEMMA)
-                .evaluator(new Evaluator() {
-                               @Override
-                               public Evaluation evaluate(org.neo4j.graphdb.Path path) {
 
-                                   Node node = path.endNode();
-
-                                   if (path.length() > 2) {
-                                       return Evaluation.EXCLUDE_AND_PRUNE;
-                                   }
-                                   if (node.hasLabel(NodeLabels.LEMMA)) {
-                                       return Evaluation.INCLUDE_AND_PRUNE;
-                                   }
-                                   return Evaluation.EXCLUDE_AND_CONTINUE;
-                               }
-                           }
-
-                );
-        ResourceIterable<Node> lemmas = td.traverse(rootNode).nodes();
-
-
-        //TODO : use new framework
-        return Response.status(Response.Status.OK)
-                .entity((new HasArabicPropertyRepresentation().represent(lemmas)).
-                        getBytes(Charset.forName("UTF-8"))).build();
+        Root root = managersSet.getRootManager().getRootByArabic(arabic);
+        Set<Lemma> lemmas = root.getLemmas();
+        String json = getJson( "lemmas" , lemmas);
+        return getOkResponse(json);
     }
 
 

@@ -2,6 +2,7 @@ package model.impl.root;
 
 import data.schema.RelationshipTypes;
 import model.api.base.Session;
+import model.api.lemma.Lemma;
 import model.api.root.Root;
 import model.api.token.Token;
 import model.impl.base.TextualImpl;
@@ -33,6 +34,19 @@ public class RootImpl extends TextualImpl implements Root {
             tokens.add(token);
         }
         return tokens;
+    }
+
+    @Override
+    public Set<Lemma> getLemmas() {
+        Set<Lemma> lemmas = new HashSet<>();
+
+        Iterator<Relationship> it = node.getRelationships(Direction.INCOMING, RelationshipTypes.LEMMA_HAS_ROOT).iterator();
+        while (it.hasNext()) {
+            Node lemmaNode = it.next().getStartNode();
+            Lemma lemma = session.get(Lemma.class , lemmaNode);
+            lemmas.add(lemma);
+        }
+        return lemmas;
     }
 
     @Override

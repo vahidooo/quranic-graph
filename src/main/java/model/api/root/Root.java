@@ -2,6 +2,7 @@ package model.api.root;
 
 
 import model.api.base.Textual;
+import model.api.lemma.Lemma;
 import model.api.token.Token;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -15,5 +16,6 @@ public interface Root extends Textual {
     @JsonIgnore
     Set<Token> getTokens();
 
-
+    @JsonIgnore
+    Set<Lemma> getLemmas();
 }

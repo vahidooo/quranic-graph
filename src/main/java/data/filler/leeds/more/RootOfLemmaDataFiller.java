@@ -3,7 +3,6 @@ package data.filler.leeds.more;
 import data.filler.DataFiller;
 import data.filler.TransactionalFiller;
 import data.schema.NodeLabels;
-import data.schema.NodeProperties;
 import data.schema.RelationshipTypes;
 import model.impl.base.ManagersSet;
 import org.neo4j.graphdb.*;
@@ -49,33 +48,32 @@ public class RootOfLemmaDataFiller extends DataFiller {
                             if (path.length() == 2) {
                                 return Evaluation.INCLUDE_AND_PRUNE;
                             }
-                            return Evaluation.INCLUDE_AND_CONTINUE;
+                            return Evaluation.EXCLUDE_AND_CONTINUE;
                         }
                     });
 
             ResourceIterable<Node> lemmas = GlobalGraphOperations.at(database).getAllNodesWithLabel(NodeLabels.LEMMA);
-            ResourceIterator<Path> it = td.traverse(lemmas).iterator();
+            for (Node lemma : lemmas) {
+                ResourceIterator<Path> it = td.traverse(lemma).iterator();
 
-            while (it.hasNext()) {
-                Path path = it.next();
-                if (path.length() != 2) {
-                    continue;
+                while (it.hasNext()) {
+                    Path path = it.next();
+                    Node root = path.endNode();
+//                    Node lemma = path.startNode();
+
+//                    check for duplicate root
+//                if (lemma.getRelationships(RelationshipTypes.LEMMA_HAS_ROOT, Direction.OUTGOING).iterator().hasNext()) {
+//                    Node prev = lemma.getRelationships(RelationshipTypes.LEMMA_HAS_ROOT, Direction.OUTGOING).iterator().next().getEndNode();
+//                    if (!prev.equals(root)) {
+//                        String buckwalter = NodeProperties.GeneralText.buckwalter;
+//                        throw new RuntimeException(String.format("Lemma(%s) has many roots :[%s,%s]",
+//                                lemma.getId(), prev.getId(), root.getId())
+//                        );
+//                    }
+//                }
+
+                    lemma.createRelationshipTo(root, RelationshipTypes.LEMMA_HAS_ROOT);
                 }
-
-                Node root = path.endNode();
-                Node lemma = path.startNode();
-
-                if (lemma.getRelationships(RelationshipTypes.LEMMA_HAS_ROOT, Direction.OUTGOING).iterator().hasNext()) {
-                    Node prev = lemma.getRelationships(RelationshipTypes.LEMMA_HAS_ROOT, Direction.OUTGOING).iterator().next().getEndNode();
-                    if (!prev.equals(root)) {
-                        String buckwalter = NodeProperties.GeneralText.buckwalter;
-                        throw new RuntimeException(String.format("Lemma(%s) has many roots :[%s,%s]",
-                                lemma.getId(), prev.getId(), root.getId())
-                        );
-                    }
-                }
-
-                lemma.createRelationshipTo(root, RelationshipTypes.LEMMA_HAS_ROOT);
             }
 
         }
