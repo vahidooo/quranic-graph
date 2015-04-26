@@ -1,0 +1,15 @@
+۱. مکانیزم افزودن دیتا:
+یک کلاس از DataFiller مشتق کرذه و در DataFillerManager.consturtor وابستگی‌هایش را مشخص میکنیم.
+
+۲. اضافه کردن وب سرویس:
+در پکیج server.ext.quran میتوانیم وب سرویس اضافه کنیم
+
+۳. اضافه کردن servlet-filter:
+با نوشتن یک filter و اضافه کردن آن در ManagerFilterPluginInitializer میتوان filter به درگاه اضافه کرد.(مانند BeginTransactionFilter)
+
+۴.OOP
+در حال حاضر میتوان به data-model از طریق Managerها به صورت OOP‌ دسترسی پیدا کرد.
+برای اضافه کردن Entity به پکیج model نگاه کنید(مثلا entity‌ با نام Root را دنبال کنید)
+
+۵.پروژه gradle است.
+برای استفاده به readme‌ مراجع کنید.
