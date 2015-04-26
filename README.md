@@ -1,6 +1,9 @@
 # quranic-graph
 
-
+## Requirements
+Java 1.7
+Neo4j 2.1
+Gradle 2.2 (optional)
 
 ## Installation
 1. Download neo4j-2.2+ from [Neo4j download page] (http://neo4j.com/download/)
