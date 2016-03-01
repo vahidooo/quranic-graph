@@ -492,4 +492,35 @@
             </text>
         </g>
     </g>
+
+
+
+    <script xlink:href="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script type="text/ecmascript"><![CDATA[
+
+    var types = [ "chapter" ,"verse" ]
+
+    $( document ).ready(function() {
+    for (i = 0; i < types.length; i++) {
+        var type=types[i]
+            $( "#" + type + "-description" ).hide();
+        }
+    });
+
+    for (i = 0; i < types.length; i++) {
+        var type=types[i]
+
+        $( "#"+ type +"-node-sample" ).mouseenter(function() {
+            $( "#" + type + "-description" ).fadeIn(500);
+        });
+
+        $( "#"+ type +"-node-sample" ).mouseleave(function() {
+            $( "#" + type + "-description" ).fadeOut(500);
+        });
+    }
+
+    ]]></script>
+
+
 </svg>
