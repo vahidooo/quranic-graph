@@ -1,4 +1,9 @@
 apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'quran.app.QuranApplication'
+
+
 //apply plugin: 'spring-boot'
 //
 //buildscript {
@@ -13,10 +18,15 @@ apply plugin: 'java'
 
 repositories {
 //    jcenter()
-    mavenCentral()
-    flatDir {
-        dirs 'lib'
+
+    maven {
+        url "http://m2.neo4j.org/content/repositories/releases/"
     }
+
+    mavenCentral()
+//    flatDir {
+//        dirs 'lib'
+//    }
 }
 
 dependencies {
@@ -27,13 +37,14 @@ dependencies {
 
 
 
-    runtime('com.mysema.querydsl:querydsl-core:2.2.3')
 
     runtime('com.mysema.querydsl:querydsl-core:2.2.3')
     runtime('com.mysema.querydsl:querydsl-lucene:2.2.3')
     runtime('com.mysema.querydsl:querydsl-apt:2.2.3')
 
-    runtime name : 'neo4j-cypher-dsl-2.1.4'
+//    compile('org.neo4j.neo4j-cypher-dsl:neo4j-cypher-dsl:2.0.1')
+
+//    compile name : 'neo4j-cypher-dsl-2.1.4'
 
 
 
