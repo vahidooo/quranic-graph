@@ -25,6 +25,8 @@ import java.io.InputStream;
 
 public class TanzilDataFiller implements DataFiller {
 
+    public static final String ADDRESS_SEPARATOR = ":";
+
     private static final String SURAS_TAG = "suras";
     private static final String SURA_TAG = "sura";
     private static final String AYA_TAG = "aya";
@@ -115,6 +117,7 @@ public class TanzilDataFiller implements DataFiller {
                 verse.setChapter(chaper);
                 verse.setIndex(verseIndex);
                 verse.setText(text);
+                verse.setAddress(String.format("%d%s%d", chapterIndex, ADDRESS_SEPARATOR, verseIndex));
 
                 template.save(verse);
             }

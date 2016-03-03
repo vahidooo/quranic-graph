@@ -2,10 +2,7 @@ package quran.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.springframework.data.neo4j.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,7 @@ public class Chapter {
 
     @RelatedTo( type = "VERSE", direction = Direction.OUTGOING)
     @JsonIgnore
+    @Query("START ch=node({self}) MATCH (ch)-[r:VERSE]-(v:Verse) return v ORDER BY v.index")
     private List<Verse> verses;
 
 //    @RelatedTo(direction = Direction.OUTGOING)

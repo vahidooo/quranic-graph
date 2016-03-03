@@ -8,6 +8,9 @@ import quran.entity.Chapter;
 import quran.entity.Verse;
 import quran.repository.ChapterRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by vahidoo on 2/26/16.
  */
@@ -24,10 +27,33 @@ public class VerseService {
     @RequestMapping(value = "/verse/{chapterIndex}:{index}", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
-    public Verse findByIndex(@PathVariable Integer chapterIndex, @PathVariable Integer index) {
+    public Verse getVerse(@PathVariable Integer chapterIndex, @PathVariable Integer index) {
         Chapter chapter = chapterRepository.findByIndex(chapterIndex);
-        Verse verse = chapter.getVerses().get(index);
+        Verse verse = chapter.getVerses().get(index - 1);
         return template.fetch(verse);
-//        return null;
     }
+
+    @RequestMapping(value = "/verse/{chapterIndex}:{startIndex}/{endIndex}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<Verse> getVerseRange(@PathVariable Integer chapterIndex, @PathVariable Integer startIndex, @PathVariable Integer endIndex) {
+        Chapter chapter = chapterRepository.findByIndex(chapterIndex);
+        ArrayList<Verse> verses = new ArrayList<>();
+
+        for (int i = startIndex - 1; i < endIndex; i++) {
+            verses.add(chapter.getVerses().get(i));
+        }
+
+        return template.fetch(verses);
+    }
+
+
+    @RequestMapping(value = "/verse/{chapterIndex}:all", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<Verse> getAllVerses(@PathVariable Integer chapterIndex) {
+        Chapter chapter = chapterRepository.findByIndex(chapterIndex);
+        return template.fetch(chapter.getVerses());
+    }
+
 }
