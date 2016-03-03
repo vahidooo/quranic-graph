@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import quran.entity.Lemma;
 import quran.entity.Root;
-import quran.entity.Verse;
 import quran.repository.RootRepository;
 import quran.repository.VerseRepository;
 
@@ -47,4 +46,22 @@ public class RootService {
 //    }
 
 
+    @RequestMapping(value = "/root/search/like/{pattern}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public Set<Root> getRootByFormLike(@PathVariable String pattern) {
+        Set<Root> roots = rootRepository.findByFormLike(String.format(".*%s.*", pattern));
+        return template.fetch(roots);
+    }
+
+    @RequestMapping(value = "/root/search/{form}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public Root getRootByForm(@PathVariable String form) {
+        Root root = rootRepository.findByForm(form);
+        return template.fetch(root);
+    }
+
 }
+
+

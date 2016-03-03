@@ -2,6 +2,8 @@ package quran.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -15,11 +17,18 @@ import quran.app.base.BasicGraphConfiguration;
 @PropertySource("classpath:quran-app.properties")
 @Import(BasicGraphConfiguration.class)
 @ComponentScan(basePackages = "quran.service")
-public class QuranApplication /*implements CommandLineRunner *//*extends BasicGraphConfiguration */ {
+public class QuranApplication extends SpringBootServletInitializer /*implements CommandLineRunner *//*extends BasicGraphConfiguration */ {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(QuranApplication.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(QuranApplication.class, args);
     }
+
+
 
 //    @Autowired
 //    private GraphDatabaseService graphDatabaseService;

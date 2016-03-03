@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import quran.entity.Chapter;
 import quran.entity.Verse;
 import quran.repository.ChapterRepository;
+import quran.repository.VerseRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by vahidoo on 2/26/16.
@@ -20,6 +22,8 @@ public class VerseService {
 
     @Autowired
     private ChapterRepository chapterRepository;
+    @Autowired
+    private VerseRepository verseRepository;
 
     @Autowired
     private Neo4jTemplate template;
@@ -54,6 +58,14 @@ public class VerseService {
     public List<Verse> getAllVerses(@PathVariable Integer chapterIndex) {
         Chapter chapter = chapterRepository.findByIndex(chapterIndex);
         return template.fetch(chapter.getVerses());
+    }
+
+    @RequestMapping(value = "/verse/byRoot/{threshold}/{pattern}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public Set<Verse> getVerseByRootsPattern(@PathVariable Integer threshold, @PathVariable String pattern) {
+        Set<Verse> verses = verseRepository.getVerseByRootsPattern(pattern, threshold);
+        return template.fetch(verses);
     }
 
 }
